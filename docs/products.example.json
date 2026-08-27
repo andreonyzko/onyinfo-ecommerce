@@ -1,0 +1,246 @@
+[
+  {
+    "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "name": "Processador AMD Ryzen 7 7800X3D",
+    "slug": "amd-ryzen-7-7800x3d",
+    "description": "O processador definitivo para jogos, equipado com a tecnologia AMD 3D V-Cache.",
+    "price": 2899.90,
+    "categorySlug": "cpus",
+    "brand": "AMD",
+    "image": "https://placehold.co/400x400/png?text=Ryzen+7",
+    "specs": {
+      "cores": 8,
+      "threads": 16,
+      "socket": "AM5",
+      "tdp": 120
+    }
+  },
+  {
+    "id": "3d813c14-2253-487c-87d4-069279267156",
+    "name": "Placa Mãe ASUS ROG Strix B650E-F Gaming",
+    "slug": "asus-rog-strix-b650e-f",
+    "description": "Placa-mãe robusta com suporte a PCIe 5.0 e Wi-Fi 6E para o máximo de conectividade.",
+    "price": 1850.00,
+    "categorySlug": "motherboards",
+    "brand": "ASUS",
+    "image": "https://placehold.co/400x400/png?text=Placa+Mae",
+    "specs": {
+      "socket": "AM5",
+      "formFactor": "ATX",
+      "ramSlots": 4,
+      "maxRam": "128GB"
+    }
+  },
+  {
+    "id": "a9b2b515-9d3d-4c3e-8c34-8b6d8d9b1e5a",
+    "name": "Memória Corsair Vengeance 32GB (2x16GB)",
+    "slug": "corsair-vengeance-32gb-ddr5",
+    "description": "Kit de memória DDR5 de alta velocidade otimizado para estabilidade em sistemas modernos.",
+    "price": 950.00,
+    "categorySlug": "memories",
+    "brand": "Corsair",
+    "image": "https://placehold.co/400x400/png?text=Memoria+RAM",
+    "specs": {
+      "type": "DDR5",
+      "capacity": "32GB",
+      "speed": 6000,
+      "latency": "CL36"
+    }
+  },
+  {
+    "id": "c5b1c7a2-7d2d-4b8c-9c1e-3a4d6f8e7b1a",
+    "name": "NVIDIA GeForce RTX 4070 Ti Super 16GB",
+    "slug": "nvidia-geforce-rtx-4070-ti-super",
+    "description": "Placa de vídeo de última geração para jogar em 4K com Ray Tracing e DLSS 3.0.",
+    "price": 5499.00,
+    "categorySlug": "gpus",
+    "brand": "NVIDIA",
+    "image": "https://placehold.co/400x400/png?text=RTX+4070+Ti",
+    "specs": {
+      "vram": "16GB",
+      "cudaCores": 8448,
+      "powerRequirement": "700W"
+    }
+  },
+  {
+    "id": "e1c4d9b2-3a5f-4c1e-9d2a-8b6d4f7e5c3a",
+    "name": "SSD NVMe Samsung 990 PRO 2TB",
+    "slug": "ssd-samsung-990-pro-2tb",
+    "description": "SSD ultrarrápido ideal para carregamentos instantâneos em jogos pesados e edição de vídeo.",
+    "price": 1299.90,
+    "categorySlug": "storages",
+    "brand": "Samsung",
+    "image": "https://placehold.co/400x400/png?text=SSD+2TB",
+    "specs": {
+      "type": "NVMe M.2",
+      "capacity": "2TB",
+      "readSpeed": 7450,
+      "writeSpeed": 6900
+    }
+  },
+  {
+    "id": "b4a2c1d9-8e7f-4b3c-9a1d-2b5d6f4e8c7a",
+    "name": "Fonte XPG Core Reactor 850W",
+    "slug": "fonte-xpg-core-reactor-850w",
+    "description": "Fonte totalmente modular com certificação 80 Plus Gold, proporcionando energia limpa.",
+    "price": 750.00,
+    "categorySlug": "powersupplys",
+    "brand": "XPG",
+    "image": "https://placehold.co/400x400/png?text=Fonte+850W",
+    "specs": {
+      "wattage": 850,
+      "efficiency": "80 Plus Gold",
+      "modular": "Full Modular"
+    }
+  },
+  {
+    "id": "d7e5b1c4-9a2f-4b3d-8c1e-3a6d4f7e9b2c",
+    "name": "Water Cooler NZXT Kraken 240",
+    "slug": "water-cooler-nzxt-kraken-240",
+    "description": "Resfriamento líquido eficiente com display de temperatura na bomba.",
+    "price": 999.00,
+    "categorySlug": "coolers",
+    "brand": "NZXT",
+    "image": "https://placehold.co/400x400/png?text=Water+Cooler",
+    "specs": {
+      "type": "Water Cooler",
+      "radiatorSize": "240mm",
+      "fans": 2
+    }
+  },
+  {
+    "id": "f2a4b1c7-8d9e-4c3b-9a1d-5b6d4f7e2c3a",
+    "name": "Gabinete Lian Li O11 Dynamic EVO",
+    "slug": "gabinete-lian-li-o11-dynamic-evo",
+    "description": "Gabinete mid-tower premium de design duplo com painéis em vidro temperado.",
+    "price": 1100.00,
+    "categorySlug": "cases",
+    "brand": "Lian Li",
+    "image": "https://placehold.co/400x400/png?text=Gabinete",
+    "specs": {
+      "formFactor": "Mid-Tower",
+      "sidePanel": "Vidro Temperado",
+      "motherboardSupport": "E-ATX, ATX, Micro-ATX"
+    }
+  },
+  {
+    "id": "a1c4b2d9-7e8f-4b3c-9d1a-6b5d4f7e3c2a",
+    "name": "Kit 3 Ventoinhas Corsair iCUE AR120",
+    "slug": "kit-3-ventoinhas-corsair-icue-ar120",
+    "description": "Ventoinhas de alto fluxo de ar com iluminação RGB personalizável.",
+    "price": 320.00,
+    "categorySlug": "fans",
+    "brand": "Corsair",
+    "image": "https://placehold.co/400x400/png?text=Ventoinhas",
+    "specs": {
+      "size": 120,
+      "rpm": 1500,
+      "rgb": true
+    }
+  },
+  {
+    "id": "c2b1a4d9-8e7f-4c3b-9a1d-5b6d4f7e1c3a",
+    "name": "Teclado Mecânico Keychron K8 Pro",
+    "slug": "teclado-mecanico-keychron-k8-pro",
+    "description": "Teclado sem fio TKL com switches hot-swappable e corpo em alumínio.",
+    "price": 780.00,
+    "categorySlug": "keyboards",
+    "brand": "Keychron",
+    "image": "https://placehold.co/400x400/png?text=Teclado",
+    "specs": {
+      "size": "TKL (80%)",
+      "switchType": "Gateron Brown",
+      "wireless": true
+    }
+  },
+  {
+    "id": "e4c1b2d9-9a8f-4b3c-7d1a-6b5d4f7e2c3a",
+    "name": "Mouse Logitech G Pro X Superlight",
+    "slug": "mouse-logitech-g-pro-x-superlight",
+    "description": "Mouse gamer ultraleve projetado para e-sports de alto nível.",
+    "price": 699.90,
+    "categorySlug": "mouses",
+    "brand": "Logitech",
+    "image": "https://placehold.co/400x400/png?text=Mouse",
+    "specs": {
+      "weight": 63,
+      "sensor": "HERO 25K",
+      "wireless": true
+    }
+  },
+  {
+    "id": "b1a4c2d9-8e7f-4c3b-9d1a-5b6d4f7e3c2a",
+    "name": "Mousepad Fallen Pantera Extended",
+    "slug": "mousepad-fallen-pantera-extended",
+    "description": "Mousepad gigante acomodando teclado e mouse com bordas costuradas.",
+    "price": 150.00,
+    "categorySlug": "mousepads",
+    "brand": "Fallen",
+    "image": "https://placehold.co/400x400/png?text=Mousepad",
+    "specs": {
+      "size": "900x400mm",
+      "material": "Tecido Speed",
+      "stitchedEdges": true
+    }
+  },
+  {
+    "id": "d9c1b2a4-7e8f-4c3b-9a1d-6b5d4f7e2c3a",
+    "name": "Headset HyperX Cloud III Wireless",
+    "slug": "headset-hyperx-cloud-iii-wireless",
+    "description": "Fone de ouvido sem fio extremamente confortável, com áudio espacial 3D.",
+    "price": 950.00,
+    "categorySlug": "headphones",
+    "brand": "HyperX",
+    "image": "https://placehold.co/400x400/png?text=Headset",
+    "specs": {
+      "connection": "Wireless 2.4GHz",
+      "batteryLife": 120,
+      "microphone": "Destacável"
+    }
+  },
+  {
+    "id": "f1b2c4d9-9a8f-4c3b-7d1a-5b6d4f7e3c2a",
+    "name": "Monitor Alienware 27 QHD 280Hz",
+    "slug": "monitor-alienware-27-qhd-280hz",
+    "description": "Monitor Fast IPS com tempo de resposta de 1ms, proporcionando fluidez impecável.",
+    "price": 4200.00,
+    "categorySlug": "monitors",
+    "brand": "Alienware",
+    "image": "https://placehold.co/400x400/png?text=Monitor",
+    "specs": {
+      "resolution": "2560x1440",
+      "refreshRate": 280,
+      "panelType": "Fast IPS"
+    }
+  },
+  {
+    "id": "a4c1b2d9-8e7f-4c3b-9d1a-6b5d4f7e2c3a",
+    "name": "Notebook Dell XPS 15",
+    "slug": "notebook-dell-xps-15",
+    "description": "Notebook premium ultrafino, com construção em fibra de carbono, ideal para produtividade.",
+    "price": 14500.00,
+    "categorySlug": "notebooks",
+    "brand": "Dell",
+    "image": "https://placehold.co/400x400/png?text=Notebook",
+    "specs": {
+      "cpu": "Intel Core i7-13700H",
+      "ram": "32GB DDR5",
+      "gpu": "RTX 4060 8GB"
+    }
+  },
+  {
+    "id": "c1b2a4d9-7e8f-4c3b-9a1d-5b6d4f7e3c2a",
+    "name": "Cadeira Gamer Noblechairs Hero",
+    "slug": "cadeira-gamer-noblechairs-hero",
+    "description": "Cadeira ergonômica de alto padrão, com suporte lombar integrado.",
+    "price": 3500.00,
+    "categorySlug": "chairs",
+    "brand": "Noblechairs",
+    "image": "https://placehold.co/400x400/png?text=Cadeira",
+    "specs": {
+      "material": "Couro PU Sintético",
+      "maxWeight": 150,
+      "armrest": "4D"
+    }
+  }
+]

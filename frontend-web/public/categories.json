@@ -1,0 +1,150 @@
+[
+  {
+    "name": "Processadores",
+    "slug": "cpus",
+    "specs": {
+      "cores": "Qntd. Núcleos",
+      "threads": "Threads",
+      "socket": "Socket",
+      "tdp": "TDP (Energia)"
+    }
+  },
+  {
+    "name": "Placas mãe",
+    "slug": "motherboards",
+    "specs": {
+      "socket": "Socket Suportado",
+      "formFactor": "Formato",
+      "ramSlots": "Slots de Memória",
+      "maxRam": "Memória Máxima"
+    }
+  },
+  {
+    "name": "Memórias (RAM)",
+    "slug": "memories",
+    "specs": {
+      "type": "Tipo",
+      "capacity": "Capacidade",
+      "speed": "Frequência",
+      "latency": "Latência"
+    }
+  },
+  {
+    "name": "Placas de vídeo",
+    "slug": "gpus",
+    "specs": {
+      "vram": "Memória VRAM",
+      "cudaCores": "Núcleos CUDA",
+      "powerRequirement": "Fonte Recomendada"
+    }
+  },
+  {
+    "name": "Armazenamento (SSD/HD)",
+    "slug": "storages",
+    "specs": {
+      "type": "Formato/Conexão",
+      "capacity": "Capacidade",
+      "readSpeed": "Velocidade de Leitura",
+      "writeSpeed": "Velocidade de Gravação"
+    }
+  },
+  {
+    "name": "Fontes",
+    "slug": "powersupplys",
+    "specs": {
+      "wattage": "Potência",
+      "efficiency": "Certificação 80 Plus",
+      "modular": "Cabeamento"
+    }
+  },
+  {
+    "name": "Coolers",
+    "slug": "coolers",
+    "specs": {
+      "type": "Tipo de Resfriamento",
+      "radiatorSize": "Tamanho do Radiador",
+      "fans": "Qntd. Ventoinhas"
+    }
+  },
+  {
+    "name": "Gabinetes",
+    "slug": "cases",
+    "specs": {
+      "formFactor": "Tamanho",
+      "sidePanel": "Painel Lateral",
+      "motherboardSupport": "Suporte a Placa-Mãe"
+    }
+  },
+  {
+    "name": "Ventoinhas",
+    "slug": "fans",
+    "specs": {
+      "size": "Tamanho (mm)",
+      "rpm": "Rotação Máxima (RPM)",
+      "rgb": "Iluminação RGB"
+    }
+  },
+  {
+    "name": "Teclados",
+    "slug": "keyboards",
+    "specs": {
+      "size": "Formato",
+      "switchType": "Tipo de Switch",
+      "wireless": "Sem Fio"
+    }
+  },
+  {
+    "name": "Mouses",
+    "slug": "mouses",
+    "specs": {
+      "weight": "Peso",
+      "sensor": "Sensor",
+      "wireless": "Sem Fio"
+    }
+  },
+  {
+    "name": "Mousepads",
+    "slug": "mousepads",
+    "specs": {
+      "size": "Dimensões",
+      "material": "Material",
+      "stitchedEdges": "Bordas Costuradas"
+    }
+  },
+  {
+    "name": "Fones de Ouvido",
+    "slug": "headphones",
+    "specs": {
+      "connection": "Conexão",
+      "batteryLife": "Duração da Bateria",
+      "microphone": "Microfone"
+    }
+  },
+  {
+    "name": "Monitores",
+    "slug": "monitors",
+    "specs": {
+      "resolution": "Resolução",
+      "refreshRate": "Taxa de Atualização",
+      "panelType": "Tipo de Painel"
+    }
+  },
+  {
+    "name": "Notebooks",
+    "slug": "notebooks",
+    "specs": {
+      "cpu": "Processador",
+      "ram": "Memória RAM",
+      "gpu": "Placa de Vídeo"
+    }
+  },
+  {
+    "name": "Cadeiras",
+    "slug": "chairs",
+    "specs": {
+      "material": "Revestimento",
+      "maxWeight": "Peso Suportado",
+      "armrest": "Apoio de Braço"
+    }
+  }
+]
