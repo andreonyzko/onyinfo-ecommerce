@@ -1,202 +1,203 @@
-import { Link } from 'react-router'
+import { useState } from 'react'
+import { Link, Navigate } from 'react-router'
 import {
-  ShoppingCart,
-  ArrowRight,
   ShieldCheck,
   Zap,
-  RotateCcw,
-  ShoppingBag,
   CreditCard,
+  Truck,
+  ShoppingBag,
+  ArrowRight,
+  ArrowLeft,
 } from 'lucide-react'
 import { useCartStore } from '../stores'
-import { CartItemCard } from '../components/cart/CartItemCard'
+import { CustomerStep } from '../components/checkout/CustomerStep'
 import { Button, buttonVariants } from '../components/ui/button'
+import { Badge } from '../components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Separator } from '../components/ui/separator'
 import { cn } from '../lib/utils'
 
+export type CheckoutStep = 'identification' | 'shipping' | 'payment'
+
 export function CheckoutPage() {
   const items = useCartStore((state) => state.items)
-  const updateQuantity = useCartStore((state) => state.updateQuantity)
-  const removeItem = useCartStore((state) => state.removeItem)
-  const clearCart = useCartStore((state) => state.clearCart)
+  const selectedShipping = useCartStore((state) => state.selectedShipping)
+  const selectedPaymentMethod = useCartStore((state) => state.selectedPaymentMethod)
   const getSubtotal = useCartStore((state) => state.getSubtotal)
   const getDiscount = useCartStore((state) => state.getDiscount)
   const getTotal = useCartStore((state) => state.getTotal)
 
+  const [currentStep] = useState<CheckoutStep>('identification')
+
   const subtotal = getSubtotal()
   const discountPix = getDiscount()
-  const totalPix = getTotal()
-  const installmentPrice = subtotal / 12
+  const shippingPrice = selectedShipping?.price || 0
+  const total = getTotal()
+  const installmentPrice = (subtotal + shippingPrice) / 12
 
-  // Estado de Carrinho Vazio
+  // Bloqueio de acesso direto: só permite o fluxo se houver itens no carrinho
   if (items.length === 0) {
-    return (
-      <div className="container mx-auto px-4 py-16 text-center max-w-lg space-y-6">
-        <div className="w-20 h-20 rounded-full bg-muted/60 flex items-center justify-center mx-auto text-muted-foreground">
-          <ShoppingBag className="w-10 h-10 stroke-[1.5]" />
-        </div>
-        <div className="space-y-2">
-          <h1 className="text-2xl font-bold text-foreground">Seu carrinho está vazio</h1>
-          <p className="text-sm text-muted-foreground">
-            Explore nossa seleção de hardware de alta performance e adicione itens ao seu setup.
-          </p>
-        </div>
-        <div className="pt-2">
-          <Link
-            to="/"
-            className={cn(
-              buttonVariants({ size: 'lg' }),
-              'gap-2 font-semibold shadow-md'
-            )}
-          >
-            <span>Explorar Produtos</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </div>
-    )
+    return <Navigate to="/carrinho" replace />
+  }
+
+  const handleIdentificationSuccess = () => {
+    // Avançará para a etapa 'shipping' na Subtarefa 3
   }
 
   return (
-    <div className="container mx-auto px-4 py-6 space-y-8">
-      {/* Cabeçalho do Carrinho */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border">
+    <div className="container mx-auto px-4 py-6 space-y-6">
+      {/* Cabeçalho do Checkout */}
+      <div className="pb-4 border-b border-border">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-primary/10 text-primary">
-            <ShoppingCart className="w-6 h-6" />
+            <ShoppingBag className="w-6 h-6" />
           </div>
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-              Carrinho de Compras
+              Finalização de Compra
             </h1>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Revise os itens selecionados antes de prosseguir para as etapas de entrega e pagamento.
+              Informe seus dados para prosseguir com a entrega e pagamento.
             </p>
           </div>
         </div>
-
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={clearCart}
-          className="text-muted-foreground hover:text-destructive gap-1.5 text-xs self-start sm:self-auto cursor-pointer"
-        >
-          <RotateCcw className="w-3.5 h-3.5" />
-          <span>Limpar Carrinho</span>
-        </Button>
       </div>
 
-      {/* Grid Principal: Lista de Itens com Scroll Interno Pareado + Resumo Financeiro Estático */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Coluna Esquerda: Lista de Itens do Carrinho */}
-        <div className="lg:col-span-8 space-y-4">
-          <Card className="border-border/80 shadow-xs overflow-hidden">
-            <CardHeader className="py-3 px-4 md:px-6 bg-muted/20 border-b border-border">
-              <div className="flex justify-between items-center text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                <span>Produtos ({items.reduce((acc, i) => acc + i.quantity, 0)})</span>
-                <span>Subtotal</span>
-              </div>
-            </CardHeader>
-
-            {/* Container de Produtos com Scroll Interno no Desktop */}
-            <CardContent className="p-0 max-h-[300px] overflow-y-auto divide-y divide-border/60">
-              {items.map((item) => (
-                <CartItemCard
-                  key={item.product.id}
-                  item={item}
-                  onUpdateQuantity={updateQuantity}
-                  onRemove={removeItem}
-                />
-              ))}
-            </CardContent>
-          </Card>
-
-          {/* Continuidade de Compra */}
-          <div className="flex justify-between items-center pt-1">
-            <Link
-              to="/"
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'sm' }),
-                'gap-1.5 text-xs font-semibold'
-              )}
-            >
-              <span>Continuar Comprando</span>
-            </Link>
-          </div>
+      {/* Grid Principal: Colunas com Altura Pareada no Desktop (items-stretch) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* Coluna Esquerda: Formulário da Etapa */}
+        <div className="lg:col-span-8 flex flex-col">
+          {currentStep === 'identification' && (
+            <CustomerStep onSuccess={handleIdentificationSuccess} />
+          )}
         </div>
 
-        {/* Coluna Direita: Resumo Financeiro (Estático na Grade) */}
-        <div className="lg:col-span-4 space-y-4">
-          <Card className="border-border/80 shadow-md bg-card">
-            <CardHeader className="pb-3 border-b border-border">
-              <CardTitle className="text-base font-bold text-foreground">
-                Resumo do Pedido
+        {/* Coluna Direita: Resumo do Pedido com Mesma Altura */}
+        <div className="lg:col-span-4 flex flex-col">
+          <Card className="border-border/80 shadow-md bg-card h-full flex flex-col">
+            <CardHeader className="py-3.5 px-4 sm:px-5 bg-muted/20 border-b border-border flex flex-row items-center justify-between">
+              <CardTitle className="text-sm font-bold text-foreground">
+                Resumo da Compra
               </CardTitle>
+              <Badge variant="secondary" className="text-[10px] font-bold">
+                {items.reduce((acc, i) => acc + i.quantity, 0)} itens
+              </Badge>
             </CardHeader>
 
-            <CardContent className="p-5 space-y-4">
-              {/* Linhas de Valores */}
-              <div className="space-y-2.5 text-xs">
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Subtotal ({items.reduce((acc, i) => acc + i.quantity, 0)} itens):</span>
-                  <span className="font-semibold text-foreground">
-                    {subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                  </span>
-                </div>
-
-                <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-semibold">
-                  <span className="flex items-center gap-1">
-                    <Zap className="w-3.5 h-3.5" />
-                    <span>Desconto PIX (5%):</span>
-                  </span>
-                  <span>
-                    - {discountPix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                  </span>
-                </div>
-
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Frete estimado:</span>
-                  <span className="italic text-muted-foreground">Calculado na etapa seguinte</span>
-                </div>
+            <CardContent className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
+              {/* Miniatura dos Produtos */}
+              <div className="max-h-[140px] overflow-y-auto divide-y divide-border/50 pr-1 space-y-2">
+                {items.map(({ product, quantity }) => (
+                  <div key={product.id} className="pt-2 first:pt-0 flex items-center justify-between gap-3 text-xs">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-9 h-9 rounded-lg bg-card border border-border/70 p-0.5 shrink-0 flex items-center justify-center">
+                        <img src={product.image} alt={product.name} className="w-full h-full object-contain" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="font-medium text-foreground truncate">{product.name}</div>
+                        <div className="text-[11px] text-muted-foreground">Qtd: {quantity}</div>
+                      </div>
+                    </div>
+                    <div className="font-semibold text-foreground shrink-0">
+                      {(product.price * quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              <Separator />
+              {/* Bloco de Totais */}
+              <div className="space-y-3 pt-2">
+                <Separator />
 
-              {/* Total Final */}
-              <div className="space-y-1">
-                <div className="flex justify-between items-baseline">
-                  <span className="font-bold text-sm text-foreground">Total no PIX:</span>
-                  <span className="text-2xl font-black text-emerald-600 dark:text-emerald-400">
-                    {totalPix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                  </span>
+                {/* Valores Financeiros */}
+                <div className="space-y-2 text-xs">
+                  <div className="flex justify-between text-muted-foreground">
+                    <span>Subtotal:</span>
+                    <span className="font-semibold text-foreground">
+                      {subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    </span>
+                  </div>
+
+                  {selectedPaymentMethod === 'pix' && discountPix > 0 && (
+                    <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-semibold">
+                      <span className="flex items-center gap-1">
+                        <Zap className="w-3.5 h-3.5" />
+                        <span>Desconto PIX (5%):</span>
+                      </span>
+                      <span>
+                        - {discountPix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="flex justify-between text-muted-foreground">
+                    <span className="flex items-center gap-1">
+                      <Truck className="w-3.5 h-3.5" />
+                      <span>Frete:</span>
+                    </span>
+                    <span className="font-semibold text-foreground">
+                      {selectedShipping
+                        ? shippingPrice === 0
+                          ? 'Grátis'
+                          : shippingPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                        : 'A calcular'}
+                    </span>
+                  </div>
                 </div>
-                <div className="text-[11px] text-muted-foreground text-right flex items-center justify-end gap-1">
-                  <CreditCard className="w-3.5 h-3.5" />
-                  <span>ou 12x de {installmentPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} sem juros</span>
+
+                <Separator />
+
+                {/* Total Final */}
+                <div className="space-y-1">
+                  <div className="flex justify-between items-baseline">
+                    <span className="font-bold text-sm text-foreground">
+                      {selectedPaymentMethod === 'pix' ? 'Total no PIX:' : 'Total:'}
+                    </span>
+                    <span className="text-2xl font-black text-emerald-600 dark:text-emerald-400">
+                      {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground text-right flex items-center justify-end gap-1">
+                    <CreditCard className="w-3.5 h-3.5" />
+                    <span>ou em até 12x de {installmentPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+                  </div>
                 </div>
               </div>
-
-              {/* Botão de Avançar */}
-              <Button
-                size="lg"
-                className="w-full font-bold gap-2 text-sm shadow-md cursor-pointer mt-2"
-                onClick={() => {
-                  // Conectará com a Subtarefa 2
-                }}
-              >
-                <span>Avançar para Identificação</span>
-                <ArrowRight className="w-4 h-4" />
-              </Button>
 
               {/* Selo de Segurança */}
-              <div className="pt-2 flex items-center justify-center gap-2 text-[11px] text-muted-foreground">
+              <div className="pt-2 flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground border-t border-border/40">
                 <ShieldCheck className="w-4 h-4 text-primary" />
                 <span>Compra 100% segura &bull; Desafio AWS FDE</span>
               </div>
             </CardContent>
           </Card>
         </div>
+      </div>
+
+      {/* Seção Inferior de Navegação (Abaixo de Ambas as Colunas) */}
+      <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-3 pt-4 border-t border-border">
+        {/* Botão Voltar */}
+        <Link
+          to="/carrinho"
+          className={cn(
+            buttonVariants({ variant: 'outline', size: 'default' }),
+            'w-full sm:w-auto gap-1.5 text-xs font-semibold'
+          )}
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Voltar para o Carrinho</span>
+        </Link>
+
+        {/* Botão Continuar (Dispara o formulário da etapa ativa) */}
+        <Button
+          type="submit"
+          form="customer-form"
+          size="lg"
+          className="w-full sm:w-auto font-bold gap-2 text-xs shadow-md cursor-pointer"
+        >
+          <span>Continuar para a Entrega</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </Button>
       </div>
     </div>
   )
