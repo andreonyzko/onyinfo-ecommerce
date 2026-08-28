@@ -80,9 +80,13 @@ export async function productLoader({
 
 export interface SearchLoaderData {
   products: Product[]
+  categories: Category[]
 }
 
 export async function searchLoader(): Promise<SearchLoaderData> {
-  const products = await fetchProducts()
-  return { products }
+  const [products, categories] = await Promise.all([
+    fetchProducts(),
+    fetchCategories(),
+  ])
+  return { products, categories }
 }
