@@ -106,7 +106,7 @@ export function Header() {
 
             {/* Botão do Carrinho */}
             <Link
-              to="/checkout"
+              to="/carrinho"
               aria-label="Ir para o carrinho de compras"
               className={cn(
                 buttonVariants({ variant: 'outline', size: 'default' }),
