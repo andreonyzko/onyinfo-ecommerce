@@ -3,41 +3,40 @@ import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export interface CheckboxProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "onChange"> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   checked?: boolean
   onCheckedChange?: (checked: boolean) => void
-  onChange?: React.ChangeEventHandler<HTMLInputElement>
 }
 
-const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ className, checked, onCheckedChange, onChange, disabled, ...props }, ref) => {
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e)
-      onCheckedChange?.(e.target.checked)
+const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
+  ({ className, checked = false, onCheckedChange, disabled, onClick, ...props }, ref) => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      onClick?.(e)
+      if (!disabled) {
+        onCheckedChange?.(!checked)
+      }
     }
 
     return (
-      <label
+      <button
+        type="button"
+        role="checkbox"
+        aria-checked={checked}
+        ref={ref}
+        disabled={disabled}
+        onClick={handleClick}
         className={cn(
-          "relative inline-flex items-center justify-center size-4 shrink-0 rounded-xs border border-input shadow-xs transition-colors cursor-pointer select-none",
+          "relative inline-flex size-4 shrink-0 items-center justify-center rounded-xs border border-input shadow-xs transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
           checked
             ? "bg-primary text-primary-foreground border-primary"
             : "bg-background hover:border-primary/50",
-          disabled && "cursor-not-allowed opacity-50",
           className
         )}
+        {...props}
       >
-        <input
-          type="checkbox"
-          ref={ref}
-          checked={checked}
-          onChange={handleChange}
-          disabled={disabled}
-          className="sr-only"
-          {...props}
-        />
         {checked && <Check className="size-3 stroke-[3]" />}
-      </label>
+      </button>
     )
   }
 )
