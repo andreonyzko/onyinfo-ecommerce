@@ -58,6 +58,7 @@ export async function categoryLoader({
 export interface ProductLoaderData {
   product: Product
   category?: Category
+  relatedProducts: Product[]
 }
 
 export async function productLoader({
@@ -73,16 +74,27 @@ export async function productLoader({
     throw new Response('Produto não encontrado', { status: 404 })
   }
 
-  const category = await fetchCategoryBySlug(product.categorySlug)
+  const [category, categoryProducts] = await Promise.all([
+    fetchCategoryBySlug(product.categorySlug),
+    fetchProductsByCategory(product.categorySlug),
+  ])
 
-  return { product, category }
+  const relatedProducts = categoryProducts
+    .filter((p) => p.id !== product.id)
+    .slice(0, 4)
+
+  return { product, category, relatedProducts }
 }
 
 export interface SearchLoaderData {
   products: Product[]
+  categories: Category[]
 }
 
 export async function searchLoader(): Promise<SearchLoaderData> {
-  const products = await fetchProducts()
-  return { products }
+  const [products, categories] = await Promise.all([
+    fetchProducts(),
+    fetchCategories(),
+  ])
+  return { products, categories }
 }
