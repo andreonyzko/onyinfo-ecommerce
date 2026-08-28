@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { useCartStore } from '../stores'
 import { CustomerStep } from '../components/checkout/CustomerStep'
+import { ShippingStep } from '../components/checkout/ShippingStep'
 import { Button, buttonVariants } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
@@ -27,7 +28,7 @@ export function CheckoutPage() {
   const getDiscount = useCartStore((state) => state.getDiscount)
   const getTotal = useCartStore((state) => state.getTotal)
 
-  const [currentStep] = useState<CheckoutStep>('identification')
+  const [currentStep, setCurrentStep] = useState<CheckoutStep>('identification')
 
   const subtotal = getSubtotal()
   const discountPix = getDiscount()
@@ -38,10 +39,6 @@ export function CheckoutPage() {
   // Bloqueio de acesso direto: só permite o fluxo se houver itens no carrinho
   if (items.length === 0) {
     return <Navigate to="/carrinho" replace />
-  }
-
-  const handleIdentificationSuccess = () => {
-    // Avançará para a etapa 'shipping' na Subtarefa 3
   }
 
   return (
@@ -57,7 +54,9 @@ export function CheckoutPage() {
               Finalização de Compra
             </h1>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Informe seus dados para prosseguir com a entrega e pagamento.
+              {currentStep === 'identification' && 'Informe seus dados pessoais para identificação do pedido.'}
+              {currentStep === 'shipping' && 'Informe o endereço de entrega e selecione a modalidade de frete.'}
+              {currentStep === 'payment' && 'Selecione a forma de pagamento para concluir sua compra.'}
             </p>
           </div>
         </div>
@@ -65,10 +64,16 @@ export function CheckoutPage() {
 
       {/* Grid Principal: Colunas com Altura Pareada no Desktop (items-stretch) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        {/* Coluna Esquerda: Formulário da Etapa */}
+        {/* Coluna Esquerda: Formulário da Etapa Atual */}
         <div className="lg:col-span-8 flex flex-col">
           {currentStep === 'identification' && (
-            <CustomerStep onSuccess={handleIdentificationSuccess} />
+            <CustomerStep onSuccess={() => setCurrentStep('shipping')} />
+          )}
+
+          {currentStep === 'shipping' && (
+            <ShippingStep onSuccess={() => {
+              // Avançará para payment na Subtarefa 4
+            }} />
           )}
         </div>
 
@@ -133,7 +138,7 @@ export function CheckoutPage() {
                   <div className="flex justify-between text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <Truck className="w-3.5 h-3.5" />
-                      <span>Frete:</span>
+                      <span>Frete ({selectedShipping?.name || 'A calcular'}):</span>
                     </span>
                     <span className="font-semibold text-foreground">
                       {selectedShipping
@@ -177,27 +182,53 @@ export function CheckoutPage() {
       {/* Seção Inferior de Navegação (Abaixo de Ambas as Colunas) */}
       <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-3 pt-4 border-t border-border">
         {/* Botão Voltar */}
-        <Link
-          to="/carrinho"
-          className={cn(
-            buttonVariants({ variant: 'outline', size: 'default' }),
-            'w-full sm:w-auto gap-1.5 text-xs font-semibold'
-          )}
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Voltar para o Carrinho</span>
-        </Link>
+        {currentStep === 'identification' ? (
+          <Link
+            to="/carrinho"
+            className={cn(
+              buttonVariants({ variant: 'outline', size: 'default' }),
+              'w-full sm:w-auto gap-1.5 text-xs font-semibold'
+            )}
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Voltar para o Carrinho</span>
+          </Link>
+        ) : (
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setCurrentStep('identification')}
+            className="w-full sm:w-auto gap-1.5 text-xs font-semibold cursor-pointer"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Voltar para Identificação</span>
+          </Button>
+        )}
 
         {/* Botão Continuar (Dispara o formulário da etapa ativa) */}
-        <Button
-          type="submit"
-          form="customer-form"
-          size="lg"
-          className="w-full sm:w-auto font-bold gap-2 text-xs shadow-md cursor-pointer"
-        >
-          <span>Continuar para a Entrega</span>
-          <ArrowRight className="w-3.5 h-3.5" />
-        </Button>
+        {currentStep === 'identification' && (
+          <Button
+            type="submit"
+            form="customer-form"
+            size="lg"
+            className="w-full sm:w-auto font-bold gap-2 text-xs shadow-md cursor-pointer"
+          >
+            <span>Continuar para a Entrega</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Button>
+        )}
+
+        {currentStep === 'shipping' && (
+          <Button
+            type="submit"
+            form="shipping-form"
+            size="lg"
+            className="w-full sm:w-auto font-bold gap-2 text-xs shadow-md cursor-pointer"
+          >
+            <span>Continuar para o Pagamento</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Button>
+        )}
       </div>
     </div>
   )
