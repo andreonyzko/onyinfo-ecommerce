@@ -8,10 +8,14 @@ import {
   ShoppingBag,
   ArrowRight,
   ArrowLeft,
+  CheckCircle,
 } from 'lucide-react'
-import { useCartStore } from '../stores'
+import type { OrderSummary } from '../types'
+import { useCartStore, useCustomerStore } from '../stores'
 import { CustomerStep } from '../components/checkout/CustomerStep'
 import { ShippingStep } from '../components/checkout/ShippingStep'
+import { PaymentStep } from '../components/checkout/PaymentStep'
+import { OrderConfirmation } from '../components/checkout/OrderConfirmation'
 import { Button, buttonVariants } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
@@ -24,11 +28,18 @@ export function CheckoutPage() {
   const items = useCartStore((state) => state.items)
   const selectedShipping = useCartStore((state) => state.selectedShipping)
   const selectedPaymentMethod = useCartStore((state) => state.selectedPaymentMethod)
+  const clearCart = useCartStore((state) => state.clearCart)
   const getSubtotal = useCartStore((state) => state.getSubtotal)
   const getDiscount = useCartStore((state) => state.getDiscount)
   const getTotal = useCartStore((state) => state.getTotal)
 
+  const customer = useCustomerStore((state) => state.customer)
+  const lastOrder = useCustomerStore((state) => state.lastOrder)
+  const setLastOrder = useCustomerStore((state) => state.setLastOrder)
+  const clearProfile = useCustomerStore((state) => state.clearProfile)
+
   const [currentStep, setCurrentStep] = useState<CheckoutStep>('identification')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const subtotal = getSubtotal()
   const discountPix = getDiscount()
@@ -36,9 +47,68 @@ export function CheckoutPage() {
   const total = getTotal()
   const installmentPrice = (subtotal + shippingPrice) / 12
 
+  // Se houver pedido recém-finalizado
+  if (lastOrder && items.length === 0) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <OrderConfirmation
+          order={lastOrder}
+          onNewOrder={() => {
+            clearProfile()
+          }}
+        />
+      </div>
+    )
+  }
+
   // Bloqueio de acesso direto: só permite o fluxo se houver itens no carrinho
   if (items.length === 0) {
     return <Navigate to="/carrinho" replace />
+  }
+
+  const handleCompleteOrder = () => {
+    setIsSubmitting(true)
+
+    const randomSuffix = Math.floor(100000 + Math.random() * 900000)
+    const orderNumber = `ONY-2026-${randomSuffix}`
+
+    const newOrder: OrderSummary = {
+      orderId: orderNumber,
+      createdAt: new Date().toISOString(),
+      customer: {
+        name: customer?.name || 'Cliente OnyInfo',
+        email: customer?.email || '',
+        cpf: customer?.cpf || '',
+        phone: customer?.phone || '',
+      },
+      address: {
+        cep: customer?.address?.cep || '',
+        street: customer?.address?.street || '',
+        number: customer?.address?.number || '',
+        complement: customer?.address?.complement || '',
+        neighborhood: customer?.address?.neighborhood || '',
+        city: customer?.address?.city || '',
+        state: customer?.address?.state || '',
+      },
+      items: [...items],
+      shippingOption: selectedShipping || {
+        id: 'pac',
+        name: 'PAC / Econômico',
+        deadlineDays: 6,
+        price: 19.9,
+      },
+      paymentMethod: selectedPaymentMethod,
+      subtotal,
+      shippingPrice,
+      discount: discountPix,
+      total,
+    }
+
+    setTimeout(() => {
+      setLastOrder(newOrder)
+      clearCart()
+      setIsSubmitting(false)
+    }, 400)
   }
 
   return (
@@ -54,9 +124,9 @@ export function CheckoutPage() {
               Finalização de Compra
             </h1>
             <p className="text-xs text-muted-foreground mt-0.5">
-              {currentStep === 'identification' && 'Informe seus dados pessoais para identificação do pedido.'}
-              {currentStep === 'shipping' && 'Informe o endereço de entrega e selecione a modalidade de frete.'}
-              {currentStep === 'payment' && 'Selecione a forma de pagamento para concluir sua compra.'}
+              {currentStep === 'identification' && 'Passo 1: Informe seus dados pessoais para identificação do pedido.'}
+              {currentStep === 'shipping' && 'Passo 2: Informe o endereço de entrega e selecione a modalidade de frete.'}
+              {currentStep === 'payment' && 'Passo 3: Selecione a forma de pagamento para concluir sua compra.'}
             </p>
           </div>
         </div>
@@ -71,9 +141,11 @@ export function CheckoutPage() {
           )}
 
           {currentStep === 'shipping' && (
-            <ShippingStep onSuccess={() => {
-              // Avançará para payment na Subtarefa 4
-            }} />
+            <ShippingStep onSuccess={() => setCurrentStep('payment')} />
+          )}
+
+          {currentStep === 'payment' && (
+            <PaymentStep onSuccess={handleCompleteOrder} />
           )}
         </div>
 
@@ -182,7 +254,7 @@ export function CheckoutPage() {
       {/* Seção Inferior de Navegação (Abaixo de Ambas as Colunas) */}
       <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-3 pt-4 border-t border-border">
         {/* Botão Voltar */}
-        {currentStep === 'identification' ? (
+        {currentStep === 'identification' && (
           <Link
             to="/carrinho"
             className={cn(
@@ -193,7 +265,9 @@ export function CheckoutPage() {
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Voltar para o Carrinho</span>
           </Link>
-        ) : (
+        )}
+
+        {currentStep === 'shipping' && (
           <Button
             type="button"
             variant="outline"
@@ -205,7 +279,19 @@ export function CheckoutPage() {
           </Button>
         )}
 
-        {/* Botão Continuar (Dispara o formulário da etapa ativa) */}
+        {currentStep === 'payment' && (
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setCurrentStep('shipping')}
+            className="w-full sm:w-auto gap-1.5 text-xs font-semibold cursor-pointer"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Voltar para Entrega</span>
+          </Button>
+        )}
+
+        {/* Botão Continuar / Finalizar */}
         {currentStep === 'identification' && (
           <Button
             type="submit"
@@ -227,6 +313,25 @@ export function CheckoutPage() {
           >
             <span>Continuar para o Pagamento</span>
             <ArrowRight className="w-3.5 h-3.5" />
+          </Button>
+        )}
+
+        {currentStep === 'payment' && (
+          <Button
+            type="submit"
+            form="payment-form"
+            size="lg"
+            disabled={isSubmitting}
+            className="w-full sm:w-auto font-bold gap-2 text-xs shadow-md bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer"
+          >
+            {isSubmitting ? (
+              <span>Processando Pedido...</span>
+            ) : (
+              <>
+                <CheckCircle className="w-3.5 h-3.5" />
+                <span>Finalizar Pedido</span>
+              </>
+            )}
           </Button>
         )}
       </div>
