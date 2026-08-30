@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useLoaderData, Link, useNavigate } from 'react-router'
+import { useLoaderData, useNavigate, Link } from 'react-router'
 import {
   ChevronRight,
   ShoppingCart,
@@ -19,8 +19,10 @@ import type { ProductLoaderData } from '../router/loaders'
 import { useCartStore } from '../stores'
 import { ProductCard } from '../components/catalog/ProductCard'
 import { ProductGallery } from '../components/catalog/ProductGallery'
+import { Breadcrumb } from '../components/common/Breadcrumb'
 import { Button, buttonVariants } from '../components/ui/button'
 import { Separator } from '../components/ui/separator'
+import { formatCurrency } from '../lib/masks'
 import { cn } from '../lib/utils'
 
 export function ProductPage() {
@@ -54,32 +56,14 @@ export function ProductPage() {
     navigate('/carrinho')
   }
 
+  const breadcrumbItems = category
+    ? [{ label: category.name, href: `/categoria/${category.slug}` }, { label: product.name }]
+    : [{ label: product.name }]
+
   return (
     <div className="container mx-auto px-4 py-6 space-y-12">
-      {/* Breadcrumb de Navegação */}
-      <nav
-        aria-label="Breadcrumb"
-        className="flex items-center flex-wrap gap-1.5 text-xs text-muted-foreground"
-      >
-        <Link to="/" className="hover:text-foreground transition-colors">
-          Home
-        </Link>
-        <ChevronRight className="w-3.5 h-3.5" />
-        {category ? (
-          <Link
-            to={`/categoria/${category.slug}`}
-            className="hover:text-foreground transition-colors"
-          >
-            {category.name}
-          </Link>
-        ) : (
-          <span>{product.categorySlug}</span>
-        )}
-        <ChevronRight className="w-3.5 h-3.5" />
-        <span className="text-foreground font-semibold truncate max-w-xs sm:max-w-md">
-          {product.name}
-        </span>
-      </nav>
+      {/* Breadcrumb de Navegação Estruturada */}
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Grid Principal: Galeria de Imagens + Detalhes de Compra */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
@@ -157,8 +141,8 @@ export function ProductPage() {
             <div className="pt-3 border-t border-primary/10 flex items-center gap-2 text-xs text-muted-foreground">
               <CreditCard className="w-4 h-4 text-primary shrink-0" />
               <div>
-                Ou <span className="font-semibold text-foreground">{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> em até{' '}
-                <span className="font-bold text-foreground">12x de {installmentPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> sem juros no cartão
+                Ou <span className="font-semibold text-foreground">{formatCurrency(product.price)}</span> em até{' '}
+                <span className="font-bold text-foreground">12x de {formatCurrency(installmentPrice)}</span> sem juros no cartão
               </div>
             </div>
           </div>
