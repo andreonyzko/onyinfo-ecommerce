@@ -6,6 +6,7 @@ import { ProductCard } from '../components/catalog/ProductCard'
 import { DynamicFilters, type FilterState } from '../components/catalog/DynamicFilters'
 import { SortSelect } from '../components/catalog/SortSelect'
 import { FilterToggle } from '../components/catalog/FilterToggle'
+import { PaginationControls } from '../components/catalog/PaginationControls'
 import { Breadcrumb } from '../components/common/Breadcrumb'
 import { EmptyState } from '../components/common/EmptyState'
 import { Sheet, SheetHeader, SheetTitle } from '../components/ui/sheet'
@@ -20,6 +21,7 @@ interface CategoryViewProps {
 }
 
 const PRICE_STEP = 10
+const ITEMS_PER_PAGE = 8
 
 function CategoryView({ category, products }: CategoryViewProps) {
   // Cálculo dos limites de preço inicial da categoria com múltiplos exatos de PRICE_STEP
@@ -47,10 +49,17 @@ function CategoryView({ category, products }: CategoryViewProps) {
     numberSpecs: {},
   }))
 
-  // Estado de ordenação, visibilidade no desktop e gaveta móvel
+  // Estado de ordenação, paginação, visibilidade no desktop e gaveta móvel
   const [sortBy, setSortBy] = useState<ProductSortOption>('relevance')
+  const [currentPage, setCurrentPage] = useState(1)
   const [isDesktopFiltersVisible, setIsDesktopFiltersVisible] = useState(true)
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
+
+  // Reseta a página para 1 quando os filtros mudam
+  const handleFilterChange = (newFilters: FilterState) => {
+    setFilters(newFilters)
+    setCurrentPage(1)
+  }
 
   const handleResetFilters = () => {
     setFilters({
@@ -61,6 +70,12 @@ function CategoryView({ category, products }: CategoryViewProps) {
       booleanSpecs: {},
       numberSpecs: {},
     })
+    setCurrentPage(1)
+  }
+
+  const handleSortChange = (newSort: ProductSortOption) => {
+    setSortBy(newSort)
+    setCurrentPage(1)
   }
 
   // Motor de Filtragem e Ordenação Reativa
@@ -110,6 +125,13 @@ function CategoryView({ category, products }: CategoryViewProps) {
     return sortProducts(filtered, sortBy)
   }, [products, filters, sortBy])
 
+  // Paginação dos produtos filtrados
+  const totalPages = Math.ceil(filteredAndSortedProducts.length / ITEMS_PER_PAGE)
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE
+    return filteredAndSortedProducts.slice(start, start + ITEMS_PER_PAGE)
+  }, [filteredAndSortedProducts, currentPage])
+
   // Contagem de filtros ativos
   const activeFilterCount =
     filters.brands.length +
@@ -151,7 +173,7 @@ function CategoryView({ category, products }: CategoryViewProps) {
           />
 
           {/* Dropdown de Ordenação Customizado */}
-          <SortSelect value={sortBy} onChange={setSortBy} />
+          <SortSelect value={sortBy} onChange={handleSortChange} />
         </div>
       </div>
 
@@ -164,7 +186,7 @@ function CategoryView({ category, products }: CategoryViewProps) {
               category={category}
               products={products}
               filters={filters}
-              onFilterChange={setFilters}
+              onFilterChange={handleFilterChange}
               onResetFilters={handleResetFilters}
             />
           </aside>
@@ -180,7 +202,7 @@ function CategoryView({ category, products }: CategoryViewProps) {
               category={category}
               products={products}
               filters={filters}
-              onFilterChange={setFilters}
+              onFilterChange={handleFilterChange}
               onResetFilters={handleResetFilters}
             />
           </div>
@@ -194,21 +216,35 @@ function CategoryView({ category, products }: CategoryViewProps) {
           </div>
         </Sheet>
 
-        {/* Grid de Produtos (Expansível para 4 colunas quando filtros ocultos) */}
-        <div className={cn(isDesktopFiltersVisible ? 'lg:col-span-3' : 'lg:col-span-4')}>
-          {filteredAndSortedProducts.length > 0 ? (
-            <div
-              className={cn(
-                'grid grid-cols-1 sm:grid-cols-2 gap-5',
-                isDesktopFiltersVisible
-                  ? 'md:grid-cols-3'
-                  : 'md:grid-cols-3 lg:grid-cols-4'
-              )}
-            >
-              {filteredAndSortedProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+        {/* Grid de Produtos + Paginação Inferior */}
+        <div className={cn('space-y-6', isDesktopFiltersVisible ? 'lg:col-span-3' : 'lg:col-span-4')}>
+          {paginatedProducts.length > 0 ? (
+            <>
+              <div
+                className={cn(
+                  'grid grid-cols-1 sm:grid-cols-2 gap-5',
+                  isDesktopFiltersVisible
+                    ? 'md:grid-cols-3'
+                    : 'md:grid-cols-3 lg:grid-cols-4'
+                )}
+              >
+                {paginatedProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+
+              {/* Controles de Paginação Abaixo do Grid */}
+              <PaginationControls
+                currentPage={currentPage}
+                totalPages={totalPages}
+                totalItems={filteredAndSortedProducts.length}
+                pageSize={ITEMS_PER_PAGE}
+                onPageChange={(page) => {
+                  setCurrentPage(page)
+                  window.scrollTo({ top: 0, behavior: 'instant' })
+                }}
+              />
+            </>
           ) : (
             <EmptyState
               title="Nenhum produto encontrado"

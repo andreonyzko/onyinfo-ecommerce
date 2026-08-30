@@ -7,6 +7,7 @@ import { ProductCard } from '../components/catalog/ProductCard'
 import { PriceRangeFilter } from '../components/catalog/PriceRangeFilter'
 import { SortSelect } from '../components/catalog/SortSelect'
 import { FilterToggle } from '../components/catalog/FilterToggle'
+import { PaginationControls } from '../components/catalog/PaginationControls'
 import { Breadcrumb } from '../components/common/Breadcrumb'
 import { EmptyState } from '../components/common/EmptyState'
 import { Checkbox } from '../components/ui/checkbox'
@@ -19,6 +20,7 @@ import { sortProducts } from '../lib/sorting'
 import { cn } from '../lib/utils'
 
 const PRICE_STEP = 10
+const ITEMS_PER_PAGE = 8
 
 interface SearchFiltersState {
   categories: string[]
@@ -60,7 +62,7 @@ export function SearchPage() {
     }
   }, [matchedByQuery])
 
-  // 3. Estado dos Filtros Laterais
+  // 3. Estado dos Filtros Laterais e Paginação
   const [filters, setFilters] = useState<SearchFiltersState>(() => ({
     categories: [],
     brands: [],
@@ -69,8 +71,16 @@ export function SearchPage() {
   }))
 
   const [sortBy, setSortBy] = useState<ProductSortOption>('relevance')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [prevQuery, setPrevQuery] = useState(query)
   const [isDesktopFiltersVisible, setIsDesktopFiltersVisible] = useState(true)
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
+
+  // Reseta a página se a query mudar
+  if (prevQuery !== query) {
+    setPrevQuery(query)
+    setCurrentPage(1)
+  }
 
   // 4. Extração de Opções de Categorias presentes no resultado
   const categoryOptions = useMemo(() => {
@@ -114,6 +124,7 @@ export function SearchPage() {
           : [...prev.categories, slug],
       }
     })
+    setCurrentPage(1)
   }
 
   const handleBrandToggle = (brand: string) => {
@@ -126,20 +137,24 @@ export function SearchPage() {
           : [...prev.brands, brand],
       }
     })
+    setCurrentPage(1)
   }
 
   const handlePriceRangeChange = ([newMin, newMax]: [number, number]) => {
     setFilters((prev) => ({ ...prev, minPrice: newMin, maxPrice: newMax }))
+    setCurrentPage(1)
   }
 
   const handleMinPriceInputChange = (val: number) => {
     const safeVal = Math.min(Math.max(minGlobalPrice, val), filters.maxPrice)
     setFilters((prev) => ({ ...prev, minPrice: safeVal }))
+    setCurrentPage(1)
   }
 
   const handleMaxPriceInputChange = (val: number) => {
     const safeVal = Math.max(Math.min(maxGlobalPrice, val), filters.minPrice)
     setFilters((prev) => ({ ...prev, maxPrice: safeVal }))
+    setCurrentPage(1)
   }
 
   const handleResetFilters = () => {
@@ -149,6 +164,12 @@ export function SearchPage() {
       minPrice: minGlobalPrice,
       maxPrice: maxGlobalPrice,
     })
+    setCurrentPage(1)
+  }
+
+  const handleSortChange = (newSort: ProductSortOption) => {
+    setSortBy(newSort)
+    setCurrentPage(1)
   }
 
   // 6. Filtragem e Ordenação Final
@@ -177,6 +198,13 @@ export function SearchPage() {
 
     return sortProducts(filtered, sortBy)
   }, [matchedByQuery, filters, sortBy])
+
+  // Paginação dos produtos da busca
+  const totalPages = Math.ceil(finalProducts.length / ITEMS_PER_PAGE)
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE
+    return finalProducts.slice(start, start + ITEMS_PER_PAGE)
+  }, [finalProducts, currentPage])
 
   // Contagem de filtros ativos
   const hasActiveFilters =
@@ -343,7 +371,7 @@ export function SearchPage() {
           />
 
           {/* Dropdown de Ordenação Customizado */}
-          <SortSelect value={sortBy} onChange={setSortBy} />
+          <SortSelect value={sortBy} onChange={handleSortChange} />
         </div>
       </div>
 
@@ -374,21 +402,35 @@ export function SearchPage() {
           </div>
         </Sheet>
 
-        {/* Grid de Produtos */}
-        <div className={cn(isDesktopFiltersVisible ? 'lg:col-span-3' : 'lg:col-span-4')}>
-          {finalProducts.length > 0 ? (
-            <div
-              className={cn(
-                'grid grid-cols-1 sm:grid-cols-2 gap-5',
-                isDesktopFiltersVisible
-                  ? 'md:grid-cols-3'
-                  : 'md:grid-cols-3 lg:grid-cols-4'
-              )}
-            >
-              {finalProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+        {/* Grid de Produtos + Paginação Inferior */}
+        <div className={cn('space-y-6', isDesktopFiltersVisible ? 'lg:col-span-3' : 'lg:col-span-4')}>
+          {paginatedProducts.length > 0 ? (
+            <>
+              <div
+                className={cn(
+                  'grid grid-cols-1 sm:grid-cols-2 gap-5',
+                  isDesktopFiltersVisible
+                    ? 'md:grid-cols-3'
+                    : 'md:grid-cols-3 lg:grid-cols-4'
+                )}
+              >
+                {paginatedProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+
+              {/* Controles de Paginação Abaixo do Grid */}
+              <PaginationControls
+                currentPage={currentPage}
+                totalPages={totalPages}
+                totalItems={finalProducts.length}
+                pageSize={ITEMS_PER_PAGE}
+                onPageChange={(page) => {
+                  setCurrentPage(page)
+                  window.scrollTo({ top: 0, behavior: 'instant' })
+                }}
+              />
+            </>
           ) : (
             <EmptyState
               title="Nenhum produto encontrado"
