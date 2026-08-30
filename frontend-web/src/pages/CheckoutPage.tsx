@@ -20,6 +20,7 @@ import { Button, buttonVariants } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Separator } from '../components/ui/separator'
+import { formatCurrency } from '../lib/masks'
 import { cn } from '../lib/utils'
 
 export type CheckoutStep = 'identification' | 'shipping' | 'payment'
@@ -176,7 +177,7 @@ export function CheckoutPage() {
                       </div>
                     </div>
                     <div className="font-semibold text-foreground shrink-0">
-                      {(product.price * quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                      {formatCurrency(product.price * quantity)}
                     </div>
                   </div>
                 ))}

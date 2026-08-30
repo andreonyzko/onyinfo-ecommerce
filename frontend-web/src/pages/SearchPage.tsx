@@ -1,38 +1,26 @@
 import { useState, useMemo } from 'react'
 import { useLoaderData, useSearchParams, Link } from 'react-router'
-import {
-  ChevronRight,
-  Filter,
-  PackageOpen,
-  ArrowUpDown,
-  Search,
-  RotateCcw,
-  SlidersHorizontal,
-  EyeOff,
-  Eye,
-} from 'lucide-react'
+import { Search, RotateCcw, SlidersHorizontal } from 'lucide-react'
 import type { SearchLoaderData } from '../router/loaders'
 import type { Product, ProductSortOption } from '../types'
 import { ProductCard } from '../components/catalog/ProductCard'
+import { PriceRangeFilter } from '../components/catalog/PriceRangeFilter'
+import { SortSelect } from '../components/catalog/SortSelect'
+import { FilterToggle } from '../components/catalog/FilterToggle'
+import { PaginationControls } from '../components/catalog/PaginationControls'
+import { Breadcrumb } from '../components/common/Breadcrumb'
+import { EmptyState } from '../components/common/EmptyState'
 import { Checkbox } from '../components/ui/checkbox'
-import { RangeSlider } from '../components/ui/range-slider'
 import { Sheet, SheetHeader, SheetTitle } from '../components/ui/sheet'
-import { CustomSelect, type SelectOption } from '../components/ui/select'
 import { Button, buttonVariants } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
 import { Label } from '../components/ui/label'
 import { Separator } from '../components/ui/separator'
+import { sortProducts } from '../lib/sorting'
 import { cn } from '../lib/utils'
 
-const SORT_OPTIONS: SelectOption<ProductSortOption>[] = [
-  { value: 'relevance', label: 'Destaques (Padrão)' },
-  { value: 'price-asc', label: 'Menor Preço' },
-  { value: 'price-desc', label: 'Maior Preço' },
-  { value: 'name-asc', label: 'Nome (A - Z)' },
-  { value: 'name-desc', label: 'Nome (Z - A)' },
-]
-
 const PRICE_STEP = 10
+const ITEMS_PER_PAGE = 8
 
 interface SearchFiltersState {
   categories: string[]
@@ -74,7 +62,7 @@ export function SearchPage() {
     }
   }, [matchedByQuery])
 
-  // 3. Estado dos Filtros Laterais
+  // 3. Estado dos Filtros Laterais e Paginação
   const [filters, setFilters] = useState<SearchFiltersState>(() => ({
     categories: [],
     brands: [],
@@ -83,8 +71,16 @@ export function SearchPage() {
   }))
 
   const [sortBy, setSortBy] = useState<ProductSortOption>('relevance')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [prevQuery, setPrevQuery] = useState(query)
   const [isDesktopFiltersVisible, setIsDesktopFiltersVisible] = useState(true)
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
+
+  // Reseta a página se a query mudar
+  if (prevQuery !== query) {
+    setPrevQuery(query)
+    setCurrentPage(1)
+  }
 
   // 4. Extração de Opções de Categorias presentes no resultado
   const categoryOptions = useMemo(() => {
@@ -101,7 +97,7 @@ export function SearchPage() {
           count,
         }
       })
-      .sort((a, b) => a.name.localeCompare(b.name))
+      .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'))
   }, [matchedByQuery, categories])
 
   // 5. Extração de Opções de Marcas presentes no resultado
@@ -114,7 +110,7 @@ export function SearchPage() {
     }
     return Object.entries(counts)
       .map(([brand, count]) => ({ brand, count }))
-      .sort((a, b) => a.brand.localeCompare(b.brand))
+      .sort((a, b) => a.brand.localeCompare(b.brand, 'pt-BR'))
   }, [matchedByQuery])
 
   // Handlers de Filtros
@@ -128,6 +124,7 @@ export function SearchPage() {
           : [...prev.categories, slug],
       }
     })
+    setCurrentPage(1)
   }
 
   const handleBrandToggle = (brand: string) => {
@@ -140,20 +137,24 @@ export function SearchPage() {
           : [...prev.brands, brand],
       }
     })
+    setCurrentPage(1)
   }
 
   const handlePriceRangeChange = ([newMin, newMax]: [number, number]) => {
     setFilters((prev) => ({ ...prev, minPrice: newMin, maxPrice: newMax }))
+    setCurrentPage(1)
   }
 
   const handleMinPriceInputChange = (val: number) => {
     const safeVal = Math.min(Math.max(minGlobalPrice, val), filters.maxPrice)
     setFilters((prev) => ({ ...prev, minPrice: safeVal }))
+    setCurrentPage(1)
   }
 
   const handleMaxPriceInputChange = (val: number) => {
     const safeVal = Math.max(Math.min(maxGlobalPrice, val), filters.minPrice)
     setFilters((prev) => ({ ...prev, maxPrice: safeVal }))
+    setCurrentPage(1)
   }
 
   const handleResetFilters = () => {
@@ -163,11 +164,17 @@ export function SearchPage() {
       minPrice: minGlobalPrice,
       maxPrice: maxGlobalPrice,
     })
+    setCurrentPage(1)
+  }
+
+  const handleSortChange = (newSort: ProductSortOption) => {
+    setSortBy(newSort)
+    setCurrentPage(1)
   }
 
   // 6. Filtragem e Ordenação Final
   const finalProducts = useMemo(() => {
-    let result = matchedByQuery.filter((product: Product) => {
+    const filtered = matchedByQuery.filter((product: Product) => {
       // Filtro por Categoria
       if (
         filters.categories.length > 0 &&
@@ -189,17 +196,15 @@ export function SearchPage() {
       return true
     })
 
-    // Ordenação
-    result = [...result].sort((a, b) => {
-      if (sortBy === 'price-asc') return a.price - b.price
-      if (sortBy === 'price-desc') return b.price - a.price
-      if (sortBy === 'name-asc') return a.name.localeCompare(b.name)
-      if (sortBy === 'name-desc') return b.name.localeCompare(a.name)
-      return 0
-    })
-
-    return result
+    return sortProducts(filtered, sortBy)
   }, [matchedByQuery, filters, sortBy])
+
+  // Paginação dos produtos da busca
+  const totalPages = Math.ceil(finalProducts.length / ITEMS_PER_PAGE)
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE
+    return finalProducts.slice(start, start + ITEMS_PER_PAGE)
+  }, [finalProducts, currentPage])
 
   // Contagem de filtros ativos
   const hasActiveFilters =
@@ -237,52 +242,17 @@ export function SearchPage() {
 
       <Separator />
 
-      {/* Faixa de Preço */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <Label className="font-semibold text-xs text-foreground uppercase tracking-wider block">
-            Faixa de Preço
-          </Label>
-          <span className="text-[11px] font-bold text-primary">
-            {filters.minPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} —{' '}
-            {filters.maxPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-          </span>
-        </div>
-
-        <RangeSlider
-          min={minGlobalPrice}
-          max={maxGlobalPrice}
-          step={PRICE_STEP}
-          value={[filters.minPrice, filters.maxPrice]}
-          onValueChange={handlePriceRangeChange}
-        />
-
-        <div className="grid grid-cols-2 gap-2 items-center">
-          <div className="space-y-1">
-            <span className="text-[10px] text-muted-foreground font-medium">De (R$):</span>
-            <input
-              type="number"
-              min={minGlobalPrice}
-              max={filters.maxPrice}
-              value={filters.minPrice}
-              onChange={(e) => handleMinPriceInputChange(Number(e.target.value))}
-              className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs font-semibold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-            />
-          </div>
-
-          <div className="space-y-1">
-            <span className="text-[10px] text-muted-foreground font-medium">Até (R$):</span>
-            <input
-              type="number"
-              min={filters.minPrice}
-              max={maxGlobalPrice}
-              value={filters.maxPrice}
-              onChange={(e) => handleMaxPriceInputChange(Number(e.target.value))}
-              className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs font-semibold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-            />
-          </div>
-        </div>
-      </div>
+      {/* Faixa de Preço Reutilizável */}
+      <PriceRangeFilter
+        minPrice={filters.minPrice}
+        maxPrice={filters.maxPrice}
+        minLimit={minGlobalPrice}
+        maxLimit={maxGlobalPrice}
+        step={PRICE_STEP}
+        onRangeChange={handlePriceRangeChange}
+        onMinInputChange={handleMinPriceInputChange}
+        onMaxInputChange={handleMaxPriceInputChange}
+      />
 
       <Separator />
 
@@ -359,20 +329,14 @@ export function SearchPage() {
 
   return (
     <div className="container mx-auto px-4 py-6 space-y-6">
-      {/* Breadcrumb de Navegação */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted-foreground">
-        <Link to="/" className="hover:text-foreground transition-colors">
-          Home
-        </Link>
-        <ChevronRight className="w-3.5 h-3.5" />
-        <span className="text-foreground font-semibold">Busca</span>
-        {query && (
-          <>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-primary font-medium truncate max-w-xs">&quot;{query}&quot;</span>
-          </>
-        )}
-      </nav>
+      {/* Breadcrumb de Navegação Estruturada */}
+      <Breadcrumb
+        items={
+          query
+            ? [{ label: 'Busca', href: '/busca' }, { label: `"${query}"` }]
+            : [{ label: 'Busca' }]
+        }
+      />
 
       {/* Cabeçalho da Busca */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-border">
@@ -398,55 +362,16 @@ export function SearchPage() {
 
         {/* Controles de Ordenação e Botões de Filtro */}
         <div className="flex flex-wrap items-center gap-2.5 self-start md:self-auto">
-          {/* Botão de Toggle de Filtros Desktop */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsDesktopFiltersVisible((prev) => !prev)}
-            className="hidden lg:inline-flex items-center gap-1.5 cursor-pointer text-xs h-9"
-          >
-            {isDesktopFiltersVisible ? (
-              <>
-                <EyeOff className="w-3.5 h-3.5 text-muted-foreground" />
-                <span>Ocultar Filtros</span>
-              </>
-            ) : (
-              <>
-                <Eye className="w-3.5 h-3.5 text-muted-foreground" />
-                <span>Mostrar Filtros</span>
-              </>
-            )}
-            {activeFilterCount > 0 && (
-              <Badge variant="default" className="ml-1 px-1.5 py-0 text-[10px] h-4">
-                {activeFilterCount}
-              </Badge>
-            )}
-          </Button>
-
-          {/* Botão de Filtro Mobile */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsMobileFiltersOpen(true)}
-            className="lg:hidden gap-1.5 cursor-pointer text-xs h-9"
-          >
-            <Filter className="w-3.5 h-3.5" />
-            <span>Filtros</span>
-            {activeFilterCount > 0 && (
-              <Badge variant="default" className="ml-1 px-1.5 py-0 text-[10px] h-4">
-                {activeFilterCount}
-              </Badge>
-            )}
-          </Button>
+          {/* Botões de Toggle de Filtros Desktop e Mobile */}
+          <FilterToggle
+            isDesktopVisible={isDesktopFiltersVisible}
+            onToggleDesktop={() => setIsDesktopFiltersVisible((prev) => !prev)}
+            onOpenMobile={() => setIsMobileFiltersOpen(true)}
+            activeFilterCount={activeFilterCount}
+          />
 
           {/* Dropdown de Ordenação Customizado */}
-          <CustomSelect<ProductSortOption>
-            value={sortBy}
-            options={SORT_OPTIONS}
-            onChange={setSortBy}
-            icon={<ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground mr-1" />}
-            className="min-w-[170px]"
-          />
+          <SortSelect value={sortBy} onChange={handleSortChange} />
         </div>
       </div>
 
@@ -477,50 +402,63 @@ export function SearchPage() {
           </div>
         </Sheet>
 
-        {/* Grid de Produtos */}
-        <div className={cn(isDesktopFiltersVisible ? 'lg:col-span-3' : 'lg:col-span-4')}>
-          {finalProducts.length > 0 ? (
-            <div
-              className={cn(
-                'grid grid-cols-1 sm:grid-cols-2 gap-5',
-                isDesktopFiltersVisible
-                  ? 'md:grid-cols-3'
-                  : 'md:grid-cols-3 lg:grid-cols-4'
-              )}
-            >
-              {finalProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center py-16 px-4 text-center border border-dashed border-border rounded-xl bg-card/40">
-              <PackageOpen className="w-12 h-12 text-muted-foreground/60 mb-3" />
-              <h3 className="font-bold text-lg text-foreground">
-                Nenhum produto encontrado
-              </h3>
-              <p className="text-xs text-muted-foreground max-w-sm mt-1 mb-5">
-                {query
-                  ? `Não encontramos resultados para "${query}". Tente buscar por outros termos ou redefinir os filtros.`
-                  : 'Nenhum item corresponde à combinação de filtros selecionada.'}
-              </p>
-              <div className="flex gap-2">
-                {hasActiveFilters && (
-                  <Button variant="outline" size="sm" onClick={handleResetFilters}>
-                    Redefinir Filtros
-                  </Button>
+        {/* Grid de Produtos + Paginação Inferior */}
+        <div className={cn('space-y-6', isDesktopFiltersVisible ? 'lg:col-span-3' : 'lg:col-span-4')}>
+          {paginatedProducts.length > 0 ? (
+            <>
+              <div
+                className={cn(
+                  'grid grid-cols-1 sm:grid-cols-2 gap-5',
+                  isDesktopFiltersVisible
+                    ? 'md:grid-cols-3'
+                    : 'md:grid-cols-3 lg:grid-cols-4'
                 )}
-                <Link
-                  to="/"
-                  className={cn(
-                    buttonVariants({ size: 'sm' }),
-                    'gap-1.5 font-semibold'
-                  )}
-                >
-                  <Search className="w-3.5 h-3.5" />
-                  <span>Voltar à Home</span>
-                </Link>
+              >
+                {paginatedProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
               </div>
-            </div>
+
+              {/* Controles de Paginação Abaixo do Grid */}
+              <PaginationControls
+                currentPage={currentPage}
+                totalPages={totalPages}
+                totalItems={finalProducts.length}
+                pageSize={ITEMS_PER_PAGE}
+                onPageChange={(page) => {
+                  setCurrentPage(page)
+                  window.scrollTo({ top: 0, behavior: 'instant' })
+                }}
+              />
+            </>
+          ) : (
+            <EmptyState
+              title="Nenhum produto encontrado"
+              description={
+                query
+                  ? `Não encontramos resultados para "${query}". Tente buscar por outros termos ou redefinir os filtros.`
+                  : 'Nenhum item corresponde à combinação de filtros selecionada.'
+              }
+              action={
+                <div className="flex gap-2">
+                  {hasActiveFilters && (
+                    <Button variant="outline" size="sm" onClick={handleResetFilters}>
+                      Redefinir Filtros
+                    </Button>
+                  )}
+                  <Link
+                    to="/"
+                    className={cn(
+                      buttonVariants({ size: 'sm' }),
+                      'gap-1.5 font-semibold'
+                    )}
+                  >
+                    <Search className="w-3.5 h-3.5" />
+                    <span>Voltar à Home</span>
+                  </Link>
+                </div>
+              }
+            />
           )}
         </div>
       </div>

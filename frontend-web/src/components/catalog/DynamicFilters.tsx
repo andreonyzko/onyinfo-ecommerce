@@ -3,7 +3,7 @@ import { RotateCcw, SlidersHorizontal } from 'lucide-react'
 import type { Category, Product } from '../../types'
 import { Checkbox } from '../ui/checkbox'
 import { Slider } from '../ui/slider'
-import { RangeSlider } from '../ui/range-slider'
+import { PriceRangeFilter } from './PriceRangeFilter'
 import { Label } from '../ui/label'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
@@ -220,54 +220,17 @@ export function DynamicFilters({
 
       <Separator />
 
-      {/* 1. Filtro de Faixa de Preço (Range Slider Duplo + Inputs) */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <Label className="font-semibold text-xs text-foreground uppercase tracking-wider block">
-            Faixa de Preço
-          </Label>
-          <span className="text-[11px] font-bold text-primary">
-            {filters.minPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} —{' '}
-            {filters.maxPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-          </span>
-        </div>
-
-        {/* Range Slider com 2 controles (mínimo e máximo) */}
-        <RangeSlider
-          min={minCategoryPrice}
-          max={maxCategoryPrice}
-          step={PRICE_STEP}
-          value={[filters.minPrice, filters.maxPrice]}
-          onValueChange={handlePriceRangeChange}
-        />
-
-        {/* Inputs de Mínimo e Máximo */}
-        <div className="grid grid-cols-2 gap-2 items-center">
-          <div className="space-y-1">
-            <span className="text-[10px] text-muted-foreground font-medium">De (R$):</span>
-            <input
-              type="number"
-              min={minCategoryPrice}
-              max={filters.maxPrice}
-              value={filters.minPrice}
-              onChange={(e) => handleMinPriceInputChange(Number(e.target.value))}
-              className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs font-semibold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-            />
-          </div>
-
-          <div className="space-y-1">
-            <span className="text-[10px] text-muted-foreground font-medium">Até (R$):</span>
-            <input
-              type="number"
-              min={filters.minPrice}
-              max={maxCategoryPrice}
-              value={filters.maxPrice}
-              onChange={(e) => handleMaxPriceInputChange(Number(e.target.value))}
-              className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs font-semibold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-            />
-          </div>
-        </div>
-      </div>
+      {/* 1. Filtro de Faixa de Preço */}
+      <PriceRangeFilter
+        minPrice={filters.minPrice}
+        maxPrice={filters.maxPrice}
+        minLimit={minCategoryPrice}
+        maxLimit={maxCategoryPrice}
+        step={PRICE_STEP}
+        onRangeChange={handlePriceRangeChange}
+        onMinInputChange={handleMinPriceInputChange}
+        onMaxInputChange={handleMaxPriceInputChange}
+      />
 
       <Separator />
 
