@@ -7,13 +7,18 @@
     "price": 2899.9,
     "categorySlug": "processadores",
     "brand": "AMD",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Ryzen+7+7800X3D",
     "specs": {
       "cores": 8,
       "threads": 16,
       "socket": "AM5",
       "tdp": 120
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Ryzen+7+7800X3D",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=AMD%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20AMD%20Ryzen%207%207800X3D%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20AMD%20Ryzen%207%207800X3D%20-%20Detalhes"
+    ]
   },
   {
     "id": "c01-02-7600x",
@@ -23,13 +28,18 @@
     "price": 1499,
     "categorySlug": "processadores",
     "brand": "AMD",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Ryzen+5+7600X",
     "specs": {
       "cores": 6,
       "threads": 12,
       "socket": "AM5",
       "tdp": 105
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Ryzen+5+7600X",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=AMD%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20AMD%20Ryzen%205%207600X%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20AMD%20Ryzen%205%207600X%20-%20Detalhes"
+    ]
   },
   {
     "id": "c01-03-7950x3d",
@@ -39,13 +49,18 @@
     "price": 4299.9,
     "categorySlug": "processadores",
     "brand": "AMD",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Ryzen+9+7950X3D",
     "specs": {
       "cores": 16,
       "threads": 32,
       "socket": "AM5",
       "tdp": 120
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Ryzen+9+7950X3D",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=AMD%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20AMD%20Ryzen%209%207950X3D%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20AMD%20Ryzen%209%207950X3D%20-%20Detalhes"
+    ]
   },
   {
     "id": "c01-04-14600k",
@@ -55,13 +70,18 @@
     "price": 1899,
     "categorySlug": "processadores",
     "brand": "Intel",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Core+i5-14600K",
     "specs": {
       "cores": 14,
       "threads": 20,
       "socket": "LGA1700",
       "tdp": 125
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Core+i5-14600K",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Intel%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20Intel%20Core%20i5-14600K%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20Intel%20Core%20i5-14600K%20-%20Detalhes"
+    ]
   },
   {
     "id": "c01-05-14700k",
@@ -71,13 +91,18 @@
     "price": 2799,
     "categorySlug": "processadores",
     "brand": "Intel",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Core+i7-14700K",
     "specs": {
       "cores": 20,
       "threads": 28,
       "socket": "LGA1700",
       "tdp": 125
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Core+i7-14700K",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Intel%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20Intel%20Core%20i7-14700K%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20Intel%20Core%20i7-14700K%20-%20Detalhes"
+    ]
   },
   {
     "id": "c01-06-14900k",
@@ -87,13 +112,18 @@
     "price": 3999,
     "categorySlug": "processadores",
     "brand": "Intel",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Core+i9-14900K",
     "specs": {
       "cores": 24,
       "threads": 32,
       "socket": "LGA1700",
       "tdp": 125
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Core+i9-14900K",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Intel%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20Intel%20Core%20i9-14900K%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Processador%20Intel%20Core%20i9-14900K%20-%20Detalhes"
+    ]
   },
   {
     "id": "c02-01-rog-b650e-f",
@@ -103,13 +133,18 @@
     "price": 1850,
     "categorySlug": "placas-mae",
     "brand": "ASUS",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=ROG+Strix+B650E-F",
     "specs": {
       "socket": "AM5",
       "formFactor": "ATX",
       "ramSlots": 4,
       "maxRam": "128GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ROG+Strix+B650E-F",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ASUS%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20ASUS%20ROG%20Strix%20B650E-F%20Gaming%20WiFi%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20ASUS%20ROG%20Strix%20B650E-F%20Gaming%20WiFi%20-%20Detalhes"
+    ]
   },
   {
     "id": "c02-02-b650-aorus-elite",
@@ -119,13 +154,18 @@
     "price": 1599,
     "categorySlug": "placas-mae",
     "brand": "Gigabyte",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=AORUS+B650+Elite",
     "specs": {
       "socket": "AM5",
       "formFactor": "ATX",
       "ramSlots": 4,
       "maxRam": "192GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=AORUS+B650+Elite",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gigabyte%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20Gigabyte%20B650%20AORUS%20Elite%20AX%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20Gigabyte%20B650%20AORUS%20Elite%20AX%20-%20Detalhes"
+    ]
   },
   {
     "id": "c02-03-b650m-mortar",
@@ -135,13 +175,18 @@
     "price": 1399,
     "categorySlug": "placas-mae",
     "brand": "MSI",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MSI+B650M+Mortar",
     "specs": {
       "socket": "AM5",
       "formFactor": "Micro-ATX",
       "ramSlots": 4,
       "maxRam": "128GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MSI+B650M+Mortar",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MSI%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20MSI%20MAG%20B650M%20Mortar%20WiFi%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20MSI%20MAG%20B650M%20Mortar%20WiFi%20-%20Detalhes"
+    ]
   },
   {
     "id": "c02-04-tuf-z790",
@@ -151,13 +196,18 @@
     "price": 1999,
     "categorySlug": "placas-mae",
     "brand": "ASUS",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=TUF+Z790-Plus",
     "specs": {
       "socket": "LGA1700",
       "formFactor": "ATX",
       "ramSlots": 4,
       "maxRam": "192GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=TUF+Z790-Plus",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ASUS%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20ASUS%20TUF%20Gaming%20Z790-Plus%20WiFi%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20ASUS%20TUF%20Gaming%20Z790-Plus%20WiFi%20-%20Detalhes"
+    ]
   },
   {
     "id": "c02-05-pro-z790-a",
@@ -167,13 +217,18 @@
     "price": 1750,
     "categorySlug": "placas-mae",
     "brand": "MSI",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MSI+PRO+Z790-A",
     "specs": {
       "socket": "LGA1700",
       "formFactor": "ATX",
       "ramSlots": 4,
       "maxRam": "192GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MSI+PRO+Z790-A",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MSI%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20MSI%20PRO%20Z790-A%20MAX%20WiFi%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20MSI%20PRO%20Z790-A%20MAX%20WiFi%20-%20Detalhes"
+    ]
   },
   {
     "id": "c02-06-b760m-steel",
@@ -183,13 +238,18 @@
     "price": 1199,
     "categorySlug": "placas-mae",
     "brand": "ASRock",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=B760M+Steel+Legend",
     "specs": {
       "socket": "LGA1700",
       "formFactor": "Micro-ATX",
       "ramSlots": 4,
       "maxRam": "128GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=B760M+Steel+Legend",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ASRock%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20ASRock%20B760M%20Steel%20Legend%20WiFi%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20M%C3%A3e%20ASRock%20B760M%20Steel%20Legend%20WiFi%20-%20Detalhes"
+    ]
   },
   {
     "id": "c03-01-vengeance-32gb-d5",
@@ -199,13 +259,18 @@
     "price": 950,
     "categorySlug": "memorias-ram",
     "brand": "Corsair",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+DDR5+32GB",
     "specs": {
       "type": "DDR5",
       "capacity": "32GB",
       "speed": 6000,
       "latency": "CL30"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+DDR5+32GB",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20Corsair%20Vengeance%2032GB%20(2x16GB)%20DDR5%206000MHz%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20Corsair%20Vengeance%2032GB%20(2x16GB)%20DDR5%206000MHz%20-%20Detalhes"
+    ]
   },
   {
     "id": "c03-02-fury-beast-32gb-d5",
@@ -215,13 +280,18 @@
     "price": 799,
     "categorySlug": "memorias-ram",
     "brand": "Kingston",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Fury+Beast+32GB",
     "specs": {
       "type": "DDR5",
       "capacity": "32GB",
       "speed": 5600,
       "latency": "CL36"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fury+Beast+32GB",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kingston%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20Kingston%20Fury%20Beast%2032GB%20(2x16GB)%20DDR5%205600MHz%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20Kingston%20Fury%20Beast%2032GB%20(2x16GB)%20DDR5%205600MHz%20-%20Detalhes"
+    ]
   },
   {
     "id": "c03-03-trident-z5-32gb-d5",
@@ -231,13 +301,18 @@
     "price": 1199,
     "categorySlug": "memorias-ram",
     "brand": "G.Skill",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Trident+Z5+32GB",
     "specs": {
       "type": "DDR5",
       "capacity": "32GB",
       "speed": 6400,
       "latency": "CL32"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Trident+Z5+32GB",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=G.Skill%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20G.Skill%20Trident%20Z5%20RGB%2032GB%20(2x16GB)%20DDR5%206400MHz%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20G.Skill%20Trident%20Z5%20RGB%2032GB%20(2x16GB)%20DDR5%206400MHz%20-%20Detalhes"
+    ]
   },
   {
     "id": "c03-04-vengeance-rgb-32gb-d4",
@@ -247,13 +322,18 @@
     "price": 549,
     "categorySlug": "memorias-ram",
     "brand": "Corsair",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Vengeance+DDR4+32GB",
     "specs": {
       "type": "DDR4",
       "capacity": "32GB",
       "speed": 3600,
       "latency": "CL18"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Vengeance+DDR4+32GB",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20Corsair%20Vengeance%20RGB%20PRO%2032GB%20(2x16GB)%20DDR4%203600MHz%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20Corsair%20Vengeance%20RGB%20PRO%2032GB%20(2x16GB)%20DDR4%203600MHz%20-%20Detalhes"
+    ]
   },
   {
     "id": "c03-05-fury-renegade-16gb-d4",
@@ -263,13 +343,18 @@
     "price": 299,
     "categorySlug": "memorias-ram",
     "brand": "Kingston",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Fury+Renegade+16GB",
     "specs": {
       "type": "DDR4",
       "capacity": "16GB",
       "speed": 3200,
       "latency": "CL16"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fury+Renegade+16GB",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kingston%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20Kingston%20Fury%20Renegade%2016GB%20(2x8GB)%20DDR4%203200MHz%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20Kingston%20Fury%20Renegade%2016GB%20(2x8GB)%20DDR4%203200MHz%20-%20Detalhes"
+    ]
   },
   {
     "id": "c03-06-xpg-lancer-64gb-d5",
@@ -279,13 +364,18 @@
     "price": 1799,
     "categorySlug": "memorias-ram",
     "brand": "XPG",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=XPG+Lancer+64GB",
     "specs": {
       "type": "DDR5",
       "capacity": "64GB",
       "speed": 6000,
       "latency": "CL30"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=XPG+Lancer+64GB",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=XPG%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20XPG%20Lancer%20Blade%2064GB%20(2x32GB)%20DDR5%206000MHz%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mem%C3%B3ria%20XPG%20Lancer%20Blade%2064GB%20(2x32GB)%20DDR5%206000MHz%20-%20Detalhes"
+    ]
   },
   {
     "id": "c04-01-rtx-4070-ti-super",
@@ -295,12 +385,17 @@
     "price": 5499,
     "categorySlug": "placas-de-video",
     "brand": "NVIDIA",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=RTX+4070+Ti+Super",
     "specs": {
       "vram": "16GB",
       "cudaCores": 8448,
       "powerRequirement": "700W"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=RTX+4070+Ti+Super",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=NVIDIA%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20NVIDIA%20GeForce%20RTX%204070%20Ti%20Super%2016GB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20NVIDIA%20GeForce%20RTX%204070%20Ti%20Super%2016GB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c04-02-rtx-4060-tuf",
@@ -310,12 +405,17 @@
     "price": 2199,
     "categorySlug": "placas-de-video",
     "brand": "ASUS",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=TUF+RTX+4060",
     "specs": {
       "vram": "8GB",
       "cudaCores": 3072,
       "powerRequirement": "550W"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=TUF+RTX+4060",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ASUS%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20ASUS%20TUF%20Gaming%20GeForce%20RTX%204060%208GB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20ASUS%20TUF%20Gaming%20GeForce%20RTX%204060%208GB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c04-03-rtx-4070-super-msi",
@@ -325,12 +425,17 @@
     "price": 4299,
     "categorySlug": "placas-de-video",
     "brand": "MSI",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=RTX+4070+Super",
     "specs": {
       "vram": "12GB",
       "cudaCores": 7168,
       "powerRequirement": "650W"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=RTX+4070+Super",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MSI%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20MSI%20GeForce%20RTX%204070%20Super%20Ventus%2012GB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20MSI%20GeForce%20RTX%204070%20Super%20Ventus%2012GB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c04-04-rtx-4080-super-aorus",
@@ -340,12 +445,17 @@
     "price": 7499,
     "categorySlug": "placas-de-video",
     "brand": "Gigabyte",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=RTX+4080+Super",
     "specs": {
       "vram": "16GB",
       "cudaCores": 10240,
       "powerRequirement": "750W"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=RTX+4080+Super",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gigabyte%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20Gigabyte%20GeForce%20RTX%204080%20Super%20Gaming%20OC%2016GB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20Gigabyte%20GeForce%20RTX%204080%20Super%20Gaming%20OC%2016GB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c04-05-rx-7800-xt-sapphire",
@@ -355,12 +465,17 @@
     "price": 3899,
     "categorySlug": "placas-de-video",
     "brand": "Sapphire",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=RX+7800+XT",
     "specs": {
       "vram": "16GB",
       "cudaCores": 3840,
       "powerRequirement": "700W"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=RX+7800+XT",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Sapphire%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20Sapphire%20Pulse%20AMD%20Radeon%20RX%207800%20XT%2016GB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20Sapphire%20Pulse%20AMD%20Radeon%20RX%207800%20XT%2016GB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c04-06-rx-7600-powercolor",
@@ -370,12 +485,17 @@
     "price": 1799,
     "categorySlug": "placas-de-video",
     "brand": "PowerColor",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=RX+7600+Fighter",
     "specs": {
       "vram": "8GB",
       "cudaCores": 2048,
       "powerRequirement": "550W"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=RX+7600+Fighter",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=PowerColor%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20PowerColor%20Radeon%20RX%207600%20Fighter%208GB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Placa%20de%20V%C3%ADdeo%20PowerColor%20Radeon%20RX%207600%20Fighter%208GB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c05-01-990-pro-2tb",
@@ -385,13 +505,18 @@
     "price": 1299.9,
     "categorySlug": "armazenamento",
     "brand": "Samsung",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Samsung+990+PRO",
     "specs": {
       "type": "NVMe M.2",
       "capacity": "2TB",
       "readSpeed": 7450,
       "writeSpeed": 6900
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Samsung+990+PRO",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Samsung%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20NVMe%20Samsung%20990%20PRO%202TB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20NVMe%20Samsung%20990%20PRO%202TB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c05-02-kc3000-1tb",
@@ -401,13 +526,18 @@
     "price": 599,
     "categorySlug": "armazenamento",
     "brand": "Kingston",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Kingston+KC3000",
     "specs": {
       "type": "NVMe M.2",
       "capacity": "1TB",
       "readSpeed": 7000,
       "writeSpeed": 6000
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kingston+KC3000",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kingston%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20NVMe%20Kingston%20KC3000%201TB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20NVMe%20Kingston%20KC3000%201TB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c05-03-crucial-t500-2tb",
@@ -417,13 +547,18 @@
     "price": 1150,
     "categorySlug": "armazenamento",
     "brand": "Crucial",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Crucial+T500",
     "specs": {
       "type": "NVMe M.2",
       "capacity": "2TB",
       "readSpeed": 7400,
       "writeSpeed": 7000
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Crucial+T500",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Crucial%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20NVMe%20Crucial%20T500%202TB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20NVMe%20Crucial%20T500%202TB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c05-04-wd-sn850x-4tb",
@@ -433,13 +568,18 @@
     "price": 2599,
     "categorySlug": "armazenamento",
     "brand": "Western Digital",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=WD+Black+4TB",
     "specs": {
       "type": "NVMe M.2",
       "capacity": "4TB",
       "readSpeed": 7300,
       "writeSpeed": 6600
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=WD+Black+4TB",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Western%20Digital%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20NVMe%20WD%20Black%20SN850X%204TB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20NVMe%20WD%20Black%20SN850X%204TB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c05-05-crucial-bx500-1tb",
@@ -449,13 +589,18 @@
     "price": 399,
     "categorySlug": "armazenamento",
     "brand": "Crucial",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Crucial+BX500",
     "specs": {
       "type": "SATA 2.5",
       "capacity": "1TB",
       "readSpeed": 540,
       "writeSpeed": 500
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Crucial+BX500",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Crucial%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20SATA%20Crucial%20BX500%201TB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20SATA%20Crucial%20BX500%201TB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c05-06-kingston-nv2-1tb",
@@ -465,13 +610,18 @@
     "price": 379,
     "categorySlug": "armazenamento",
     "brand": "Kingston",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Kingston+NV2",
     "specs": {
       "type": "NVMe M.2",
       "capacity": "1TB",
       "readSpeed": 3500,
       "writeSpeed": 2100
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kingston+NV2",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kingston%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20NVMe%20Kingston%20NV2%201TB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SSD%20NVMe%20Kingston%20NV2%201TB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c06-01-core-reactor-850w",
@@ -481,12 +631,17 @@
     "price": 750,
     "categorySlug": "fontes",
     "brand": "XPG",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=XPG+850W+Gold",
     "specs": {
       "wattage": 850,
       "efficiency": "80 Plus Gold",
       "modular": "Full Modular"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=XPG+850W+Gold",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=XPG%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20XPG%20Core%20Reactor%20850W%2080%20Plus%20Gold%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20XPG%20Core%20Reactor%20850W%2080%20Plus%20Gold%20-%20Detalhes"
+    ]
   },
   {
     "id": "c06-02-rm750e",
@@ -496,12 +651,17 @@
     "price": 689,
     "categorySlug": "fontes",
     "brand": "Corsair",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+RM750e",
     "specs": {
       "wattage": 750,
       "efficiency": "80 Plus Gold",
       "modular": "Full Modular"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+RM750e",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20Corsair%20RM750e%20750W%2080%20Plus%20Gold%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20Corsair%20RM750e%20750W%2080%20Plus%20Gold%20-%20Detalhes"
+    ]
   },
   {
     "id": "c06-03-mag-a650bn",
@@ -511,12 +671,17 @@
     "price": 329,
     "categorySlug": "fontes",
     "brand": "MSI",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MSI+A650BN",
     "specs": {
       "wattage": 650,
       "efficiency": "80 Plus Bronze",
       "modular": "Não Modular"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MSI+A650BN",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MSI%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20MSI%20MAG%20A650BN%20650W%2080%20Plus%20Bronze%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20MSI%20MAG%20A650BN%20650W%2080%20Plus%20Bronze%20-%20Detalhes"
+    ]
   },
   {
     "id": "c06-04-rm1000x",
@@ -526,12 +691,17 @@
     "price": 1199,
     "categorySlug": "fontes",
     "brand": "Corsair",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+1000W",
     "specs": {
       "wattage": 1000,
       "efficiency": "80 Plus Gold",
       "modular": "Full Modular"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+1000W",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20Corsair%20RM1000x%201000W%2080%20Plus%20Gold%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20Corsair%20RM1000x%201000W%2080%20Plus%20Gold%20-%20Detalhes"
+    ]
   },
   {
     "id": "c06-05-seasonic-gx850",
@@ -541,12 +711,17 @@
     "price": 899,
     "categorySlug": "fontes",
     "brand": "Seasonic",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Seasonic+GX-850",
     "specs": {
       "wattage": 850,
       "efficiency": "80 Plus Gold",
       "modular": "Full Modular"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Seasonic+GX-850",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Seasonic%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20Seasonic%20Focus%20GX-850%20850W%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20Seasonic%20Focus%20GX-850%20850W%20-%20Detalhes"
+    ]
   },
   {
     "id": "c06-06-mwe-550w",
@@ -556,12 +731,17 @@
     "price": 299,
     "categorySlug": "fontes",
     "brand": "Cooler Master",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MWE+550W",
     "specs": {
       "wattage": 550,
       "efficiency": "80 Plus Bronze",
       "modular": "Não Modular"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MWE+550W",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cooler%20Master%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20Cooler%20Master%20MWE%20550W%20Bronze%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fonte%20Cooler%20Master%20MWE%20550W%20Bronze%20-%20Detalhes"
+    ]
   },
   {
     "id": "c07-01-kraken-240",
@@ -571,12 +751,17 @@
     "price": 999,
     "categorySlug": "coolers",
     "brand": "NZXT",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=NZXT+Kraken+240",
     "specs": {
       "type": "Water Cooler",
       "radiatorSize": "240mm",
       "fans": 2
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=NZXT+Kraken+240",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=NZXT%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Water%20Cooler%20NZXT%20Kraken%20240%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Water%20Cooler%20NZXT%20Kraken%20240%20-%20Detalhes"
+    ]
   },
   {
     "id": "c07-02-icue-h150i",
@@ -586,12 +771,17 @@
     "price": 1499,
     "categorySlug": "coolers",
     "brand": "Corsair",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+H150i",
     "specs": {
       "type": "Water Cooler",
       "radiatorSize": "360mm",
       "fans": 3
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+H150i",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Water%20Cooler%20Corsair%20iCUE%20LINK%20H150i%20360mm%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Water%20Cooler%20Corsair%20iCUE%20LINK%20H150i%20360mm%20-%20Detalhes"
+    ]
   },
   {
     "id": "c07-03-ak620-digital",
@@ -601,12 +791,17 @@
     "price": 499,
     "categorySlug": "coolers",
     "brand": "DeepCool",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=DeepCool+AK620",
     "specs": {
       "type": "Air Cooler",
       "radiatorSize": "N/A",
       "fans": 2
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=DeepCool+AK620",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=DeepCool%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Air%20Cooler%20DeepCool%20AK620%20Digital%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Air%20Cooler%20DeepCool%20AK620%20Digital%20-%20Detalhes"
+    ]
   },
   {
     "id": "c07-04-peerless-assassin",
@@ -616,12 +811,17 @@
     "price": 279,
     "categorySlug": "coolers",
     "brand": "Thermalright",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Peerless+Assassin",
     "specs": {
       "type": "Air Cooler",
       "radiatorSize": "N/A",
       "fans": 2
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Peerless+Assassin",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Thermalright%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Air%20Cooler%20Thermalright%20Peerless%20Assassin%20120%20SE%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Air%20Cooler%20Thermalright%20Peerless%20Assassin%20120%20SE%20-%20Detalhes"
+    ]
   },
   {
     "id": "c07-05-masterliquid-360l",
@@ -631,12 +831,17 @@
     "price": 549,
     "categorySlug": "coolers",
     "brand": "Cooler Master",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MasterLiquid+360L",
     "specs": {
       "type": "Water Cooler",
       "radiatorSize": "360mm",
       "fans": 3
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MasterLiquid+360L",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cooler%20Master%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Water%20Cooler%20Cooler%20Master%20MasterLiquid%20360L%20Core%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Water%20Cooler%20Cooler%20Master%20MasterLiquid%20360L%20Core%20-%20Detalhes"
+    ]
   },
   {
     "id": "c07-06-nh-d15-chromax",
@@ -646,12 +851,17 @@
     "price": 899,
     "categorySlug": "coolers",
     "brand": "Noctua",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Noctua+NH-D15",
     "specs": {
       "type": "Air Cooler",
       "radiatorSize": "N/A",
       "fans": 2
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Noctua+NH-D15",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Noctua%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Air%20Cooler%20Noctua%20NH-D15%20chromax.black%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Air%20Cooler%20Noctua%20NH-D15%20chromax.black%20-%20Detalhes"
+    ]
   },
   {
     "id": "c08-01-o11-dynamic-evo",
@@ -661,12 +871,17 @@
     "price": 1100,
     "categorySlug": "gabinetes",
     "brand": "Lian Li",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Lian+Li+O11+EVO",
     "specs": {
       "formFactor": "Mid-Tower",
       "sidePanel": "Vidro Temperado",
       "motherboardSupport": "E-ATX, ATX, Micro-ATX"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Lian+Li+O11+EVO",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Lian%20Li%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20Lian%20Li%20O11%20Dynamic%20EVO%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20Lian%20Li%20O11%20Dynamic%20EVO%20-%20Detalhes"
+    ]
   },
   {
     "id": "c08-02-nzxt-h6-flow",
@@ -676,12 +891,17 @@
     "price": 899,
     "categorySlug": "gabinetes",
     "brand": "NZXT",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=NZXT+H6+Flow",
     "specs": {
       "formFactor": "Mid-Tower",
       "sidePanel": "Vidro Temperado",
       "motherboardSupport": "ATX, Micro-ATX, Mini-ITX"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=NZXT+H6+Flow",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=NZXT%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20NZXT%20H6%20Flow%20RGB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20NZXT%20H6%20Flow%20RGB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c08-03-corsair-4000d",
@@ -691,12 +911,17 @@
     "price": 549,
     "categorySlug": "gabinetes",
     "brand": "Corsair",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+4000D",
     "specs": {
       "formFactor": "Mid-Tower",
       "sidePanel": "Vidro Temperado",
       "motherboardSupport": "ATX, Micro-ATX, Mini-ITX"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+4000D",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20Corsair%204000D%20Airflow%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20Corsair%204000D%20Airflow%20-%20Detalhes"
+    ]
   },
   {
     "id": "c08-04-montech-king-95",
@@ -706,12 +931,17 @@
     "price": 799,
     "categorySlug": "gabinetes",
     "brand": "Montech",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Montech+King+95",
     "specs": {
       "formFactor": "Mid-Tower",
       "sidePanel": "Vidro Temperado Curvo",
       "motherboardSupport": "ATX, Micro-ATX, Mini-ITX"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Montech+King+95",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Montech%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20Montech%20King%2095%20Pro%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20Montech%20King%2095%20Pro%20-%20Detalhes"
+    ]
   },
   {
     "id": "c08-05-fractal-north",
@@ -721,12 +951,17 @@
     "price": 1250,
     "categorySlug": "gabinetes",
     "brand": "Fractal Design",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Fractal+North",
     "specs": {
       "formFactor": "Mid-Tower",
       "sidePanel": "Mesh Lateral",
       "motherboardSupport": "ATX, Micro-ATX, Mini-ITX"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fractal+North",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fractal%20Design%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20Fractal%20Design%20North%20Mesh%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20Fractal%20Design%20North%20Mesh%20-%20Detalhes"
+    ]
   },
   {
     "id": "c08-06-q300l",
@@ -736,12 +971,17 @@
     "price": 289,
     "categorySlug": "gabinetes",
     "brand": "Cooler Master",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MasterBox+Q300L",
     "specs": {
       "formFactor": "Mini-Tower",
       "sidePanel": "Acrílico",
       "motherboardSupport": "Micro-ATX, Mini-ITX"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MasterBox+Q300L",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cooler%20Master%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20Cooler%20Master%20MasterBox%20Q300L%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gabinete%20Cooler%20Master%20MasterBox%20Q300L%20-%20Detalhes"
+    ]
   },
   {
     "id": "c09-01-icue-ar120",
@@ -751,12 +991,17 @@
     "price": 320,
     "categorySlug": "ventoinhas",
     "brand": "Corsair",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+AR120",
     "specs": {
       "size": 120,
       "rpm": 1500,
       "rgb": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+AR120",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kit%203%20Ventoinhas%20Corsair%20iCUE%20AR120%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kit%203%20Ventoinhas%20Corsair%20iCUE%20AR120%20-%20Detalhes"
+    ]
   },
   {
     "id": "c09-02-uni-fan-sl-inf",
@@ -766,12 +1011,17 @@
     "price": 599,
     "categorySlug": "ventoinhas",
     "brand": "Lian Li",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Lian+Li+SL-Inf",
     "specs": {
       "size": 120,
       "rpm": 2100,
       "rgb": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Lian+Li+SL-Inf",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Lian%20Li%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kit%203%20Ventoinhas%20Lian%20Li%20UNI%20FAN%20SL-Infinity%20120%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kit%203%20Ventoinhas%20Lian%20Li%20UNI%20FAN%20SL-Infinity%20120%20-%20Detalhes"
+    ]
   },
   {
     "id": "c09-03-noctua-a12x25",
@@ -781,12 +1031,17 @@
     "price": 210,
     "categorySlug": "ventoinhas",
     "brand": "Noctua",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Noctua+A12x25",
     "specs": {
       "size": 120,
       "rpm": 2000,
       "rgb": false
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Noctua+A12x25",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Noctua%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Ventoinha%20Noctua%20NF-A12x25%20PWM%20120mm%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Ventoinha%20Noctua%20NF-A12x25%20PWM%20120mm%20-%20Detalhes"
+    ]
   },
   {
     "id": "c09-04-deepcool-fc120",
@@ -796,12 +1051,17 @@
     "price": 189,
     "categorySlug": "ventoinhas",
     "brand": "DeepCool",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=DeepCool+FC120",
     "specs": {
       "size": 120,
       "rpm": 1800,
       "rgb": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=DeepCool+FC120",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=DeepCool%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kit%203%20Ventoinhas%20DeepCool%20FC120%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kit%203%20Ventoinhas%20DeepCool%20FC120%20-%20Detalhes"
+    ]
   },
   {
     "id": "c09-05-arctic-p12",
@@ -811,12 +1071,17 @@
     "price": 65,
     "categorySlug": "ventoinhas",
     "brand": "Arctic",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Arctic+P12",
     "specs": {
       "size": 120,
       "rpm": 1800,
       "rgb": false
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Arctic+P12",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Arctic%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Ventoinha%20Arctic%20P12%20PWM%20PST%20120mm%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Ventoinha%20Arctic%20P12%20PWM%20PST%20120mm%20-%20Detalhes"
+    ]
   },
   {
     "id": "c09-06-silent-wings-4",
@@ -826,12 +1091,17 @@
     "price": 280,
     "categorySlug": "ventoinhas",
     "brand": "Be Quiet!",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Silent+Wings+4",
     "specs": {
       "size": 140,
       "rpm": 1900,
       "rgb": false
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Silent+Wings+4",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Be%20Quiet!%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kit%202%20Ventoinhas%20Be%20Quiet!%20Silent%20Wings%204%20140mm%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Kit%202%20Ventoinhas%20Be%20Quiet!%20Silent%20Wings%204%20140mm%20-%20Detalhes"
+    ]
   },
   {
     "id": "c10-01-keychron-k8-pro",
@@ -841,12 +1111,17 @@
     "price": 780,
     "categorySlug": "teclados",
     "brand": "Keychron",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Keychron+K8+Pro",
     "specs": {
       "size": "TKL (80%)",
       "switchType": "Gateron Brown",
       "wireless": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Keychron+K8+Pro",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Keychron%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20Keychron%20K8%20Pro%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20Keychron%20K8%20Pro%20-%20Detalhes"
+    ]
   },
   {
     "id": "c10-02-g915-tkl",
@@ -856,12 +1131,17 @@
     "price": 1199,
     "categorySlug": "teclados",
     "brand": "Logitech",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Logitech+G915+TKL",
     "specs": {
       "size": "TKL (80%)",
       "switchType": "GL Tactile",
       "wireless": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Logitech+G915+TKL",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Logitech%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20Logitech%20G915%20TKL%20Lightspeed%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20Logitech%20G915%20TKL%20Lightspeed%20-%20Detalhes"
+    ]
   },
   {
     "id": "c10-03-kumara-k552",
@@ -871,12 +1151,17 @@
     "price": 199.9,
     "categorySlug": "teclados",
     "brand": "Redragon",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Redragon+Kumara",
     "specs": {
       "size": "TKL (80%)",
       "switchType": "Outemu Blue",
       "wireless": false
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Redragon+Kumara",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Redragon%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20Redragon%20Kumara%20K552%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20Redragon%20Kumara%20K552%20-%20Detalhes"
+    ]
   },
   {
     "id": "c10-04-alloy-origins-core",
@@ -886,12 +1171,17 @@
     "price": 449,
     "categorySlug": "teclados",
     "brand": "HyperX",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=HyperX+Alloy+Core",
     "specs": {
       "size": "TKL (80%)",
       "switchType": "HyperX Red",
       "wireless": false
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=HyperX+Alloy+Core",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=HyperX%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20HyperX%20Alloy%20Origins%20Core%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20HyperX%20Alloy%20Origins%20Core%20-%20Detalhes"
+    ]
   },
   {
     "id": "c10-05-huntsman-v2-tkl",
@@ -901,12 +1191,17 @@
     "price": 899,
     "categorySlug": "teclados",
     "brand": "Razer",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Razer+Huntsman+V2",
     "specs": {
       "size": "TKL (80%)",
       "switchType": "Razer Linear Optical",
       "wireless": false
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Razer+Huntsman+V2",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Razer%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20Razer%20Huntsman%20V2%20Tenkeyless%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20Razer%20Huntsman%20V2%20Tenkeyless%20-%20Detalhes"
+    ]
   },
   {
     "id": "c10-06-akko-5075b",
@@ -916,12 +1211,17 @@
     "price": 580,
     "categorySlug": "teclados",
     "brand": "Akko",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Akko+5075B",
     "specs": {
       "size": "75%",
       "switchType": "Akko V3 Cream Yellow",
       "wireless": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Akko+5075B",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Akko%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20Akko%205075B%20Plus%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Teclado%20Mec%C3%A2nico%20Akko%205075B%20Plus%20-%20Detalhes"
+    ]
   },
   {
     "id": "c11-01-g-pro-x-superlight-2",
@@ -931,12 +1231,17 @@
     "price": 899.9,
     "categorySlug": "mouses",
     "brand": "Logitech",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Superlight+2",
     "specs": {
       "weight": 60,
       "sensor": "HERO 2",
       "wireless": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Superlight+2",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Logitech%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20Logitech%20G%20Pro%20X%20Superlight%202%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20Logitech%20G%20Pro%20X%20Superlight%202%20-%20Detalhes"
+    ]
   },
   {
     "id": "c11-02-deathadder-v3-pro",
@@ -946,12 +1251,17 @@
     "price": 849,
     "categorySlug": "mouses",
     "brand": "Razer",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=DeathAdder+V3+Pro",
     "specs": {
       "weight": 63,
       "sensor": "Focus Pro 30K",
       "wireless": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=DeathAdder+V3+Pro",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Razer%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20Razer%20DeathAdder%20V3%20Pro%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20Razer%20DeathAdder%20V3%20Pro%20-%20Detalhes"
+    ]
   },
   {
     "id": "c11-03-g502-hero",
@@ -961,12 +1271,17 @@
     "price": 279,
     "categorySlug": "mouses",
     "brand": "Logitech",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Logitech+G502",
     "specs": {
       "weight": 121,
       "sensor": "HERO 25K",
       "wireless": false
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Logitech+G502",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Logitech%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20Logitech%20G502%20HERO%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20Logitech%20G502%20HERO%20-%20Detalhes"
+    ]
   },
   {
     "id": "c11-04-zowie-ec2-cw",
@@ -976,12 +1291,17 @@
     "price": 1099,
     "categorySlug": "mouses",
     "brand": "Zowie",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Zowie+EC2-CW",
     "specs": {
       "weight": 77,
       "sensor": "PMW 3370",
       "wireless": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Zowie+EC2-CW",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Zowie%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20Zowie%20EC2-CW%20Wireless%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20Zowie%20EC2-CW%20Wireless%20-%20Detalhes"
+    ]
   },
   {
     "id": "c11-05-haste-2",
@@ -991,12 +1311,17 @@
     "price": 249,
     "categorySlug": "mouses",
     "brand": "HyperX",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Pulsefire+Haste+2",
     "specs": {
       "weight": 53,
       "sensor": "HyperX 26K",
       "wireless": false
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Pulsefire+Haste+2",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=HyperX%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20HyperX%20Pulsefire%20Haste%202%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20HyperX%20Pulsefire%20Haste%202%20-%20Detalhes"
+    ]
   },
   {
     "id": "c11-06-attack-shark-x3",
@@ -1006,12 +1331,17 @@
     "price": 199,
     "categorySlug": "mouses",
     "brand": "Attack Shark",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Attack+Shark+X3",
     "specs": {
       "weight": 49,
       "sensor": "PAW 3395",
       "wireless": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Attack+Shark+X3",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Attack%20Shark%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20Attack%20Shark%20X3%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mouse%20Gamer%20Attack%20Shark%20X3%20-%20Detalhes"
+    ]
   },
   {
     "id": "c12-01-pantera-extended",
@@ -1021,12 +1351,17 @@
     "price": 150,
     "categorySlug": "mousepads",
     "brand": "Fallen",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Fallen+Pantera",
     "specs": {
       "size": "900x400mm",
       "material": "Tecido Speed",
       "stitchedEdges": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fallen+Pantera",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Fallen%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20Fallen%20Pantera%20Extended%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20Fallen%20Pantera%20Extended%20-%20Detalhes"
+    ]
   },
   {
     "id": "c12-02-qck-heavy-large",
@@ -1036,12 +1371,17 @@
     "price": 189,
     "categorySlug": "mousepads",
     "brand": "SteelSeries",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=SteelSeries+QcK",
     "specs": {
       "size": "450x400mm",
       "material": "Pano Micro-Tessil",
       "stitchedEdges": false
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SteelSeries+QcK",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SteelSeries%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20SteelSeries%20QcK%20Heavy%20Large%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20SteelSeries%20QcK%20Heavy%20Large%20-%20Detalhes"
+    ]
   },
   {
     "id": "c12-03-artisan-hayate-otsu",
@@ -1051,12 +1391,17 @@
     "price": 450,
     "categorySlug": "mousepads",
     "brand": "Artisan",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Artisan+Hayate",
     "specs": {
       "size": "490x420mm",
       "material": "Poliéster Especial",
       "stitchedEdges": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Artisan+Hayate",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Artisan%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20Artisan%20Hayate%20Otsu%20FX%20Soft%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20Artisan%20Hayate%20Otsu%20FX%20Soft%20-%20Detalhes"
+    ]
   },
   {
     "id": "c12-04-gigantus-v2-xxl",
@@ -1066,12 +1411,17 @@
     "price": 199,
     "categorySlug": "mousepads",
     "brand": "Razer",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Razer+Gigantus",
     "specs": {
       "size": "940x410mm",
       "material": "Espuma de Borracha",
       "stitchedEdges": false
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Razer+Gigantus",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Razer%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20Razer%20Gigantus%20V2%20XXL%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20Razer%20Gigantus%20V2%20XXL%20-%20Detalhes"
+    ]
   },
   {
     "id": "c12-05-pulsefire-mat-xl",
@@ -1081,12 +1431,17 @@
     "price": 139,
     "categorySlug": "mousepads",
     "brand": "HyperX",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Pulsefire+Mat+XL",
     "specs": {
       "size": "900x420mm",
       "material": "Pano Denso",
       "stitchedEdges": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Pulsefire+Mat+XL",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=HyperX%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20HyperX%20Pulsefire%20Mat%20XL%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20HyperX%20Pulsefire%20Mat%20XL%20-%20Detalhes"
+    ]
   },
   {
     "id": "c12-06-redragon-flick-3xl",
@@ -1096,12 +1451,17 @@
     "price": 129,
     "categorySlug": "mousepads",
     "brand": "Redragon",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Redragon+Flick+3XL",
     "specs": {
       "size": "1200x600mm",
       "material": "Tecido Impermeável",
       "stitchedEdges": true
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Redragon+Flick+3XL",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Redragon%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20Redragon%20Flick%203XL%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Mousepad%20Redragon%20Flick%203XL%20-%20Detalhes"
+    ]
   },
   {
     "id": "c13-01-cloud-iii-wireless",
@@ -1111,12 +1471,17 @@
     "price": 950,
     "categorySlug": "fones-de-ouvido",
     "brand": "HyperX",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=HyperX+Cloud+III",
     "specs": {
       "connection": "Wireless 2.4GHz",
       "batteryLife": 120,
       "microphone": "Destacável"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=HyperX+Cloud+III",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=HyperX%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headset%20HyperX%20Cloud%20III%20Wireless%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headset%20HyperX%20Cloud%20III%20Wireless%20-%20Detalhes"
+    ]
   },
   {
     "id": "c13-02-g-pro-x-2-lightspeed",
@@ -1126,12 +1491,17 @@
     "price": 1499,
     "categorySlug": "fones-de-ouvido",
     "brand": "Logitech",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=G+PRO+X+2",
     "specs": {
       "connection": "Wireless Lightspeed + Bluetooth",
       "batteryLife": 50,
       "microphone": "Destacável Blue VO!CE"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=G+PRO+X+2",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Logitech%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headset%20Logitech%20G%20PRO%20X%202%20Lightspeed%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headset%20Logitech%20G%20PRO%20X%202%20Lightspeed%20-%20Detalhes"
+    ]
   },
   {
     "id": "c13-03-blackshark-v2-x",
@@ -1141,12 +1511,17 @@
     "price": 289,
     "categorySlug": "fones-de-ouvido",
     "brand": "Razer",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=BlackShark+V2+X",
     "specs": {
       "connection": "P3 (3.5mm)",
       "batteryLife": 0,
       "microphone": "Fixo Cardioide"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=BlackShark+V2+X",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Razer%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headset%20Razer%20BlackShark%20V2%20X%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headset%20Razer%20BlackShark%20V2%20X%20-%20Detalhes"
+    ]
   },
   {
     "id": "c13-04-ath-m50xbt2",
@@ -1156,12 +1531,17 @@
     "price": 1350,
     "categorySlug": "fones-de-ouvido",
     "brand": "Audio-Technica",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Audio-Technica+M50x",
     "specs": {
       "connection": "Bluetooth 5.0 + P2",
       "batteryLife": 50,
       "microphone": "Integrado"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Audio-Technica+M50x",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Audio-Technica%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headphone%20Audio-Technica%20ATH-M50xBT2%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headphone%20Audio-Technica%20ATH-M50xBT2%20-%20Detalhes"
+    ]
   },
   {
     "id": "c13-05-arctis-nova-7",
@@ -1171,12 +1551,17 @@
     "price": 1199,
     "categorySlug": "fones-de-ouvido",
     "brand": "SteelSeries",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Arctis+Nova+7",
     "specs": {
       "connection": "Wireless Dual 2.4G/BT",
       "batteryLife": 38,
       "microphone": "Retrátil com IA"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Arctis+Nova+7",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=SteelSeries%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headset%20SteelSeries%20Arctis%20Nova%207%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headset%20SteelSeries%20Arctis%20Nova%207%20-%20Detalhes"
+    ]
   },
   {
     "id": "c13-06-edifier-g4-te",
@@ -1186,12 +1571,17 @@
     "price": 349,
     "categorySlug": "fones-de-ouvido",
     "brand": "Edifier",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Edifier+G4+TE",
     "specs": {
       "connection": "USB",
       "batteryLife": 0,
       "microphone": "Destacável"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Edifier+G4+TE",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Edifier%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headset%20Edifier%20G4%20TE%207.1%20RGB%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Headset%20Edifier%20G4%20TE%207.1%20RGB%20-%20Detalhes"
+    ]
   },
   {
     "id": "c14-01-alienware-aw2723df",
@@ -1201,12 +1591,17 @@
     "price": 4200,
     "categorySlug": "monitores",
     "brand": "Alienware",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Alienware+280Hz",
     "specs": {
       "resolution": "2560x1440",
       "refreshRate": 280,
       "panelType": "Fast IPS"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Alienware+280Hz",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Alienware%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20Alienware%2027%20QHD%20280Hz%20AW2723DF%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20Alienware%2027%20QHD%20280Hz%20AW2723DF%20-%20Detalhes"
+    ]
   },
   {
     "id": "c14-02-lg-ultragear-27",
@@ -1216,12 +1611,17 @@
     "price": 1199,
     "categorySlug": "monitores",
     "brand": "LG",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=LG+UltraGear+27",
     "specs": {
       "resolution": "1920x1080",
       "refreshRate": 144,
       "panelType": "IPS"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=LG+UltraGear+27",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=LG%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20LG%20UltraGear%2027%20IPS%20144Hz%20FHD%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20LG%20UltraGear%2027%20IPS%20144Hz%20FHD%20-%20Detalhes"
+    ]
   },
   {
     "id": "c14-03-samsung-odyssey-g7",
@@ -1231,12 +1631,17 @@
     "price": 3299,
     "categorySlug": "monitores",
     "brand": "Samsung",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Odyssey+G7+32",
     "specs": {
       "resolution": "2560x1440",
       "refreshRate": 240,
       "panelType": "VA Curvo 1000R"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Odyssey+G7+32",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Samsung%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20Samsung%20Odyssey%20G7%2032%20QHD%20240Hz%20Curvo%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20Samsung%20Odyssey%20G7%2032%20QHD%20240Hz%20Curvo%20-%20Detalhes"
+    ]
   },
   {
     "id": "c14-04-asus-tuf-vg259qr",
@@ -1246,12 +1651,17 @@
     "price": 989,
     "categorySlug": "monitores",
     "brand": "ASUS",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=ASUS+TUF+24.5",
     "specs": {
       "resolution": "1920x1080",
       "refreshRate": 165,
       "panelType": "Fast IPS"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ASUS+TUF+24.5",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ASUS%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20ASUS%20TUF%20Gaming%2024.5%20165Hz%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20ASUS%20TUF%20Gaming%2024.5%20165Hz%20-%20Detalhes"
+    ]
   },
   {
     "id": "c14-05-dell-ultrasharp-u2723qe",
@@ -1261,12 +1671,17 @@
     "price": 3850,
     "categorySlug": "monitores",
     "brand": "Dell",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Dell+UltraSharp+4K",
     "specs": {
       "resolution": "3840x2160",
       "refreshRate": 60,
       "panelType": "IPS Black"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Dell+UltraSharp+4K",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Dell%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20Dell%20UltraSharp%2027%204K%20U2723QE%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20Dell%20UltraSharp%2027%204K%20U2723QE%20-%20Detalhes"
+    ]
   },
   {
     "id": "c14-06-gigabyte-m27q",
@@ -1276,12 +1691,17 @@
     "price": 1999,
     "categorySlug": "monitores",
     "brand": "Gigabyte",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Gigabyte+M27Q",
     "specs": {
       "resolution": "2560x1440",
       "refreshRate": 170,
       "panelType": "Super Speed IPS"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gigabyte+M27Q",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Gigabyte%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20Gigabyte%20M27Q%2027%20QHD%20170Hz%20KVM%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Monitor%20Gigabyte%20M27Q%2027%20QHD%20170Hz%20KVM%20-%20Detalhes"
+    ]
   },
   {
     "id": "c15-01-dell-xps-15",
@@ -1291,12 +1711,17 @@
     "price": 14500,
     "categorySlug": "notebooks",
     "brand": "Dell",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Dell+XPS+15",
     "specs": {
       "cpu": "Intel Core i7-13700H",
       "ram": "32GB DDR5",
       "gpu": "RTX 4060 8GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Dell+XPS+15",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Dell%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Dell%20XPS%2015%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Dell%20XPS%2015%20-%20Detalhes"
+    ]
   },
   {
     "id": "c15-02-rog-strix-g16",
@@ -1306,12 +1731,17 @@
     "price": 12999,
     "categorySlug": "notebooks",
     "brand": "ASUS",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=ROG+Strix+G16",
     "specs": {
       "cpu": "Intel Core i9-13980HX",
       "ram": "32GB DDR5",
       "gpu": "RTX 4070 8GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ROG+Strix+G16",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ASUS%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Gamer%20ASUS%20ROG%20Strix%20G16%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Gamer%20ASUS%20ROG%20Strix%20G16%20-%20Detalhes"
+    ]
   },
   {
     "id": "c15-03-acer-nitro-5",
@@ -1321,12 +1751,17 @@
     "price": 4499,
     "categorySlug": "notebooks",
     "brand": "Acer",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Acer+Nitro+5",
     "specs": {
       "cpu": "Intel Core i5-12450H",
       "ram": "16GB DDR4",
       "gpu": "RTX 3050 4GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Acer+Nitro+5",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Acer%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Gamer%20Acer%20Nitro%205%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Gamer%20Acer%20Nitro%205%20-%20Detalhes"
+    ]
   },
   {
     "id": "c15-04-legion-slim-5",
@@ -1336,12 +1771,17 @@
     "price": 8299,
     "categorySlug": "notebooks",
     "brand": "Lenovo",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Legion+Slim+5",
     "specs": {
       "cpu": "AMD Ryzen 7 7840HS",
       "ram": "16GB DDR5",
       "gpu": "RTX 4060 8GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Legion+Slim+5",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Lenovo%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Lenovo%20Legion%20Slim%205%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Lenovo%20Legion%20Slim%205%20-%20Detalhes"
+    ]
   },
   {
     "id": "c15-05-macbook-pro-14",
@@ -1351,12 +1791,17 @@
     "price": 16999,
     "categorySlug": "notebooks",
     "brand": "Apple",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MacBook+Pro+14",
     "specs": {
       "cpu": "Apple M3 Pro 11-core",
       "ram": "18GB Unificada",
       "gpu": "14-core GPU Integrada"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=MacBook+Pro+14",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Apple%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Apple%20MacBook%20Pro%2014%20M3%20Pro%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Apple%20MacBook%20Pro%2014%20M3%20Pro%20-%20Detalhes"
+    ]
   },
   {
     "id": "c15-06-dell-g15-5530",
@@ -1366,12 +1811,17 @@
     "price": 6199,
     "categorySlug": "notebooks",
     "brand": "Dell",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Dell+G15+5530",
     "specs": {
       "cpu": "Intel Core i7-13650HX",
       "ram": "16GB DDR5",
       "gpu": "RTX 4050 6GB"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Dell+G15+5530",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Dell%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Dell%20G15%205530%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Notebook%20Dell%20G15%205530%20-%20Detalhes"
+    ]
   },
   {
     "id": "c16-01-noblechairs-hero",
@@ -1381,12 +1831,17 @@
     "price": 3500,
     "categorySlug": "cadeiras",
     "brand": "Noblechairs",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Noblechairs+Hero",
     "specs": {
       "material": "Couro PU Sintético",
       "maxWeight": 150,
       "armrest": "4D"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Noblechairs+Hero",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Noblechairs%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Gamer%20Noblechairs%20Hero%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Gamer%20Noblechairs%20Hero%20-%20Detalhes"
+    ]
   },
   {
     "id": "c16-02-dt3-helora",
@@ -1396,12 +1851,17 @@
     "price": 1899,
     "categorySlug": "cadeiras",
     "brand": "DT3",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=DT3+Helora",
     "specs": {
       "material": "Mesh respirável",
       "maxWeight": 130,
       "armrest": "3D"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=DT3+Helora",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=DT3%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Ergon%C3%B4mica%20DT3%20Helora%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Ergon%C3%B4mica%20DT3%20Helora%20-%20Detalhes"
+    ]
   },
   {
     "id": "c16-03-thunderx3-tgc12",
@@ -1411,12 +1871,17 @@
     "price": 1199,
     "categorySlug": "cadeiras",
     "brand": "ThunderX3",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=ThunderX3+TGC12",
     "specs": {
       "material": "Couro Sintético com costura em diamante",
       "maxWeight": 120,
       "armrest": "2D"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ThunderX3+TGC12",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=ThunderX3%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Gamer%20ThunderX3%20TGC12%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Gamer%20ThunderX3%20TGC12%20-%20Detalhes"
+    ]
   },
   {
     "id": "c16-04-corsair-t3-rush",
@@ -1426,12 +1891,17 @@
     "price": 2199,
     "categorySlug": "cadeiras",
     "brand": "Corsair",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+T3+Rush",
     "specs": {
       "material": "Tecido respirável macio",
       "maxWeight": 120,
       "armrest": "4D"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+T3+Rush",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Gamer%20Corsair%20T3%20Rush%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Gamer%20Corsair%20T3%20Rush%20-%20Detalhes"
+    ]
   },
   {
     "id": "c16-05-herman-miller-aeron",
@@ -1441,12 +1911,17 @@
     "price": 8900,
     "categorySlug": "cadeiras",
     "brand": "Herman Miller",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Herman+Miller+Aeron",
     "specs": {
       "material": "Pellicle Mesh de alta performance",
       "maxWeight": 160,
       "armrest": "Totalmente Ajustável"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Herman+Miller+Aeron",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Herman%20Miller%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Ergon%C3%B4mica%20Herman%20Miller%20Aeron%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Ergon%C3%B4mica%20Herman%20Miller%20Aeron%20-%20Detalhes"
+    ]
   },
   {
     "id": "c16-06-pichau-nova",
@@ -1456,11 +1931,16 @@
     "price": 949,
     "categorySlug": "cadeiras",
     "brand": "Pichau",
-    "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Pichau+Nova",
     "specs": {
       "material": "Couro PU e espuma moldada a frio",
       "maxWeight": 130,
       "armrest": "3D"
-    }
+    },
+    "images": [
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Pichau+Nova",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Pichau%20-%20Vista%20Frontal",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Gamer%20Pichau%20Nova%20-%20Embalagem",
+      "https://placehold.co/400x400/1e293b/f8fafc?text=Cadeira%20Gamer%20Pichau%20Nova%20-%20Detalhes"
+    ]
   }
 ]

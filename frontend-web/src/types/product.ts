@@ -8,7 +8,7 @@ export interface Product {
   price: number
   categorySlug: string
   brand: string
-  image: string
+  images: string[]
   specs: Record<string, ProductSpecValue>
 }
 
