@@ -9,6 +9,7 @@ import {
   AlertCircle,
   Building,
   Home,
+  Lock,
 } from 'lucide-react'
 import type { ShippingOption } from '../../types'
 import { useCartStore, useCustomerStore } from '../../stores'
@@ -53,8 +54,13 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
   const setShipping = useCartStore((state) => state.setShipping)
 
   const [isLoadingCep, setIsLoadingCep] = useState(false)
-  const [cepStatus, setCepStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [cepStatus, setCepStatus] = useState<'idle' | 'success' | 'error'>(
+    customer?.address?.street ? 'success' : 'idle'
+  )
   const [cepErrorMessage, setCepErrorMessage] = useState('')
+  const [isAddressLocked, setIsAddressLocked] = useState(
+    Boolean(customer?.address?.street && customer?.address?.city)
+  )
 
   const {
     register,
@@ -87,6 +93,7 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
     const raw = cleanMask(cepInput)
     if (raw.length !== 8) {
       setCepStatus('idle')
+      setIsAddressLocked(false)
       return
     }
 
@@ -99,6 +106,7 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
       if (!data) {
         setCepStatus('error')
         setCepErrorMessage('CEP não encontrado no ViaCEP.')
+        setIsAddressLocked(false)
         return
       }
 
@@ -123,10 +131,12 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
       })
 
       setCepStatus('success')
+      setIsAddressLocked(true)
     } catch (err) {
       console.error(err)
       setCepStatus('error')
       setCepErrorMessage('Erro ao consultar ViaCEP. Verifique sua conexão.')
+      setIsAddressLocked(false)
     } finally {
       setIsLoadingCep(false)
     }
@@ -137,6 +147,9 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
     setValue('cep', masked, { shouldValidate: true })
     if (cleanMask(masked).length === 8) {
       handleCepSearch(masked)
+    } else {
+      setIsAddressLocked(false)
+      setCepStatus('idle')
     }
   }
 
@@ -206,45 +219,67 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
               )}
             </div>
 
-            {/* Estado / UF */}
+            {/* Estado / UF (Bloqueado quando preenchido pelo ViaCEP) */}
             <div className="sm:col-span-3 space-y-1.5">
-              <Label htmlFor="state" className="text-xs font-semibold">
-                Estado (UF) *
+              <Label htmlFor="state" className="text-xs font-semibold flex items-center justify-between">
+                <span>Estado (UF) *</span>
+                {isAddressLocked && (
+                  <span className="flex items-center gap-1 text-[10px] text-muted-foreground font-normal">
+                    <Lock className="w-3 h-3" />
+                    <span>ViaCEP</span>
+                  </span>
+                )}
               </Label>
               <Input
                 id="state"
                 placeholder="Ex: SP"
                 maxLength={2}
+                readOnly={isAddressLocked}
                 {...register('state', {
                   onChange: (e) => handleAddressFieldChange('state', e.target.value.toUpperCase()),
                 })}
-                className={errors.state ? 'border-destructive focus-visible:ring-destructive' : ''}
+                className={cn(
+                  errors.state && 'border-destructive focus-visible:ring-destructive',
+                  isAddressLocked && 'bg-muted/40 text-muted-foreground cursor-not-allowed select-none'
+                )}
               />
               {errors.state && (
                 <p className="text-[11px] text-destructive font-medium">{errors.state.message}</p>
               )}
             </div>
 
-            {/* Logradouro / Rua */}
+            {/* Logradouro / Rua (Bloqueado quando preenchido pelo ViaCEP) */}
             <div className="sm:col-span-4 space-y-1.5">
-              <Label htmlFor="street" className="text-xs font-semibold flex items-center gap-1.5">
-                <Home className="w-3.5 h-3.5 text-muted-foreground" />
-                <span>Logradouro / Rua *</span>
+              <Label htmlFor="street" className="text-xs font-semibold flex items-center justify-between">
+                <span className="flex items-center gap-1.5">
+                  <Home className="w-3.5 h-3.5 text-muted-foreground" />
+                  <span>Logradouro / Rua *</span>
+                </span>
+                {isAddressLocked && (
+                  <span className="flex items-center gap-1 text-[10px] text-muted-foreground font-normal">
+                    <Lock className="w-3 h-3" />
+                    <span>ViaCEP</span>
+                  </span>
+                )}
               </Label>
               <Input
                 id="street"
                 placeholder="Ex: Av. Paulista"
+                readOnly={isAddressLocked}
                 {...register('street', {
                   onChange: (e) => handleAddressFieldChange('street', e.target.value),
                 })}
-                className={errors.street ? 'border-destructive focus-visible:ring-destructive' : ''}
+                className={cn(
+                  errors.street && 'border-destructive focus-visible:ring-destructive',
+                  isAddressLocked && 'bg-muted/40 text-muted-foreground cursor-not-allowed select-none'
+                )}
               />
               {errors.street && (
                 <p className="text-[11px] text-destructive font-medium">{errors.street.message}</p>
               )}
             </div>
 
-            {/* Número */}
+            {/* Número (Sempre Editável) */}
             <div className="sm:col-span-2 space-y-1.5">
               <Label htmlFor="number" className="text-xs font-semibold">
                 Número *
@@ -262,19 +297,31 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
               )}
             </div>
 
-            {/* Bairro */}
+            {/* Bairro (Bloqueado quando preenchido pelo ViaCEP) */}
             <div className="sm:col-span-3 space-y-1.5">
-              <Label htmlFor="neighborhood" className="text-xs font-semibold flex items-center gap-1.5">
-                <Building className="w-3.5 h-3.5 text-muted-foreground" />
-                <span>Bairro *</span>
+              <Label htmlFor="neighborhood" className="text-xs font-semibold flex items-center justify-between">
+                <span className="flex items-center gap-1.5">
+                  <Building className="w-3.5 h-3.5 text-muted-foreground" />
+                  <span>Bairro *</span>
+                </span>
+                {isAddressLocked && (
+                  <span className="flex items-center gap-1 text-[10px] text-muted-foreground font-normal">
+                    <Lock className="w-3 h-3" />
+                    <span>ViaCEP</span>
+                  </span>
+                )}
               </Label>
               <Input
                 id="neighborhood"
                 placeholder="Ex: Bela Vista"
+                readOnly={isAddressLocked}
                 {...register('neighborhood', {
                   onChange: (e) => handleAddressFieldChange('neighborhood', e.target.value),
                 })}
-                className={errors.neighborhood ? 'border-destructive focus-visible:ring-destructive' : ''}
+                className={cn(
+                  errors.neighborhood && 'border-destructive focus-visible:ring-destructive',
+                  isAddressLocked && 'bg-muted/40 text-muted-foreground cursor-not-allowed select-none'
+                )}
               />
               {errors.neighborhood && (
                 <p className="text-[11px] text-destructive font-medium">
@@ -283,25 +330,35 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
               )}
             </div>
 
-            {/* Cidade */}
+            {/* Cidade (Bloqueada quando preenchida pelo ViaCEP) */}
             <div className="sm:col-span-3 space-y-1.5">
-              <Label htmlFor="city" className="text-xs font-semibold">
-                Cidade *
+              <Label htmlFor="city" className="text-xs font-semibold flex items-center justify-between">
+                <span>Cidade *</span>
+                {isAddressLocked && (
+                  <span className="flex items-center gap-1 text-[10px] text-muted-foreground font-normal">
+                    <Lock className="w-3 h-3" />
+                    <span>ViaCEP</span>
+                  </span>
+                )}
               </Label>
               <Input
                 id="city"
                 placeholder="Ex: São Paulo"
+                readOnly={isAddressLocked}
                 {...register('city', {
                   onChange: (e) => handleAddressFieldChange('city', e.target.value),
                 })}
-                className={errors.city ? 'border-destructive focus-visible:ring-destructive' : ''}
+                className={cn(
+                  errors.city && 'border-destructive focus-visible:ring-destructive',
+                  isAddressLocked && 'bg-muted/40 text-muted-foreground cursor-not-allowed select-none'
+                )}
               />
               {errors.city && (
                 <p className="text-[11px] text-destructive font-medium">{errors.city.message}</p>
               )}
             </div>
 
-            {/* Complemento (Opcional) */}
+            {/* Complemento (Sempre Editável / Opcional) */}
             <div className="sm:col-span-6 space-y-1.5">
               <Label htmlFor="complement" className="text-xs font-semibold">
                 Complemento / Ponto de Referência <span className="text-muted-foreground font-normal">(Opcional)</span>
