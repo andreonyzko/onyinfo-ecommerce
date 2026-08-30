@@ -5,7 +5,7 @@
     "slug": "amd-ryzen-7-7800x3d",
     "description": "O processador definitivo para jogos, equipado com tecnologia AMD 3D V-Cache e arquitetura Zen 4.",
     "price": 2899.9,
-    "categorySlug": "cpus",
+    "categorySlug": "processadores",
     "brand": "AMD",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Ryzen+7+7800X3D",
     "specs": {
@@ -21,7 +21,7 @@
     "slug": "amd-ryzen-5-7600x",
     "description": "Excelente performance em jogos e tarefas diárias com alta eficiência energética e suporte a DDR5.",
     "price": 1499,
-    "categorySlug": "cpus",
+    "categorySlug": "processadores",
     "brand": "AMD",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Ryzen+5+7600X",
     "specs": {
@@ -37,7 +37,7 @@
     "slug": "amd-ryzen-9-7950x3d",
     "description": "Desempenho extremo para criadores de conteúdo e gamers entusiastas com 16 núcleos de alta velocidade.",
     "price": 4299.9,
-    "categorySlug": "cpus",
+    "categorySlug": "processadores",
     "brand": "AMD",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Ryzen+9+7950X3D",
     "specs": {
@@ -53,7 +53,7 @@
     "slug": "intel-core-i5-14600k",
     "description": "Desempenho híbrido balanceado para multitarefas pesadas e jogos competitivos em altas taxas de quadros.",
     "price": 1899,
-    "categorySlug": "cpus",
+    "categorySlug": "processadores",
     "brand": "Intel",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Core+i5-14600K",
     "specs": {
@@ -69,7 +69,7 @@
     "slug": "intel-core-i7-14700k",
     "description": "Arquitetura Raptor Lake Refresh com 20 núcleos para renderização rápida e streaming sem engasgos.",
     "price": 2799,
-    "categorySlug": "cpus",
+    "categorySlug": "processadores",
     "brand": "Intel",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Core+i7-14700K",
     "specs": {
@@ -85,7 +85,7 @@
     "slug": "intel-core-i9-14900k",
     "description": "O ápice do desempenho para computação avançada atingindo frequências de até 6.0 GHz.",
     "price": 3999,
-    "categorySlug": "cpus",
+    "categorySlug": "processadores",
     "brand": "Intel",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Core+i9-14900K",
     "specs": {
@@ -101,7 +101,7 @@
     "slug": "asus-rog-strix-b650e-f",
     "description": "Placa-mãe AM5 premium com suporte a PCIe 5.0, Wi-Fi 6E e robusto VRM para overclocking seguro.",
     "price": 1850,
-    "categorySlug": "motherboards",
+    "categorySlug": "placas-mae",
     "brand": "ASUS",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=ROG+Strix+B650E-F",
     "specs": {
@@ -117,7 +117,7 @@
     "slug": "gigabyte-b650-aorus-elite-ax",
     "description": "Design térmico avançado com dissipadores estendidos para slots M.2 e suporte a memórias DDR5 ultra-rápidas.",
     "price": 1599,
-    "categorySlug": "motherboards",
+    "categorySlug": "placas-mae",
     "brand": "Gigabyte",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=AORUS+B650+Elite",
     "specs": {
@@ -133,7 +133,7 @@
     "slug": "msi-mag-b650m-mortar-wifi",
     "description": "Construção militar compacta Micro-ATX com blindagem de aço PCIe e excelente conectividade de rede 2.5G.",
     "price": 1399,
-    "categorySlug": "motherboards",
+    "categorySlug": "placas-mae",
     "brand": "MSI",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MSI+B650M+Mortar",
     "specs": {
@@ -149,7 +149,7 @@
     "slug": "asus-tuf-gaming-z790-plus-wifi",
     "description": "Estabilidade comprovada com componentes de classe militar para processadores Intel Core de 13ª e 14ª geração.",
     "price": 1999,
-    "categorySlug": "motherboards",
+    "categorySlug": "placas-mae",
     "brand": "ASUS",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=TUF+Z790-Plus",
     "specs": {
@@ -165,7 +165,7 @@
     "slug": "msi-pro-z790-a-max-wifi",
     "description": "Solução profissional projetada para criadores de conteúdo e estações de trabalho de alto desempenho.",
     "price": 1750,
-    "categorySlug": "motherboards",
+    "categorySlug": "placas-mae",
     "brand": "MSI",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MSI+PRO+Z790-A",
     "specs": {
@@ -181,7 +181,7 @@
     "slug": "asrock-b760m-steel-legend-wifi",
     "description": "Estética impecável em tons camuflados/brancos com suporte a PCIe 5.0 e iluminação Polychrome RGB.",
     "price": 1199,
-    "categorySlug": "motherboards",
+    "categorySlug": "placas-mae",
     "brand": "ASRock",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=B760M+Steel+Legend",
     "specs": {
@@ -197,7 +197,7 @@
     "slug": "corsair-vengeance-32gb-ddr5-6000",
     "description": "Kit de memória DDR5 de alta velocidade otimizado para plataformas AMD EXPO e Intel XMP 3.0.",
     "price": 950,
-    "categorySlug": "memories",
+    "categorySlug": "memorias-ram",
     "brand": "Corsair",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+DDR5+32GB",
     "specs": {
@@ -213,7 +213,7 @@
     "slug": "kingston-fury-beast-32gb-ddr5-5600",
     "description": "Desempenho confiável e overclock automático Plug N Play para jogos e criação em alta definição.",
     "price": 799,
-    "categorySlug": "memories",
+    "categorySlug": "memorias-ram",
     "brand": "Kingston",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Fury+Beast+32GB",
     "specs": {
@@ -229,7 +229,7 @@
     "slug": "gskill-trident-z5-rgb-32gb-ddr5-6400",
     "description": "Design esportivo premiado com barra de luz RGB e circuitos integrados selecionados a dedo.",
     "price": 1199,
-    "categorySlug": "memories",
+    "categorySlug": "memorias-ram",
     "brand": "G.Skill",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Trident+Z5+32GB",
     "specs": {
@@ -245,7 +245,7 @@
     "slug": "corsair-vengeance-rgb-pro-32gb-ddr4",
     "description": "Iluminação RGB dinâmica multi-zona e desempenho comprovado para plataformas DDR4 consolidadas.",
     "price": 549,
-    "categorySlug": "memories",
+    "categorySlug": "memorias-ram",
     "brand": "Corsair",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Vengeance+DDR4+32GB",
     "specs": {
@@ -261,7 +261,7 @@
     "slug": "kingston-fury-renegade-16gb-ddr4",
     "description": "Dissipador de calor preto agressivo com altas frequências e baixas latências para máxima fluidez.",
     "price": 299,
-    "categorySlug": "memories",
+    "categorySlug": "memorias-ram",
     "brand": "Kingston",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Fury+Renegade+16GB",
     "specs": {
@@ -277,7 +277,7 @@
     "slug": "xpg-lancer-blade-64gb-ddr5-6000",
     "description": "Capacidade massiva de 64GB para simulações pesadas, renderização 3D e edição em 8K.",
     "price": 1799,
-    "categorySlug": "memories",
+    "categorySlug": "memorias-ram",
     "brand": "XPG",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=XPG+Lancer+64GB",
     "specs": {
@@ -293,7 +293,7 @@
     "slug": "nvidia-geforce-rtx-4070-ti-super",
     "description": "Arquitetura Ada Lovelace com 16GB GDDR6X, DLSS 3 e performance estelar para 4K e 1440p competitivo.",
     "price": 5499,
-    "categorySlug": "gpus",
+    "categorySlug": "placas-de-video",
     "brand": "NVIDIA",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=RTX+4070+Ti+Super",
     "specs": {
@@ -308,7 +308,7 @@
     "slug": "asus-tuf-geforce-rtx-4060-8gb",
     "description": "Eficiência impressionante com baixíssimo consumo térmico e suporte completo a Ray Tracing em Full HD.",
     "price": 2199,
-    "categorySlug": "gpus",
+    "categorySlug": "placas-de-video",
     "brand": "ASUS",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=TUF+RTX+4060",
     "specs": {
@@ -323,7 +323,7 @@
     "slug": "msi-geforce-rtx-4070-super-ventus",
     "description": "Excelente custo-benefício para Quad HD com resfriamento dual-fan TORX Fan 4.0 ultra silencioso.",
     "price": 4299,
-    "categorySlug": "gpus",
+    "categorySlug": "placas-de-video",
     "brand": "MSI",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=RTX+4070+Super",
     "specs": {
@@ -338,7 +338,7 @@
     "slug": "gigabyte-geforce-rtx-4080-super-gaming-oc",
     "description": "Potência sem concessões para Ray Tracing ultra em 4K nativo com sistema WINDFORCE tri-fan.",
     "price": 7499,
-    "categorySlug": "gpus",
+    "categorySlug": "placas-de-video",
     "brand": "Gigabyte",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=RTX+4080+Super",
     "specs": {
@@ -353,7 +353,7 @@
     "slug": "sapphire-pulse-amd-radeon-rx-7800-xt",
     "description": "Arquitetura RDNA 3 com 16GB de VRAM e suporte a AMD FSR 3 para jogos fluídos em 1440p e 4K.",
     "price": 3899,
-    "categorySlug": "gpus",
+    "categorySlug": "placas-de-video",
     "brand": "Sapphire",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=RX+7800+XT",
     "specs": {
@@ -368,7 +368,7 @@
     "slug": "powercolor-radeon-rx-7600-fighter",
     "description": "A porta de entrada ideal para jogos modernos em 1080p com alta taxa de quadros e baixo ruído.",
     "price": 1799,
-    "categorySlug": "gpus",
+    "categorySlug": "placas-de-video",
     "brand": "PowerColor",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=RX+7600+Fighter",
     "specs": {
@@ -383,7 +383,7 @@
     "slug": "ssd-samsung-990-pro-2tb",
     "description": "SSD PCIe 4.0 topo de linha com velocidades incomparáveis para cargas pesadas de trabalho e jogos.",
     "price": 1299.9,
-    "categorySlug": "storages",
+    "categorySlug": "armazenamento",
     "brand": "Samsung",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Samsung+990+PRO",
     "specs": {
@@ -399,7 +399,7 @@
     "slug": "ssd-kingston-kc3000-1tb",
     "description": "Excelente dissipador de alumínio e grafeno com alta durabilidade TBW e velocidade PCIe Gen 4x4.",
     "price": 599,
-    "categorySlug": "storages",
+    "categorySlug": "armazenamento",
     "brand": "Kingston",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Kingston+KC3000",
     "specs": {
@@ -415,7 +415,7 @@
     "slug": "ssd-crucial-t500-2tb",
     "description": "Tecnologia TLC NAND avançada com DirectStorage otimizado para o Windows 11 e consoles de última geração.",
     "price": 1150,
-    "categorySlug": "storages",
+    "categorySlug": "armazenamento",
     "brand": "Crucial",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Crucial+T500",
     "specs": {
@@ -431,7 +431,7 @@
     "slug": "ssd-wd-black-sn850x-4tb",
     "description": "Capacidade gigantesca de 4TB com Game Mode 2.0 para manter toda a sua biblioteca de jogos instalada.",
     "price": 2599,
-    "categorySlug": "storages",
+    "categorySlug": "armazenamento",
     "brand": "Western Digital",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=WD+Black+4TB",
     "specs": {
@@ -447,7 +447,7 @@
     "slug": "ssd-sata-crucial-bx500-1tb",
     "description": "Atualização prática e econômica para dar vida nova a desktops e notebooks com baias SATA 2.5 polegadas.",
     "price": 399,
-    "categorySlug": "storages",
+    "categorySlug": "armazenamento",
     "brand": "Crucial",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Crucial+BX500",
     "specs": {
@@ -463,7 +463,7 @@
     "slug": "ssd-kingston-nv2-1tb",
     "description": "Opção acessível M.2 NVMe PCIe 4.0 ideal para builds de entrada e laptops compactos.",
     "price": 379,
-    "categorySlug": "storages",
+    "categorySlug": "armazenamento",
     "brand": "Kingston",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Kingston+NV2",
     "specs": {
@@ -479,7 +479,7 @@
     "slug": "fonte-xpg-core-reactor-850w",
     "description": "Fonte totalmente modular de alto padrão com capacitores 100% japoneses e 10 anos de garantia.",
     "price": 750,
-    "categorySlug": "powersupplys",
+    "categorySlug": "fontes",
     "brand": "XPG",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=XPG+850W+Gold",
     "specs": {
@@ -494,7 +494,7 @@
     "slug": "fonte-corsair-rm750e-750w",
     "description": "Compatível com padrão ATX 3.0 e PCIe 5.0, operando de forma ultra-silenciosa com ventoinha FDB.",
     "price": 689,
-    "categorySlug": "powersupplys",
+    "categorySlug": "fontes",
     "brand": "Corsair",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+RM750e",
     "specs": {
@@ -509,7 +509,7 @@
     "slug": "fonte-msi-mag-a650bn-650w",
     "description": "Construção sólida com circuito DC-DC confiável e proteções completas OVP, OCP, OPP e OTP.",
     "price": 329,
-    "categorySlug": "powersupplys",
+    "categorySlug": "fontes",
     "brand": "MSI",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MSI+A650BN",
     "specs": {
@@ -524,7 +524,7 @@
     "slug": "fonte-corsair-rm1000x-1000w",
     "description": "Energia abundante e estável para placas de vídeo como RTX 4090 e múltiplos processadores entusiastas.",
     "price": 1199,
-    "categorySlug": "powersupplys",
+    "categorySlug": "fontes",
     "brand": "Corsair",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+1000W",
     "specs": {
@@ -539,7 +539,7 @@
     "slug": "fonte-seasonic-focus-gx-850",
     "description": "Engenharia de precisão com controle híbrido de ventoinha silenciosa e certificação Cybenetics.",
     "price": 899,
-    "categorySlug": "powersupplys",
+    "categorySlug": "fontes",
     "brand": "Seasonic",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Seasonic+GX-850",
     "specs": {
@@ -554,7 +554,7 @@
     "slug": "fonte-cooler-master-mwe-550w",
     "description": "Alimentação segura para sistemas de médio porte com cabeamento flat preto para fácil cable management.",
     "price": 299,
-    "categorySlug": "powersupplys",
+    "categorySlug": "fontes",
     "brand": "Cooler Master",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MWE+550W",
     "specs": {
@@ -659,7 +659,7 @@
     "slug": "gabinete-lian-li-o11-dynamic-evo",
     "description": "Gabinete aquário premium modular com vidro temperado duplo e suporte a múltiplos radiadores de 360mm.",
     "price": 1100,
-    "categorySlug": "cases",
+    "categorySlug": "gabinetes",
     "brand": "Lian Li",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Lian+Li+O11+EVO",
     "specs": {
@@ -674,7 +674,7 @@
     "slug": "gabinete-nzxt-h6-flow-rgb",
     "description": "Design de câmara dupla compacta com vidro panorâmico de canto sem moldura e 3 ventoinhas RGB inclusas.",
     "price": 899,
-    "categorySlug": "cases",
+    "categorySlug": "gabinetes",
     "brand": "NZXT",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=NZXT+H6+Flow",
     "specs": {
@@ -689,7 +689,7 @@
     "slug": "gabinete-corsair-4000d-airflow",
     "description": "Painel frontal com padrão triangular de alto fluxo de ar e sistema Corsair RapidRoute para cabos perfeitos.",
     "price": 549,
-    "categorySlug": "cases",
+    "categorySlug": "gabinetes",
     "brand": "Corsair",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+4000D",
     "specs": {
@@ -704,7 +704,7 @@
     "slug": "gabinete-montech-king-95-pro",
     "description": "Painel frontal e lateral em vidro curvo de alta transparência com 6 ventoinhas ARGB PWM pré-instaladas.",
     "price": 799,
-    "categorySlug": "cases",
+    "categorySlug": "gabinetes",
     "brand": "Montech",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Montech+King+95",
     "specs": {
@@ -719,7 +719,7 @@
     "slug": "gabinete-fractal-design-north-mesh",
     "description": "Elegância sofisticada com ripas de madeira natural de verdade na frente e lateral em malha respirável.",
     "price": 1250,
-    "categorySlug": "cases",
+    "categorySlug": "gabinetes",
     "brand": "Fractal Design",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Fractal+North",
     "specs": {
@@ -734,7 +734,7 @@
     "slug": "gabinete-cooler-master-q300l",
     "description": "Formato cúbico compacto Micro-ATX com filtros de poeira magnéticos padronizados e painel I/O reposicionável.",
     "price": 289,
-    "categorySlug": "cases",
+    "categorySlug": "gabinetes",
     "brand": "Cooler Master",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=MasterBox+Q300L",
     "specs": {
@@ -749,7 +749,7 @@
     "slug": "kit-3-ventoinhas-corsair-icue-ar120",
     "description": "Controle de rotação PWM preciso com iluminação ARGB vibrante e adaptador compatível com placas-mãe.",
     "price": 320,
-    "categorySlug": "fans",
+    "categorySlug": "ventoinhas",
     "brand": "Corsair",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+AR120",
     "specs": {
@@ -764,7 +764,7 @@
     "slug": "kit-3-ventoinhas-lian-li-sl-inf-120",
     "description": "Efeito de espelho infinito nas laterais e centro com encaixe modular magnético sem excesso de cabos.",
     "price": 599,
-    "categorySlug": "fans",
+    "categorySlug": "ventoinhas",
     "brand": "Lian Li",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Lian+Li+SL-Inf",
     "specs": {
@@ -779,7 +779,7 @@
     "slug": "ventoinha-noctua-nf-a12x25-pwm",
     "description": "Engenharia de precisão com material Sterrox LCP e folga de ponta de 0.5mm para pressão estática líder do setor.",
     "price": 210,
-    "categorySlug": "fans",
+    "categorySlug": "ventoinhas",
     "brand": "Noctua",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Noctua+A12x25",
     "specs": {
@@ -794,7 +794,7 @@
     "slug": "kit-3-ventoinhas-deepcool-fc120",
     "description": "Interconexão daisy-chain simples para alimentação e controle de iluminação ARGB sincronizada.",
     "price": 189,
-    "categorySlug": "fans",
+    "categorySlug": "ventoinhas",
     "brand": "DeepCool",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=DeepCool+FC120",
     "specs": {
@@ -809,7 +809,7 @@
     "slug": "ventoinha-arctic-p12-pwm-pst",
     "description": "Focada em alta pressão estática para radiadores e filtros, com operação silenciosa e baixo consumo.",
     "price": 65,
-    "categorySlug": "fans",
+    "categorySlug": "ventoinhas",
     "brand": "Arctic",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Arctic+P12",
     "specs": {
@@ -824,7 +824,7 @@
     "slug": "kit-2-ventoinhas-be-quiet-silent-wings-4",
     "description": "Fluxo de ar máximo para gabinetes amplos com montagem antivibração desacoplada inovadora.",
     "price": 280,
-    "categorySlug": "fans",
+    "categorySlug": "ventoinhas",
     "brand": "Be Quiet!",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Silent+Wings+4",
     "specs": {
@@ -839,7 +839,7 @@
     "slug": "teclado-mecanico-keychron-k8-pro",
     "description": "Teclado QMK/VIA customizável sem fio com switches Gateron Brown hot-swappable e acabamento em alumínio.",
     "price": 780,
-    "categorySlug": "keyboards",
+    "categorySlug": "teclados",
     "brand": "Keychron",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Keychron+K8+Pro",
     "specs": {
@@ -854,7 +854,7 @@
     "slug": "teclado-logitech-g915-tkl-lightspeed",
     "description": "Estrutura ultrafina em liga de alumínio com switches GL Tactile low-profile e autonomia de 40 horas.",
     "price": 1199,
-    "categorySlug": "keyboards",
+    "categorySlug": "teclados",
     "brand": "Logitech",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Logitech+G915+TKL",
     "specs": {
@@ -869,7 +869,7 @@
     "slug": "teclado-mecanico-redragon-kumara-k552",
     "description": "Teclado clássico com feedback tátil e sonoro firme (Outemu Blue), pintura fosca e teclas double-shot injection.",
     "price": 199.9,
-    "categorySlug": "keyboards",
+    "categorySlug": "teclados",
     "brand": "Redragon",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Redragon+Kumara",
     "specs": {
@@ -884,7 +884,7 @@
     "slug": "teclado-hyperx-alloy-origins-core",
     "description": "Corpo inteiro em alumínio aeronáutico com switches mecânicos lineares HyperX Red de acionamento ultrarrápido.",
     "price": 449,
-    "categorySlug": "keyboards",
+    "categorySlug": "teclados",
     "brand": "HyperX",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=HyperX+Alloy+Core",
     "specs": {
@@ -899,7 +899,7 @@
     "slug": "teclado-razer-huntsman-v2-tkl",
     "description": "Switches ópticos lineares Razer de 2ª geração com polling rate real de 8000Hz e apoio para pulso magnético.",
     "price": 899,
-    "categorySlug": "keyboards",
+    "categorySlug": "teclados",
     "brand": "Razer",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Razer+Huntsman+V2",
     "specs": {
@@ -914,7 +914,7 @@
     "slug": "teclado-mecanico-akko-5075b-plus",
     "description": "Montagem Gasket Mount flexível com knob de volume rotativo em metal e tri-modo de conexão (2.4G/BT/Cabo).",
     "price": 580,
-    "categorySlug": "keyboards",
+    "categorySlug": "teclados",
     "brand": "Akko",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Akko+5075B",
     "specs": {
@@ -1109,7 +1109,7 @@
     "slug": "headset-hyperx-cloud-iii-wireless",
     "description": "Lendário conforto com espuma viscoelástica de assinatura, áudio espacial DTS Headphone:X e até 120h de bateria.",
     "price": 950,
-    "categorySlug": "headphones",
+    "categorySlug": "fones-de-ouvido",
     "brand": "HyperX",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=HyperX+Cloud+III",
     "specs": {
@@ -1124,7 +1124,7 @@
     "slug": "headset-logitech-g-pro-x-2-lightspeed",
     "description": "Drivers de Grafeno de 50mm para resposta sonora cristalina e comunicação por voz clara com Blue VO!CE.",
     "price": 1499,
-    "categorySlug": "headphones",
+    "categorySlug": "fones-de-ouvido",
     "brand": "Logitech",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=G+PRO+X+2",
     "specs": {
@@ -1139,7 +1139,7 @@
     "slug": "headset-razer-blackshark-v2-x",
     "description": "Design esportivo tipo aviação com cancelamento passivo de ruído avançado e drivers TriForce 50mm.",
     "price": 289,
-    "categorySlug": "headphones",
+    "categorySlug": "fones-de-ouvido",
     "brand": "Razer",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=BlackShark+V2+X",
     "specs": {
@@ -1154,7 +1154,7 @@
     "slug": "headphone-audio-technica-ath-m50xbt2",
     "description": "Som de estúdio aclamado internacionalmente por produtores e audiófilos com conectividade Bluetooth de baixa latência.",
     "price": 1350,
-    "categorySlug": "headphones",
+    "categorySlug": "fones-de-ouvido",
     "brand": "Audio-Technica",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Audio-Technica+M50x",
     "specs": {
@@ -1169,7 +1169,7 @@
     "slug": "headset-steelseries-arctis-nova-7",
     "description": "Sistema acústico Nova com áudio simultâneo 2.4GHz para jogos e Bluetooth para chamadas no smartphone.",
     "price": 1199,
-    "categorySlug": "headphones",
+    "categorySlug": "fones-de-ouvido",
     "brand": "SteelSeries",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Arctis+Nova+7",
     "specs": {
@@ -1184,7 +1184,7 @@
     "slug": "headset-edifier-g4-te-7.1",
     "description": "Surround virtual 7.1 envolvente, haste de metal reforçada e iluminação RGB dinâmica nas conchas.",
     "price": 349,
-    "categorySlug": "headphones",
+    "categorySlug": "fones-de-ouvido",
     "brand": "Edifier",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Edifier+G4+TE",
     "specs": {
@@ -1199,7 +1199,7 @@
     "slug": "monitor-alienware-27-qhd-280hz",
     "description": "Painel Fast IPS de 27 polegadas com resolução 2560x1440, tempo de resposta de 1ms e taxa de atualização de 280Hz.",
     "price": 4200,
-    "categorySlug": "monitors",
+    "categorySlug": "monitores",
     "brand": "Alienware",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Alienware+280Hz",
     "specs": {
@@ -1214,7 +1214,7 @@
     "slug": "monitor-lg-ultragear-27-144hz",
     "description": "Cores vivas com 99% sRGB, compatível com NVIDIA G-Sync e AMD FreeSync Premium para jogabilidade sem rasgos.",
     "price": 1199,
-    "categorySlug": "monitors",
+    "categorySlug": "monitores",
     "brand": "LG",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=LG+UltraGear+27",
     "specs": {
@@ -1229,7 +1229,7 @@
     "slug": "monitor-samsung-odyssey-g7-32",
     "description": "Curvatura imersiva 1000R pioneira com tecnologia QLED e taxa de atualização vertiginosa de 240Hz.",
     "price": 3299,
-    "categorySlug": "monitors",
+    "categorySlug": "monitores",
     "brand": "Samsung",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Odyssey+G7+32",
     "specs": {
@@ -1244,7 +1244,7 @@
     "slug": "monitor-asus-tuf-gaming-24.5",
     "description": "Projetado para jogos rápidos com tecnologia Extreme Low Motion Blur (ELMB) e ajuste ergonômico completo.",
     "price": 989,
-    "categorySlug": "monitors",
+    "categorySlug": "monitores",
     "brand": "ASUS",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=ASUS+TUF+24.5",
     "specs": {
@@ -1259,7 +1259,7 @@
     "slug": "monitor-dell-ultrasharp-27-4k",
     "description": "Primeiro monitor comercial com painel IPS Black proporcionando contraste de 2000:1 e hub USB-C integrado de 90W.",
     "price": 3850,
-    "categorySlug": "monitors",
+    "categorySlug": "monitores",
     "brand": "Dell",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Dell+UltraSharp+4K",
     "specs": {
@@ -1274,7 +1274,7 @@
     "slug": "monitor-gigabyte-m27q-27-qhd",
     "description": "Switch KVM integrado que permite controlar dois computadores com apenas um conjunto de teclado e mouse.",
     "price": 1999,
-    "categorySlug": "monitors",
+    "categorySlug": "monitores",
     "brand": "Gigabyte",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Gigabyte+M27Q",
     "specs": {
@@ -1379,7 +1379,7 @@
     "slug": "cadeira-gamer-noblechairs-hero",
     "description": "Cadeira ergonômica de luxo com suporte lombar integrado ajustável e revestimento em couro sintético nobre.",
     "price": 3500,
-    "categorySlug": "chairs",
+    "categorySlug": "cadeiras",
     "brand": "Noblechairs",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Noblechairs+Hero",
     "specs": {
@@ -1394,7 +1394,7 @@
     "slug": "cadeira-ergonomica-dt3-helora",
     "description": "Estrutura premium em Mesh respirável com encosto bipartido para perfeito alinhamento da coluna lombar.",
     "price": 1899,
-    "categorySlug": "chairs",
+    "categorySlug": "cadeiras",
     "brand": "DT3",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=DT3+Helora",
     "specs": {
@@ -1409,7 +1409,7 @@
     "slug": "cadeira-gamer-thunderx3-tgc12",
     "description": "Revestimento em padrão de fibra de carbono com almofadas para cabeça e lombar e inclinação de até 180 graus.",
     "price": 1199,
-    "categorySlug": "chairs",
+    "categorySlug": "cadeiras",
     "brand": "ThunderX3",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=ThunderX3+TGC12",
     "specs": {
@@ -1424,7 +1424,7 @@
     "slug": "cadeira-gamer-corsair-t3-rush",
     "description": "Inspirada no automobilismo com revestimento em tecido macio e altamente respirável que não retém calor.",
     "price": 2199,
-    "categorySlug": "chairs",
+    "categorySlug": "cadeiras",
     "brand": "Corsair",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Corsair+T3+Rush",
     "specs": {
@@ -1439,7 +1439,7 @@
     "slug": "cadeira-ergonomica-herman-miller-aeron",
     "description": "A cadeira de escritório mais famosa do mundo com tecnologia de suporte PostureFit SL e membrana 8Z Pellicle.",
     "price": 8900,
-    "categorySlug": "chairs",
+    "categorySlug": "cadeiras",
     "brand": "Herman Miller",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Herman+Miller+Aeron",
     "specs": {
@@ -1454,7 +1454,7 @@
     "slug": "cadeira-gamer-pichau-nova",
     "description": "Espuma injetada a frio de alta densidade (50kg/m³) com base em aço reforçado e pistão de classe 4.",
     "price": 949,
-    "categorySlug": "chairs",
+    "categorySlug": "cadeiras",
     "brand": "Pichau",
     "image": "https://placehold.co/400x400/1e293b/f8fafc?text=Pichau+Nova",
     "specs": {
