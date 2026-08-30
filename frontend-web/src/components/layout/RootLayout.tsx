@@ -5,6 +5,7 @@ import type { RootLoaderData } from '../../router/loaders'
 import { Header } from './Header'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
+import { ScrollToTop } from './ScrollToTop'
 
 export function RootLayout() {
   const { categories } = useLoaderData() as RootLoaderData
@@ -27,6 +28,9 @@ export function RootLayout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-200 antialiased selection:bg-primary/20">
+      {/* Scroll restoration automático para o topo em cada transição de rota */}
+      <ScrollToTop />
+
       {isLoading && (
         <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-primary/20 overflow-hidden">
           <div className="h-full bg-primary animate-pulse w-1/3" />

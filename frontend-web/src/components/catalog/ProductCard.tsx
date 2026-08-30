@@ -34,7 +34,7 @@ export function ProductCard({ product }: ProductCardProps) {
         aria-label={`Ver detalhes de ${product.name}`}
       >
         <img
-          src={product.image}
+          src={product.images[0]}
           alt={product.name}
           loading="lazy"
           className="h-full w-full object-contain object-center transition-transform duration-300 group-hover:scale-105"

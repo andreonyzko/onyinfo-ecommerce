@@ -29,7 +29,7 @@ export function CartItemCard({
           className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 rounded-xl bg-card border border-border/70 p-1 flex items-center justify-center group"
         >
           <img
-            src={product.image}
+            src={product.images[0]}
             alt={product.name}
             className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-105"
           />

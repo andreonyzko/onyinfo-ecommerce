@@ -1,7 +1,7 @@
 [
   {
     "name": "Processadores",
-    "slug": "cpus",
+    "slug": "processadores",
     "specs": {
       "cores": "Qntd. Núcleos",
       "threads": "Threads",
@@ -11,7 +11,7 @@
   },
   {
     "name": "Placas mãe",
-    "slug": "motherboards",
+    "slug": "placas-mae",
     "specs": {
       "socket": "Socket Suportado",
       "formFactor": "Formato",
@@ -21,7 +21,7 @@
   },
   {
     "name": "Memórias (RAM)",
-    "slug": "memories",
+    "slug": "memorias-ram",
     "specs": {
       "type": "Tipo",
       "capacity": "Capacidade",
@@ -31,7 +31,7 @@
   },
   {
     "name": "Placas de vídeo",
-    "slug": "gpus",
+    "slug": "placas-de-video",
     "specs": {
       "vram": "Memória VRAM",
       "cudaCores": "Núcleos CUDA",
@@ -40,7 +40,7 @@
   },
   {
     "name": "Armazenamento (SSD/HD)",
-    "slug": "storages",
+    "slug": "armazenamento",
     "specs": {
       "type": "Formato/Conexão",
       "capacity": "Capacidade",
@@ -50,7 +50,7 @@
   },
   {
     "name": "Fontes",
-    "slug": "powersupplys",
+    "slug": "fontes",
     "specs": {
       "wattage": "Potência",
       "efficiency": "Certificação 80 Plus",
@@ -68,7 +68,7 @@
   },
   {
     "name": "Gabinetes",
-    "slug": "cases",
+    "slug": "gabinetes",
     "specs": {
       "formFactor": "Tamanho",
       "sidePanel": "Painel Lateral",
@@ -77,7 +77,7 @@
   },
   {
     "name": "Ventoinhas",
-    "slug": "fans",
+    "slug": "ventoinhas",
     "specs": {
       "size": "Tamanho (mm)",
       "rpm": "Rotação Máxima (RPM)",
@@ -86,7 +86,7 @@
   },
   {
     "name": "Teclados",
-    "slug": "keyboards",
+    "slug": "teclados",
     "specs": {
       "size": "Formato",
       "switchType": "Tipo de Switch",
@@ -113,7 +113,7 @@
   },
   {
     "name": "Fones de Ouvido",
-    "slug": "headphones",
+    "slug": "fones-de-ouvido",
     "specs": {
       "connection": "Conexão",
       "batteryLife": "Duração da Bateria",
@@ -122,7 +122,7 @@
   },
   {
     "name": "Monitores",
-    "slug": "monitors",
+    "slug": "monitores",
     "specs": {
       "resolution": "Resolução",
       "refreshRate": "Taxa de Atualização",
@@ -140,7 +140,7 @@
   },
   {
     "name": "Cadeiras",
-    "slug": "chairs",
+    "slug": "cadeiras",
     "specs": {
       "material": "Revestimento",
       "maxWeight": "Peso Suportado",

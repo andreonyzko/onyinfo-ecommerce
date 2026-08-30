@@ -155,7 +155,7 @@ export function OrderConfirmation({ order, onNewOrder }: OrderConfirmationProps)
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-lg bg-card border border-border/70 p-1 flex items-center justify-center shrink-0">
                     <img
-                      src={product.image}
+                      src={product.images[0]}
                       alt={product.name}
                       className="w-full h-full object-contain"
                     />

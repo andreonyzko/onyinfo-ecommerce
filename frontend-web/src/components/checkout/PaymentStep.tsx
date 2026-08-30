@@ -14,6 +14,12 @@ import { Label } from '../ui/label'
 import { Input } from '../ui/input'
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
+import {
+  maskCardNumber,
+  maskCardExpiry,
+  maskCardCVV,
+  formatCurrency,
+} from '../../lib/masks'
 import { cn } from '../../lib/utils'
 
 interface PaymentStepProps {
@@ -46,20 +52,15 @@ export function PaymentStep({ onSuccess }: PaymentStepProps) {
   }
 
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/\D/g, '').slice(0, 16)
-    const formatted = raw.replace(/(\d{4})(?=\d)/g, '$1 ')
-    setCardNumber(formatted)
+    setCardNumber(maskCardNumber(e.target.value))
   }
 
   const handleExpiryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/\D/g, '').slice(0, 4)
-    const formatted = raw.length > 2 ? `${raw.slice(0, 2)}/${raw.slice(2)}` : raw
-    setCardExpiry(formatted)
+    setCardExpiry(maskCardExpiry(e.target.value))
   }
 
   const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/\D/g, '').slice(0, 4)
-    setCardCvv(raw)
+    setCardCvv(maskCardCVV(e.target.value))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -70,10 +71,7 @@ export function PaymentStep({ onSuccess }: PaymentStepProps) {
   const installmentOptions: SelectOption<string>[] = Array.from({ length: 12 }, (_, i) => {
     const count = i + 1
     const valuePerInst = totalCredit / count
-    const formattedValue = valuePerInst.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    })
+    const formattedValue = formatCurrency(valuePerInst)
     return {
       value: String(count),
       label: `${count}x de ${formattedValue} sem juros`,
