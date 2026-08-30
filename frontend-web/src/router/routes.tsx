@@ -4,6 +4,7 @@ import { HomePage } from '../pages/Home'
 import { CategoryPage } from '../pages/CategoryPage'
 import { ProductPage } from '../pages/ProductPage'
 import { SearchPage } from '../pages/SearchPage'
+import { CartPage } from '../pages/CartPage'
 import { CheckoutPage } from '../pages/CheckoutPage'
 import { HowIDidPage } from '../pages/HowIDidPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
         path: 'busca',
         element: <SearchPage />,
         loader: searchLoader,
+      },
+      {
+        path: 'carrinho',
+        element: <CartPage />,
       },
       {
         path: 'checkout',

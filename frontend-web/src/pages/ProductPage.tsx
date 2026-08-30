@@ -51,7 +51,7 @@ export function ProductPage() {
 
   const handleBuyNow = () => {
     addItem(product, quantity)
-    navigate('/checkout')
+    navigate('/carrinho')
   }
 
   return (

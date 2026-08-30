@@ -49,28 +49,28 @@ export function CustomSelect<T extends string = string>({
   const selectedOption = options.find((opt) => opt.value === value)
 
   return (
-    <div ref={containerRef} className={cn("relative inline-block text-left", className)}>
+    <div ref={containerRef} className={cn("relative w-full text-left", className)}>
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex h-9 w-full items-center justify-between gap-2 rounded-md border border-input bg-card px-3 py-1.5 text-xs font-medium text-foreground shadow-xs transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer"
+        className="flex h-9 w-full items-center justify-between gap-2 rounded-md border border-input bg-transparent px-3 py-1.5 text-xs font-medium text-foreground shadow-xs transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <span className="flex items-center gap-1.5 truncate">
+        <span className="flex items-center gap-2 truncate min-w-0">
           {icon}
-          <span>{selectedOption ? selectedOption.label : placeholder}</span>
+          <span className="truncate">{selectedOption ? selectedOption.label : placeholder}</span>
         </span>
         <ChevronDown
           className={cn(
-            "h-3.5 w-3.5 text-muted-foreground transition-transform duration-200",
+            "h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform duration-200",
             isOpen && "rotate-180"
           )}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 z-50 mt-1.5 min-w-[180px] w-full origin-top-right rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95 duration-100">
+        <div className="absolute left-0 right-0 z-50 mt-1 max-h-48 overflow-y-auto w-full rounded-md border border-border bg-card p-1 text-card-foreground shadow-xl animate-in fade-in-0 zoom-in-95 duration-100">
           <div role="listbox" className="space-y-0.5">
             {options.map((option) => {
               const isSelected = option.value === value
@@ -92,7 +92,7 @@ export function CustomSelect<T extends string = string>({
                   )}
                 >
                   <span className="truncate">{option.label}</span>
-                  {isSelected && <Check className="h-3.5 w-3.5 shrink-0" />}
+                  {isSelected && <Check className="h-3.5 w-3.5 shrink-0 ml-2" />}
                 </button>
               )
             })}
