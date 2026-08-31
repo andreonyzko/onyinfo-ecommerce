@@ -10,7 +10,6 @@ import {
   RotateCcw,
   Plus,
   Minus,
-  Cpu,
   PackageCheck,
   CreditCard,
 } from 'lucide-react'
@@ -18,6 +17,7 @@ import type { ProductLoaderData } from '../router/loaders'
 import { useCartStore } from '../stores'
 import { ProductCard } from '../components/catalog/ProductCard'
 import { ProductGallery } from '../components/catalog/ProductGallery'
+import { ProductSpecsTable } from '../components/catalog/ProductSpecsTable'
 import { Breadcrumb } from '../components/common/Breadcrumb'
 import { Button, buttonVariants } from '../components/ui/button'
 import { Separator } from '../components/ui/separator'
@@ -66,7 +66,7 @@ export function ProductPage() {
 
       {/* Grid Principal: Galeria de Imagens + Detalhes de Compra */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* Coluna Esquerda: Galeria com Miniaturas Verticais (Estilo Amazon) */}
+        {/* Coluna Esquerda: Galeria com Miniaturas Verticais */}
         <div className="lg:col-span-6 space-y-5">
           <ProductGallery product={product} category={category} />
 
@@ -217,63 +217,7 @@ export function ProductPage() {
       </div>
 
       {/* Tabela Completa de Especificações Técnicas */}
-      <section className="space-y-4 pt-6 border-t border-border">
-        <div className="flex items-center gap-2">
-          <Cpu className="w-5 h-5 text-primary" />
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Especificações Técnicas
-          </h2>
-        </div>
-
-        <div className="rounded-xl border border-border overflow-hidden bg-card shadow-xs">
-          <table className="w-full text-left text-xs sm:text-sm">
-            <tbody className="divide-y divide-border/60">
-              {/* Marca */}
-              <tr className="hover:bg-muted/20 transition-colors">
-                <td className="w-1/3 py-3 px-4 font-semibold text-muted-foreground bg-muted/10">
-                  Fabricante / Marca
-                </td>
-                <td className="w-2/3 py-3 px-4 text-foreground font-medium">
-                  {product.brand}
-                </td>
-              </tr>
-
-              {/* Categoria */}
-              {category && (
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="w-1/3 py-3 px-4 font-semibold text-muted-foreground bg-muted/10">
-                    Departamento
-                  </td>
-                  <td className="w-2/3 py-3 px-4 text-foreground font-medium">
-                    {category.name}
-                  </td>
-                </tr>
-              )}
-
-              {/* Especificações Dinâmicas de product.specs */}
-              {Object.entries(product.specs || {}).map(([key, value]) => {
-                const label = category?.specs?.[key] || key.toUpperCase()
-
-                let displayValue = String(value)
-                if (typeof value === 'boolean') {
-                  displayValue = value ? 'Sim' : 'Não'
-                }
-
-                return (
-                  <tr key={key} className="hover:bg-muted/20 transition-colors">
-                    <td className="w-1/3 py-3 px-4 font-semibold text-muted-foreground bg-muted/10">
-                      {label}
-                    </td>
-                    <td className="w-2/3 py-3 px-4 text-foreground font-medium">
-                      {displayValue}
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-      </section>
+      <ProductSpecsTable product={product} category={category} />
 
       {/* Produtos Relacionados da Mesma Categoria */}
       {relatedProducts && relatedProducts.length > 0 && (

@@ -12,6 +12,27 @@ export interface ShippingOption {
   price: number
 }
 
+export const DEFAULT_SHIPPING_OPTIONS: ShippingOption[] = [
+  {
+    id: 'pac',
+    name: 'PAC / Econômico',
+    deadlineDays: 6,
+    price: 19.9,
+  },
+  {
+    id: 'sedex',
+    name: 'SEDEX / Expresso',
+    deadlineDays: 2,
+    price: 34.9,
+  },
+  {
+    id: 'retirada',
+    name: 'Retirada na Loja',
+    deadlineDays: 0,
+    price: 0.0,
+  },
+]
+
 export type PaymentMethod = 'credit_card' | 'pix'
 
 export interface OrderSummary {

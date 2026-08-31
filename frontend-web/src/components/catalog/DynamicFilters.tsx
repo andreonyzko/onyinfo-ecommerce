@@ -1,12 +1,10 @@
 import { useMemo } from 'react'
 import { RotateCcw, SlidersHorizontal } from 'lucide-react'
 import type { Category, Product } from '../../types'
-import { Checkbox } from '../ui/checkbox'
-import { Slider } from '../ui/slider'
 import { PriceRangeFilter } from './PriceRangeFilter'
-import { Label } from '../ui/label'
+import { BrandFilterGroup } from './BrandFilterGroup'
+import { SpecFilterItem, type SpecMetadata } from './SpecFilterItem'
 import { Button } from '../ui/button'
-import { Badge } from '../ui/badge'
 import { Separator } from '../ui/separator'
 
 export interface FilterState {
@@ -24,17 +22,6 @@ interface DynamicFiltersProps {
   filters: FilterState
   onFilterChange: (newFilters: FilterState) => void
   onResetFilters: () => void
-}
-
-type SpecType = 'string' | 'number' | 'boolean'
-
-interface SpecMetadata {
-  key: string
-  label: string
-  type: SpecType
-  options?: { value: string; count: number }[]
-  min?: number
-  max?: number
 }
 
 const PRICE_STEP = 10
@@ -106,12 +93,15 @@ export function DynamicFilters({
           max,
         })
       } else {
-        // String Spec: agrupa valores e conta ocorrências
         const counts: Record<string, number> = {}
-        for (const val of sampleValues) {
-          const strVal = String(val)
-          counts[strVal] = (counts[strVal] || 0) + 1
+        for (const p of products) {
+          const raw = p.specs?.[key]
+          if (raw !== undefined && raw !== null) {
+            const strVal = String(raw)
+            counts[strVal] = (counts[strVal] || 0) + 1
+          }
         }
+
         const options = Object.entries(counts)
           .map(([value, count]) => ({ value, count }))
           .sort((a, b) => a.value.localeCompare(b.value))
@@ -128,7 +118,7 @@ export function DynamicFilters({
     return list
   }, [category, products])
 
-  // Handlers para mutação de filtros
+  // Manipuladores de Filtros
   const handleBrandToggle = (brand: string) => {
     const isSelected = filters.brands.includes(brand)
     const updated = isSelected
@@ -137,8 +127,12 @@ export function DynamicFilters({
     onFilterChange({ ...filters, brands: updated })
   }
 
-  const handlePriceRangeChange = ([newMin, newMax]: [number, number]) => {
-    onFilterChange({ ...filters, minPrice: newMin, maxPrice: newMax })
+  const handlePriceRangeChange = (values: number[]) => {
+    onFilterChange({
+      ...filters,
+      minPrice: values[0],
+      maxPrice: values[1],
+    })
   }
 
   const handleMinPriceInputChange = (val: number) => {
@@ -235,117 +229,24 @@ export function DynamicFilters({
       <Separator />
 
       {/* 2. Filtro de Marcas / Fabricantes */}
-      {brandOptions.length > 0 && (
-        <div className="space-y-3">
-          <Label className="font-semibold text-xs text-foreground uppercase tracking-wider block">
-            Fabricante / Marca
-          </Label>
-          <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1 scrollbar-none">
-            {brandOptions.map(({ brand, count }) => {
-              const isChecked = filters.brands.includes(brand)
-              return (
-                <div
-                  key={brand}
-                  onClick={() => handleBrandToggle(brand)}
-                  className="w-full flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-muted/60 text-muted-foreground transition-colors cursor-pointer text-left group"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <Checkbox
-                      checked={isChecked}
-                      onCheckedChange={() => handleBrandToggle(brand)}
-                    />
-                    <span className={isChecked ? 'font-semibold text-foreground text-xs' : 'text-xs group-hover:text-foreground'}>
-                      {brand}
-                    </span>
-                  </div>
-                  <Badge variant="outline" className="text-[10px] py-0 px-1.5 h-4">
-                    {count}
-                  </Badge>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      )}
+      <BrandFilterGroup
+        options={brandOptions}
+        selectedBrands={filters.brands}
+        onToggleBrand={handleBrandToggle}
+      />
 
       {/* 3. Filtros Gerados Dinamicamente por Metadados (specs) */}
       {specsMetadata.map((spec) => (
-        <div key={spec.key} className="space-y-3 pt-2">
-          <Separator className="mb-4" />
-          <Label className="font-semibold text-xs text-foreground uppercase tracking-wider block">
-            {spec.label}
-          </Label>
-
-          {/* Tipo STRING: Renderiza Lista de Checkboxes clicáveis */}
-          {spec.type === 'string' && spec.options && (
-            <div className="space-y-1.5 max-h-40 overflow-y-auto pr-1 scrollbar-none">
-              {spec.options.map(({ value, count }) => {
-                const isChecked = (filters.stringSpecs[spec.key] || []).includes(value)
-                return (
-                  <div
-                    key={value}
-                    onClick={() => handleStringSpecToggle(spec.key, value)}
-                    className="w-full flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-muted/60 text-muted-foreground transition-colors cursor-pointer text-left group"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <Checkbox
-                        checked={isChecked}
-                        onCheckedChange={() => handleStringSpecToggle(spec.key, value)}
-                      />
-                      <span className={isChecked ? 'font-semibold text-foreground text-xs' : 'text-xs group-hover:text-foreground'}>
-                        {value}
-                      </span>
-                    </div>
-                    <Badge variant="outline" className="text-[10px] py-0 px-1.5 h-4">
-                      {count}
-                    </Badge>
-                  </div>
-                )
-              })}
-            </div>
-          )}
-
-          {/* Tipo NUMBER: Renderiza Range Slider */}
-          {spec.type === 'number' && spec.min !== undefined && spec.max !== undefined && (
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-muted-foreground">Valor Máximo:</span>
-                <span className="font-bold text-primary">
-                  {filters.numberSpecs[spec.key] !== undefined
-                    ? filters.numberSpecs[spec.key]
-                    : spec.max}
-                </span>
-              </div>
-              <Slider
-                min={spec.min}
-                max={spec.max}
-                step={1}
-                value={filters.numberSpecs[spec.key] ?? spec.max}
-                onValueChange={(val) => handleNumberSpecChange(spec.key, val)}
-              />
-              <div className="flex justify-between text-[11px] text-muted-foreground">
-                <span>Min: {spec.min}</span>
-                <span>Max: {spec.max}</span>
-              </div>
-            </div>
-          )}
-
-          {/* Tipo BOOLEAN: Renderiza Checkbox Simples */}
-          {spec.type === 'boolean' && (
-            <div
-              onClick={() => handleBooleanSpecToggle(spec.key)}
-              className="w-full flex items-center gap-2.5 py-1.5 px-2 rounded-md hover:bg-muted/60 text-muted-foreground transition-colors cursor-pointer text-left group"
-            >
-              <Checkbox
-                checked={filters.booleanSpecs[spec.key] || false}
-                onCheckedChange={() => handleBooleanSpecToggle(spec.key)}
-              />
-              <span className={filters.booleanSpecs[spec.key] ? 'font-semibold text-foreground text-xs' : 'text-xs group-hover:text-foreground'}>
-                Apenas com {spec.label}
-              </span>
-            </div>
-          )}
-        </div>
+        <SpecFilterItem
+          key={spec.key}
+          spec={spec}
+          selectedStringValues={filters.stringSpecs[spec.key]}
+          isBooleanChecked={filters.booleanSpecs[spec.key]}
+          selectedNumberValue={filters.numberSpecs[spec.key]}
+          onStringToggle={handleStringSpecToggle}
+          onBooleanToggle={handleBooleanSpecToggle}
+          onNumberChange={handleNumberSpecChange}
+        />
       ))}
     </div>
   )

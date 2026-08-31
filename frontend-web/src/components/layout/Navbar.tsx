@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
 import { NavLink } from 'react-router'
 import { Layers, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Category } from '../../types'
+import { useHorizontalScroll } from '../../hooks'
 import { Button } from '../ui/button'
 import { cn } from '../../lib/utils'
 
@@ -10,39 +10,8 @@ interface NavbarProps {
 }
 
 export function Navbar({ categories }: NavbarProps) {
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(false)
-
-  const checkScrollability = useCallback(() => {
-    const el = scrollRef.current
-    if (!el) return
-
-    const { scrollLeft, scrollWidth, clientWidth } = el
-    // Margem de tolerância de 2px para arredondamentos de subpixel
-    setCanScrollLeft(scrollLeft > 2)
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 2)
-  }, [])
-
-  useEffect(() => {
-    checkScrollability()
-    const el = scrollRef.current
-    if (!el) return
-
-    const handleScroll = () => checkScrollability()
-    el.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', checkScrollability)
-
-    return () => {
-      el.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', checkScrollability)
-    }
-  }, [checkScrollability, categories])
-
-  const handleScrollBy = (offset: number) => {
-    if (!scrollRef.current) return
-    scrollRef.current.scrollBy({ left: offset, behavior: 'smooth' })
-  }
+  const { scrollRef, canScrollLeft, canScrollRight, scrollBy } =
+    useHorizontalScroll<HTMLDivElement>()
 
   if (!categories || categories.length === 0) {
     return null
@@ -60,7 +29,7 @@ export function Navbar({ categories }: NavbarProps) {
             <Button
               variant="outline"
               size="icon-xs"
-              onClick={() => handleScrollBy(-220)}
+              onClick={() => scrollBy(-220)}
               className="h-7 w-7 rounded-full bg-background/90 backdrop-blur-xs border-border shadow-md cursor-pointer hover:bg-accent hover:text-accent-foreground"
               aria-label="Rolar categorias para a esquerda"
             >
@@ -98,22 +67,20 @@ export function Navbar({ categories }: NavbarProps) {
             <span>Todos os Departamentos</span>
           </NavLink>
 
-          <div className="h-4 w-px bg-border shrink-0 my-auto mx-1" />
-
           {categories.map((category) => (
             <NavLink
               key={category.slug}
               to={`/categoria/${category.slug}`}
               className={({ isActive }) =>
                 cn(
-                  'px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 shrink-0',
+                  'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 shrink-0',
                   isActive
-                    ? 'bg-primary text-primary-foreground shadow-xs font-semibold'
+                    ? 'bg-primary text-primary-foreground font-semibold shadow-xs'
                     : 'text-muted-foreground hover:text-foreground hover:bg-muted/80'
                 )
               }
             >
-              {category.name}
+              <span>{category.name}</span>
             </NavLink>
           ))}
         </div>
@@ -132,7 +99,7 @@ export function Navbar({ categories }: NavbarProps) {
             <Button
               variant="outline"
               size="icon-xs"
-              onClick={() => handleScrollBy(220)}
+              onClick={() => scrollBy(220)}
               className="h-7 w-7 rounded-full bg-background/90 backdrop-blur-xs border-border shadow-md cursor-pointer hover:bg-accent hover:text-accent-foreground"
               aria-label="Rolar categorias para a direita"
             >
