@@ -72,7 +72,7 @@ export function Navbar({ categories }: NavbarProps) {
         {/* Gradiente Esquerdo de Fade */}
         {canScrollLeft && (
           <div
-            className="hidden md:block absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background/90 to-transparent pointer-events-none z-5"
+            className="hidden md:block absolute left-0 top-0 bottom-0 w-8 bg-linear-to-r from-background/90 to-transparent pointer-events-none z-5"
             aria-hidden="true"
           />
         )}
@@ -121,7 +121,7 @@ export function Navbar({ categories }: NavbarProps) {
         {/* Gradiente Direito de Fade */}
         {canScrollRight && (
           <div
-            className="hidden md:block absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background/90 to-transparent pointer-events-none z-5"
+            className="hidden md:block absolute right-0 top-0 bottom-0 w-8 bg-linear-to-l from-background/90 to-transparent pointer-events-none z-5"
             aria-hidden="true"
           />
         )}

@@ -375,7 +375,7 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
 
           {/* Seleção de Frete */}
           <div className="space-y-2.5 pt-2">
-            <Label className="text-xs font-semibold flex items-center gap-1.5 text-foreground uppercase tracking-wider block">
+            <Label className="text-xs font-semibold flex items-center gap-1.5 text-foreground uppercase tracking-wider">
               <Truck className="w-3.5 h-3.5 text-primary" />
               <span>Opções de Envio Disponíveis</span>
             </Label>

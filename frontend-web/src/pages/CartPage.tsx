@@ -101,7 +101,7 @@ export function CartPage() {
                 <span>Subtotal</span>
               </div>
             </CardHeader>
-            <CardContent className="p-0 divide-y divide-border/60 max-h-[300px] overflow-y-auto">
+            <CardContent className="p-0 divide-y divide-border/60 max-h-80 overflow-y-auto">
               {items.map((item) => (
                 <CartItemCard
                   key={item.product.id}
@@ -174,7 +174,7 @@ export function CartPage() {
                     'w-full font-bold gap-2 text-sm shadow-md cursor-pointer justify-center'
                   )}
                 >
-                  <span>Fechar Pedido (Checkout)</span>
+                  <span>Comprar</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
