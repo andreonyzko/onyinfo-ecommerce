@@ -1,12 +1,10 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-import type { CustomerProfile, OrderSummary } from '../types'
+import type { CustomerProfile } from '../types'
 
 interface CustomerState {
   customer: CustomerProfile | null
-  lastOrder: OrderSummary | null
   saveProfile: (profile: Partial<CustomerProfile>) => void
-  setLastOrder: (order: OrderSummary) => void
   clearProfile: () => void
 }
 
@@ -14,7 +12,6 @@ export const useCustomerStore = create<CustomerState>()(
   persist(
     (set) => ({
       customer: null,
-      lastOrder: null,
 
       saveProfile: (profile: Partial<CustomerProfile>) => {
         set((state) => ({
@@ -42,12 +39,8 @@ export const useCustomerStore = create<CustomerState>()(
         }))
       },
 
-      setLastOrder: (order: OrderSummary) => {
-        set({ lastOrder: order })
-      },
-
       clearProfile: () => {
-        set({ customer: null, lastOrder: null })
+        set({ customer: null })
       },
     }),
     {
