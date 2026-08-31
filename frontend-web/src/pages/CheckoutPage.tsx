@@ -2,12 +2,7 @@ import { useState } from 'react'
 import { Navigate } from 'react-router'
 import {
   ShieldCheck,
-  Zap,
-  CreditCard,
-  Truck,
   ShoppingBag,
-  ArrowRight,
-  ArrowLeft,
   CheckCircle,
 } from 'lucide-react'
 import type { OrderSummary } from '../types'
@@ -15,11 +10,9 @@ import { useCartStore, useCustomerStore, useOrdersStore } from '../stores'
 import { CustomerStep } from '../components/checkout/CustomerStep'
 import { ShippingStep } from '../components/checkout/ShippingStep'
 import { PaymentStep } from '../components/checkout/PaymentStep'
+import { CheckoutOrderSummary } from '../components/checkout/CheckoutOrderSummary'
 import { OrderConfirmation } from '../components/checkout/OrderConfirmation'
-import { Button } from '../components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
-import { Separator } from '../components/ui/separator'
-import { formatCurrency } from '../lib/masks'
+import { cn } from '../lib/utils'
 
 export type CheckoutStep = 'identification' | 'shipping' | 'payment'
 
@@ -33,6 +26,7 @@ export function CheckoutPage() {
   const getTotal = useCartStore((state) => state.getTotal)
 
   const customer = useCustomerStore((state) => state.customer)
+  const saveProfile = useCustomerStore((state) => state.saveProfile)
 
   const lastOrder = useOrdersStore((state) => state.lastOrder)
   const addOrder = useOrdersStore((state) => state.addOrder)
@@ -71,18 +65,18 @@ export function CheckoutPage() {
       createdAt: new Date().toISOString(),
       customer: {
         name: customer?.name || 'Cliente OnyInfo',
-        email: customer?.email || '',
-        cpf: customer?.cpf || '',
-        phone: customer?.phone || '',
+        email: customer?.email || 'cliente@onyinfo.com.br',
+        cpf: customer?.cpf || '000.000.000-00',
+        phone: customer?.phone || '(11) 99999-9999',
       },
       address: {
-        cep: customer?.address?.cep || '',
-        street: customer?.address?.street || '',
-        number: customer?.address?.number || '',
+        cep: customer?.address?.cep || '01001-000',
+        street: customer?.address?.street || 'Praça da Sé',
+        number: customer?.address?.number || 'S/N',
         complement: customer?.address?.complement || '',
-        neighborhood: customer?.address?.neighborhood || '',
-        city: customer?.address?.city || '',
-        state: customer?.address?.state || '',
+        neighborhood: customer?.address?.neighborhood || 'Sé',
+        city: customer?.address?.city || 'São Paulo',
+        state: customer?.address?.state || 'SP',
       },
       items: [...items],
       shippingOption: selectedShipping || {
@@ -93,231 +87,164 @@ export function CheckoutPage() {
       },
       paymentMethod: selectedPaymentMethod,
       subtotal,
-      discount: discountPix,
       shippingPrice,
+      discount: discountPix,
       total,
     }
 
-    // Persiste o novo pedido na store dedicada
+    // Persiste o pedido e limpa o carrinho
     addOrder(newOrder)
-
-    // Limpa o carrinho de compras após salvar o pedido
     clearCart()
-
     setIsSubmitting(false)
   }
 
   return (
-    <div className="container mx-auto px-4 py-6 space-y-6">
-      {/* Cabeçalho do Checkout */}
-      <div className="pb-4 border-b border-border">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-primary/10 text-primary">
-            <ShoppingBag className="w-6 h-6" />
+    <div className="container mx-auto px-4 py-6 space-y-8 max-w-6xl">
+      {/* Cabeçalho do Checkout com Stepper Indicador */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary">
+              <ShoppingBag className="w-5 h-5" />
+            </div>
+            <div>
+              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-foreground">
+                Finalizar Pedido
+              </h1>
+              <p className="text-xs text-muted-foreground">
+                Ambiente criptografado com garantia e entrega rápida
+              </p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-              Finalização de Compra
-            </h1>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              {currentStep === 'identification' && 'Passo 1: Informe seus dados pessoais para identificação do pedido.'}
-              {currentStep === 'shipping' && 'Passo 2: Informe o endereço de entrega e selecione a modalidade de frete.'}
-              {currentStep === 'payment' && 'Passo 3: Selecione a forma de pagamento para concluir sua compra.'}
-            </p>
+
+          <div className="hidden sm:flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-500/10 py-1 px-3 rounded-full border border-emerald-500/20">
+            <ShieldCheck className="w-4 h-4" />
+            <span>Compra 100% Segura</span>
+          </div>
+        </div>
+
+        {/* Stepper Visual Multi-Step */}
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-2">
+          {/* Passo 1: Identificação */}
+          <div
+            className={cn(
+              'flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border transition-all text-xs font-semibold',
+              currentStep === 'identification'
+                ? 'border-primary bg-primary/5 text-primary shadow-xs'
+                : 'border-border bg-card text-muted-foreground'
+            )}
+          >
+            <div
+              className={cn(
+                'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
+                currentStep === 'identification'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground'
+              )}
+            >
+              1
+            </div>
+            <div className="truncate">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Etapa 1</div>
+              <div className="truncate">Identificação</div>
+            </div>
+          </div>
+
+          {/* Passo 2: Entrega */}
+          <div
+            className={cn(
+              'flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border transition-all text-xs font-semibold',
+              currentStep === 'shipping'
+                ? 'border-primary bg-primary/5 text-primary shadow-xs'
+                : 'border-border bg-card text-muted-foreground'
+            )}
+          >
+            <div
+              className={cn(
+                'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
+                currentStep === 'shipping'
+                  ? 'bg-primary text-primary-foreground'
+                  : currentStep === 'payment'
+                    ? 'bg-emerald-500 text-white'
+                    : 'bg-muted text-muted-foreground'
+              )}
+            >
+              {currentStep === 'payment' ? <CheckCircle className="w-3.5 h-3.5" /> : '2'}
+            </div>
+            <div className="truncate">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Etapa 2</div>
+              <div className="truncate">Entrega</div>
+            </div>
+          </div>
+
+          {/* Passo 3: Pagamento */}
+          <div
+            className={cn(
+              'flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border transition-all text-xs font-semibold',
+              currentStep === 'payment'
+                ? 'border-primary bg-primary/5 text-primary shadow-xs'
+                : 'border-border bg-card text-muted-foreground'
+            )}
+          >
+            <div
+              className={cn(
+                'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
+                currentStep === 'payment'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground'
+              )}
+            >
+              3
+            </div>
+            <div className="truncate">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Etapa 3</div>
+              <div className="truncate">Pagamento</div>
+            </div>
           </div>
         </div>
       </div>
 
+      {/* Grid Principal: Formulários da Etapa Ativa + Sidebar de Resumo */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Coluna Esquerda: Formulários por Etapa */}
-        <div className="lg:col-span-8">
+        {/* Coluna Esquerda: Formulário do Passo Ativo */}
+        <div className="lg:col-span-8 space-y-6">
           {currentStep === 'identification' && (
-            <CustomerStep onSuccess={() => setCurrentStep('shipping')} />
+            <CustomerStep
+              onSuccess={(data) => {
+                saveProfile(data)
+                setCurrentStep('shipping')
+              }}
+            />
           )}
 
           {currentStep === 'shipping' && (
-            <ShippingStep onSuccess={() => setCurrentStep('payment')} />
+            <ShippingStep
+              onSuccess={() => setCurrentStep('payment')}
+            />
           )}
 
           {currentStep === 'payment' && (
-            <PaymentStep onSuccess={handleCompleteOrder} />
+            <PaymentStep
+              onSuccess={handleCompleteOrder}
+            />
           )}
         </div>
 
-        {/* Coluna Direita: Resumo do Pedido */}
+        {/* Coluna Direita: Resumo do Pedido Desacoplado */}
         <div className="lg:col-span-4 space-y-4 sticky top-28">
-          <Card className="border-border/80 shadow-xs overflow-hidden bg-card">
-            <CardHeader className="py-3 px-4 md:px-6 bg-muted/20 border-b border-border">
-              <CardTitle className="text-sm font-bold text-foreground">
-                Resumo da Compra
-              </CardTitle>
-            </CardHeader>
-
-            <CardContent className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
-              {/* Miniatura dos Produtos */}
-              <div className="max-h-36 overflow-y-auto divide-y divide-border/50 pr-1 space-y-2">
-                {items.map(({ product, quantity }) => (
-                  <div key={product.id} className="pt-2 first:pt-0 flex items-center justify-between gap-3 text-xs">
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-9 h-9 rounded-lg bg-card border border-border/70 p-0.5 shrink-0 flex items-center justify-center">
-                        <img
-                          src={product.images[0]}
-                          alt={product.name}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="font-medium text-foreground truncate">{product.name}</div>
-                        <div className="text-[11px] text-muted-foreground">Qtd: {quantity}</div>
-                      </div>
-                    </div>
-                    <span className="font-semibold text-foreground shrink-0">
-                      {(product.price * quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <Separator />
-
-              {/* Valores Totais */}
-              <div className="space-y-2 text-xs">
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Subtotal</span>
-                  <span className="font-semibold text-foreground">
-                    {subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                  </span>
-                </div>
-
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Frete</span>
-                  <span className="font-semibold text-foreground">
-                    {shippingPrice === 0
-                      ? 'Grátis'
-                      : shippingPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                  </span>
-                </div>
-
-                {selectedPaymentMethod === 'pix' && discountPix > 0 && (
-                  <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-semibold animate-in fade-in-0 duration-200">
-                    <span className="flex items-center gap-1">
-                      <Zap className="w-3 h-3" /> Desconto PIX (5%)
-                    </span>
-                    <span>
-                      - {discountPix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                    </span>
-                  </div>
-                )}
-
-                <Separator />
-
-                <div className="pt-1">
-                  <div className="flex justify-between items-baseline">
-                    <span className="font-bold text-sm text-foreground">Total à vista (PIX)</span>
-                    <span className="text-xl font-black text-emerald-600 dark:text-emerald-400">
-                      {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                    </span>
-                  </div>
-                  <div className="text-[11px] text-muted-foreground text-right mt-0.5">
-                    ou em até 12x de{' '}
-                    <span className="font-semibold text-foreground">
-                      {formatCurrency(installmentPrice)}
-                    </span>{' '}
-                    sem juros
-                  </div>
-                </div>
-              </div>
-
-              {/* Benefícios de Segurança */}
-              <div className="pt-2 border-t border-border/60 space-y-1.5 text-[11px] text-muted-foreground">
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                  <span>Ambiente 100% protegido com SSL</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Truck className="w-3.5 h-3.5 text-primary shrink-0" />
-                  <span>Rastreamento em tempo real do seu pedido</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CreditCard className="w-3.5 h-3.5 text-primary shrink-0" />
-                  <span>Garantia oficial e nota fiscal eletrônica</span>
-                </div>
-              </div>
-
-              {/* Controles de Navegação entre Etapas */}
-              <div className="pt-3 border-t border-border/60 flex flex-col gap-2">
-                {currentStep === 'identification' && (
-                  <Button
-                    type="submit"
-                    form="customer-form"
-                    size="lg"
-                    className="w-full font-bold gap-2 text-xs sm:text-sm cursor-pointer shadow-md"
-                  >
-                    <span>Ir para Entrega</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                )}
-
-                {currentStep === 'shipping' && (
-                  <>
-                    <Button
-                      type="submit"
-                      form="shipping-form"
-                      size="lg"
-                      className="w-full font-bold gap-2 text-xs sm:text-sm cursor-pointer shadow-md"
-                    >
-                      <span>Ir para Pagamento</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setCurrentStep('identification')}
-                      className="w-full gap-1.5 text-xs text-muted-foreground hover:text-foreground cursor-pointer"
-                    >
-                      <ArrowLeft className="w-3.5 h-3.5" />
-                      <span>Voltar para Identificação</span>
-                    </Button>
-                  </>
-                )}
-
-                {currentStep === 'payment' && (
-                  <>
-                    <Button
-                      type="submit"
-                      form="payment-form"
-                      size="lg"
-                      disabled={isSubmitting}
-                      className="w-full font-bold gap-2 text-xs sm:text-sm cursor-pointer shadow-md bg-emerald-600 hover:bg-emerald-700 text-white"
-                    >
-                      {isSubmitting ? (
-                        <span>Processando compra...</span>
-                      ) : (
-                        <>
-                          <CheckCircle className="w-4 h-4" />
-                          <span>Finalizar compra</span>
-                        </>
-                      )}
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      disabled={isSubmitting}
-                      onClick={() => setCurrentStep('shipping')}
-                      className="w-full gap-1.5 text-xs text-muted-foreground hover:text-foreground cursor-pointer"
-                    >
-                      <ArrowLeft className="w-3.5 h-3.5" />
-                      <span>Voltar para Entrega</span>
-                    </Button>
-                  </>
-                )}
-              </div>
-            </CardContent>
-          </Card>
+          <CheckoutOrderSummary
+            items={items}
+            subtotal={subtotal}
+            shippingPrice={shippingPrice}
+            discountPix={discountPix}
+            total={total}
+            installmentPrice={installmentPrice}
+            selectedPaymentMethod={selectedPaymentMethod}
+            selectedShipping={selectedShipping}
+            currentStep={currentStep}
+            isSubmitting={isSubmitting}
+            onStepChange={setCurrentStep}
+          />
         </div>
       </div>
     </div>

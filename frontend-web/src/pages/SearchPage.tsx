@@ -1,58 +1,33 @@
 import { useState, useMemo } from 'react'
-import { useLoaderData, useSearchParams, Link } from 'react-router'
-import { Search, RotateCcw, SlidersHorizontal } from 'lucide-react'
+import { useLoaderData, Link } from 'react-router'
+import { Search } from 'lucide-react'
 import type { SearchLoaderData } from '../router/loaders'
 import type { Product, ProductSortOption } from '../types'
 import { ProductCard } from '../components/catalog/ProductCard'
-import { PriceRangeFilter } from '../components/catalog/PriceRangeFilter'
+import { SearchFilters, type SearchFiltersState } from '../components/catalog/SearchFilters'
 import { SortSelect } from '../components/catalog/SortSelect'
 import { FilterToggle } from '../components/catalog/FilterToggle'
 import { PaginationControls } from '../components/catalog/PaginationControls'
 import { Breadcrumb } from '../components/common/Breadcrumb'
 import { EmptyState } from '../components/common/EmptyState'
-import { Checkbox } from '../components/ui/checkbox'
 import { Sheet, SheetHeader, SheetTitle } from '../components/ui/sheet'
 import { Button, buttonVariants } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
-import { Label } from '../components/ui/label'
-import { Separator } from '../components/ui/separator'
 import { sortProducts } from '../lib/sorting'
 import { cn } from '../lib/utils'
 
 const PRICE_STEP = 10
 const ITEMS_PER_PAGE = 8
 
-interface SearchFiltersState {
-  categories: string[]
-  brands: string[]
-  minPrice: number
-  maxPrice: number
-}
-
 export function SearchPage() {
-  const { products, categories } = useLoaderData() as SearchLoaderData
-  const [searchParams] = useSearchParams()
-  const query = searchParams.get('q')?.trim().toLowerCase() || ''
+  const { products, categories, query } = useLoaderData() as SearchLoaderData
 
-  // 1. Filtragem Inicial por Termo de Busca (?q=...)
-  const matchedByQuery = useMemo(() => {
-    if (!query) return products
-    return products.filter((p) => {
-      const nameMatch = p.name.toLowerCase().includes(query)
-      const descMatch = p.description.toLowerCase().includes(query)
-      const brandMatch = p.brand.toLowerCase().includes(query)
-      const categoryObj = categories.find((c) => c.slug === p.categorySlug)
-      const catMatch = categoryObj?.name.toLowerCase().includes(query)
-      return nameMatch || descMatch || brandMatch || catMatch
-    })
-  }, [products, categories, query])
-
-  // 2. Limites de Preço do Resultado da Busca
+  // 1. Limites de Preço do Resultado da Busca
   const { minGlobalPrice, maxGlobalPrice } = useMemo(() => {
-    if (matchedByQuery.length === 0) return { minGlobalPrice: 0, maxGlobalPrice: 10000 }
-    let min = matchedByQuery[0].price
-    let max = matchedByQuery[0].price
-    for (const p of matchedByQuery) {
+    if (products.length === 0) return { minGlobalPrice: 0, maxGlobalPrice: 10000 }
+    let min = products[0].price
+    let max = products[0].price
+    for (const p of products) {
       if (p.price < min) min = p.price
       if (p.price > max) max = p.price
     }
@@ -60,9 +35,9 @@ export function SearchPage() {
       minGlobalPrice: Math.floor(min / PRICE_STEP) * PRICE_STEP,
       maxGlobalPrice: Math.ceil(max / PRICE_STEP) * PRICE_STEP,
     }
-  }, [matchedByQuery])
+  }, [products])
 
-  // 3. Estado dos Filtros Laterais e Paginação
+  // 2. Estado dos Filtros Laterais e Paginação
   const [filters, setFilters] = useState<SearchFiltersState>(() => ({
     categories: [],
     brands: [],
@@ -82,10 +57,10 @@ export function SearchPage() {
     setCurrentPage(1)
   }
 
-  // 4. Extração de Opções de Categorias presentes no resultado
+  // 3. Extração de Opções de Categorias presentes no resultado
   const categoryOptions = useMemo(() => {
     const counts: Record<string, number> = {}
-    for (const p of matchedByQuery) {
+    for (const p of products) {
       counts[p.categorySlug] = (counts[p.categorySlug] || 0) + 1
     }
     return Object.entries(counts)
@@ -98,12 +73,12 @@ export function SearchPage() {
         }
       })
       .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'))
-  }, [matchedByQuery, categories])
+  }, [products, categories])
 
-  // 5. Extração de Opções de Marcas presentes no resultado
+  // 4. Extração de Opções de Marcas presentes no resultado
   const brandOptions = useMemo(() => {
     const counts: Record<string, number> = {}
-    for (const p of matchedByQuery) {
+    for (const p of products) {
       if (p.brand) {
         counts[p.brand] = (counts[p.brand] || 0) + 1
       }
@@ -111,7 +86,7 @@ export function SearchPage() {
     return Object.entries(counts)
       .map(([brand, count]) => ({ brand, count }))
       .sort((a, b) => a.brand.localeCompare(b.brand, 'pt-BR'))
-  }, [matchedByQuery])
+  }, [products])
 
   // Handlers de Filtros
   const handleCategoryToggle = (slug: string) => {
@@ -172,32 +147,26 @@ export function SearchPage() {
     setCurrentPage(1)
   }
 
-  // 6. Filtragem e Ordenação Final
+  // 5. Filtragem e Ordenação Final
   const finalProducts = useMemo(() => {
-    const filtered = matchedByQuery.filter((product: Product) => {
-      // Filtro por Categoria
+    const filtered = products.filter((product: Product) => {
       if (
         filters.categories.length > 0 &&
         !filters.categories.includes(product.categorySlug)
       ) {
         return false
       }
-
-      // Filtro por Marca
       if (filters.brands.length > 0 && !filters.brands.includes(product.brand)) {
         return false
       }
-
-      // Filtro por Preço
       if (product.price < filters.minPrice || product.price > filters.maxPrice) {
         return false
       }
-
       return true
     })
 
     return sortProducts(filtered, sortBy)
-  }, [matchedByQuery, filters, sortBy])
+  }, [products, filters, sortBy])
 
   // Paginação dos produtos da busca
   const totalPages = Math.ceil(finalProducts.length / ITEMS_PER_PAGE)
@@ -218,114 +187,6 @@ export function SearchPage() {
     filters.brands.length +
     (filters.minPrice > minGlobalPrice ? 1 : 0) +
     (filters.maxPrice < maxGlobalPrice ? 1 : 0)
-
-  // Componente de Sidebar de Filtros da Busca
-  const SearchFiltersContent = (
-    <div className="space-y-6 text-sm">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 font-bold text-foreground">
-          <SlidersHorizontal className="w-4 h-4 text-primary" />
-          <span>Filtros da Busca</span>
-        </div>
-        {hasActiveFilters && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleResetFilters}
-            className="h-7 px-2 text-xs text-muted-foreground hover:text-destructive gap-1 cursor-pointer"
-          >
-            <RotateCcw className="w-3 h-3" />
-            <span>Limpar</span>
-          </Button>
-        )}
-      </div>
-
-      <Separator />
-
-      {/* Faixa de Preço Reutilizável */}
-      <PriceRangeFilter
-        minPrice={filters.minPrice}
-        maxPrice={filters.maxPrice}
-        minLimit={minGlobalPrice}
-        maxLimit={maxGlobalPrice}
-        step={PRICE_STEP}
-        onRangeChange={handlePriceRangeChange}
-        onMinInputChange={handleMinPriceInputChange}
-        onMaxInputChange={handleMaxPriceInputChange}
-      />
-
-      <Separator />
-
-      {/* Departamentos / Categorias */}
-      {categoryOptions.length > 0 && (
-        <div className="space-y-3">
-          <Label className="font-semibold text-xs text-foreground uppercase tracking-wider block">
-            Departamento
-          </Label>
-          <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1 scrollbar-none">
-            {categoryOptions.map(({ slug, name, count }) => {
-              const isChecked = filters.categories.includes(slug)
-              return (
-                <div
-                  key={slug}
-                  onClick={() => handleCategoryToggle(slug)}
-                  className="w-full flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-muted/60 text-muted-foreground transition-colors cursor-pointer text-left group"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <Checkbox
-                      checked={isChecked}
-                      onCheckedChange={() => handleCategoryToggle(slug)}
-                    />
-                    <span className={isChecked ? 'font-semibold text-foreground text-xs' : 'text-xs group-hover:text-foreground'}>
-                      {name}
-                    </span>
-                  </div>
-                  <Badge variant="outline" className="text-[10px] py-0 px-1.5 h-4">
-                    {count}
-                  </Badge>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Marcas / Fabricantes */}
-      {brandOptions.length > 0 && (
-        <div className="space-y-3 pt-2">
-          <Separator className="mb-4" />
-          <Label className="font-semibold text-xs text-foreground uppercase tracking-wider block">
-            Fabricante / Marca
-          </Label>
-          <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1 scrollbar-none">
-            {brandOptions.map(({ brand, count }) => {
-              const isChecked = filters.brands.includes(brand)
-              return (
-                <div
-                  key={brand}
-                  onClick={() => handleBrandToggle(brand)}
-                  className="w-full flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-muted/60 text-muted-foreground transition-colors cursor-pointer text-left group"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <Checkbox
-                      checked={isChecked}
-                      onCheckedChange={() => handleBrandToggle(brand)}
-                    />
-                    <span className={isChecked ? 'font-semibold text-foreground text-xs' : 'text-xs group-hover:text-foreground'}>
-                      {brand}
-                    </span>
-                  </div>
-                  <Badge variant="outline" className="text-[10px] py-0 px-1.5 h-4">
-                    {count}
-                  </Badge>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      )}
-    </div>
-  )
 
   return (
     <div className="container mx-auto px-4 py-6 space-y-6">
@@ -352,7 +213,7 @@ export function SearchPage() {
               )}
             </h1>
             <Badge variant="secondary" className="text-xs">
-              {finalProducts.length} de {matchedByQuery.length} itens
+              {finalProducts.length} de {products.length} itens
             </Badge>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground mt-1">
@@ -362,10 +223,7 @@ export function SearchPage() {
 
         {/* Controles de Ordenação e Botões de Filtro */}
         <div className="flex items-center gap-2.5 shrink-0">
-          {/* Dropdown de Ordenação Customizado */}
           <SortSelect value={sortBy} onChange={handleSortChange} />
-
-          {/* Botões de Toggle de Filtros Desktop e Mobile */}
           <FilterToggle
             isDesktopVisible={isDesktopFiltersVisible}
             onToggleDesktop={() => setIsDesktopFiltersVisible((prev) => !prev)}
@@ -377,10 +235,22 @@ export function SearchPage() {
 
       {/* Layout Principal: Sidebar de Filtros + Grid de Produtos */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-        {/* Sidebar Desktop (Colapsável com rolagem interna contida) */}
+        {/* Sidebar Desktop */}
         {isDesktopFiltersVisible && (
           <aside className="hidden lg:block p-5 rounded-xl border border-border bg-card shadow-xs sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-none animate-in fade-in-0 duration-200">
-            {SearchFiltersContent}
+            <SearchFilters
+              filters={filters}
+              minGlobalPrice={minGlobalPrice}
+              maxGlobalPrice={maxGlobalPrice}
+              categoryOptions={categoryOptions}
+              brandOptions={brandOptions}
+              onCategoryToggle={handleCategoryToggle}
+              onBrandToggle={handleBrandToggle}
+              onPriceRangeChange={handlePriceRangeChange}
+              onMinPriceInputChange={handleMinPriceInputChange}
+              onMaxPriceInputChange={handleMaxPriceInputChange}
+              onResetFilters={handleResetFilters}
+            />
           </aside>
         )}
 
@@ -389,8 +259,20 @@ export function SearchPage() {
           <SheetHeader>
             <SheetTitle>Filtros da Busca</SheetTitle>
           </SheetHeader>
-          <div className="overflow-y-auto pr-2 flex-1">
-            {SearchFiltersContent}
+          <div className="overflow-y-auto pr-2 flex-1 scrollbar-none">
+            <SearchFilters
+              filters={filters}
+              minGlobalPrice={minGlobalPrice}
+              maxGlobalPrice={maxGlobalPrice}
+              categoryOptions={categoryOptions}
+              brandOptions={brandOptions}
+              onCategoryToggle={handleCategoryToggle}
+              onBrandToggle={handleBrandToggle}
+              onPriceRangeChange={handlePriceRangeChange}
+              onMinPriceInputChange={handleMinPriceInputChange}
+              onMaxPriceInputChange={handleMaxPriceInputChange}
+              onResetFilters={handleResetFilters}
+            />
           </div>
           <div className="pt-4 mt-auto border-t border-border">
             <Button

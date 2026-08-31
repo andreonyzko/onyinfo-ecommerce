@@ -65,10 +65,6 @@ export const router = createBrowserRouter([
         path: 'como-fiz',
         element: <HowIDidPage />,
       },
-      {
-        path: '*',
-        element: <NotFoundPage />,
-      },
     ],
   },
 ])
