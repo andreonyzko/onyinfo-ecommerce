@@ -17,7 +17,7 @@ export function SortSelect({ value, onChange, className }: SortSelectProps) {
       options={SORT_OPTIONS}
       onChange={onChange}
       icon={<ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground mr-1" />}
-      className={cn('min-w-44', className)}
+      className={cn('w-48 sm:w-52 shrink-0', className)}
     />
   )
 }

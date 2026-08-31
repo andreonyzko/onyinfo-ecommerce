@@ -19,14 +19,14 @@ export function FilterToggle({
   className,
 }: FilterToggleProps) {
   return (
-    <div className={cn('flex items-center gap-2', className)}>
+    <div className={cn('flex items-center gap-2 shrink-0', className)}>
       {/* Botão de Toggle para Desktop */}
       <Button
         type="button"
         variant="outline"
         size="sm"
         onClick={onToggleDesktop}
-        className="hidden lg:inline-flex items-center gap-1.5 cursor-pointer text-xs h-9"
+        className="hidden lg:inline-flex items-center gap-1.5 cursor-pointer text-xs h-9 shrink-0 whitespace-nowrap"
         aria-label={isDesktopVisible ? 'Ocultar barra de filtros' : 'Mostrar barra de filtros'}
       >
         {isDesktopVisible ? (
@@ -53,7 +53,7 @@ export function FilterToggle({
         variant="outline"
         size="sm"
         onClick={onOpenMobile}
-        className="lg:hidden gap-1.5 cursor-pointer text-xs h-9"
+        className="lg:hidden gap-1.5 cursor-pointer text-xs h-9 shrink-0 whitespace-nowrap"
         aria-label="Abrir filtros"
       >
         <Filter className="w-3.5 h-3.5" />
