@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { useLoaderData, useSearchParams, Link } from 'react-router'
+import { useLoaderData, Link } from 'react-router'
 import { Search, RotateCcw, SlidersHorizontal } from 'lucide-react'
 import type { SearchLoaderData } from '../router/loaders'
 import type { Product, ProductSortOption } from '../types'
@@ -30,29 +30,14 @@ interface SearchFiltersState {
 }
 
 export function SearchPage() {
-  const { products, categories } = useLoaderData() as SearchLoaderData
-  const [searchParams] = useSearchParams()
-  const query = searchParams.get('q')?.trim().toLowerCase() || ''
+  const { products, categories, query } = useLoaderData() as SearchLoaderData
 
-  // 1. Filtragem Inicial por Termo de Busca (?q=...)
-  const matchedByQuery = useMemo(() => {
-    if (!query) return products
-    return products.filter((p) => {
-      const nameMatch = p.name.toLowerCase().includes(query)
-      const descMatch = p.description.toLowerCase().includes(query)
-      const brandMatch = p.brand.toLowerCase().includes(query)
-      const categoryObj = categories.find((c) => c.slug === p.categorySlug)
-      const catMatch = categoryObj?.name.toLowerCase().includes(query)
-      return nameMatch || descMatch || brandMatch || catMatch
-    })
-  }, [products, categories, query])
-
-  // 2. Limites de Preço do Resultado da Busca
+  // 1. Limites de Preço do Resultado da Busca
   const { minGlobalPrice, maxGlobalPrice } = useMemo(() => {
-    if (matchedByQuery.length === 0) return { minGlobalPrice: 0, maxGlobalPrice: 10000 }
-    let min = matchedByQuery[0].price
-    let max = matchedByQuery[0].price
-    for (const p of matchedByQuery) {
+    if (products.length === 0) return { minGlobalPrice: 0, maxGlobalPrice: 10000 }
+    let min = products[0].price
+    let max = products[0].price
+    for (const p of products) {
       if (p.price < min) min = p.price
       if (p.price > max) max = p.price
     }
@@ -60,9 +45,9 @@ export function SearchPage() {
       minGlobalPrice: Math.floor(min / PRICE_STEP) * PRICE_STEP,
       maxGlobalPrice: Math.ceil(max / PRICE_STEP) * PRICE_STEP,
     }
-  }, [matchedByQuery])
+  }, [products])
 
-  // 3. Estado dos Filtros Laterais e Paginação
+  // 2. Estado dos Filtros Laterais e Paginação
   const [filters, setFilters] = useState<SearchFiltersState>(() => ({
     categories: [],
     brands: [],
@@ -82,10 +67,10 @@ export function SearchPage() {
     setCurrentPage(1)
   }
 
-  // 4. Extração de Opções de Categorias presentes no resultado
+  // 3. Extração de Opções de Categorias presentes no resultado
   const categoryOptions = useMemo(() => {
     const counts: Record<string, number> = {}
-    for (const p of matchedByQuery) {
+    for (const p of products) {
       counts[p.categorySlug] = (counts[p.categorySlug] || 0) + 1
     }
     return Object.entries(counts)
@@ -98,12 +83,12 @@ export function SearchPage() {
         }
       })
       .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'))
-  }, [matchedByQuery, categories])
+  }, [products, categories])
 
-  // 5. Extração de Opções de Marcas presentes no resultado
+  // 4. Extração de Opções de Marcas presentes no resultado
   const brandOptions = useMemo(() => {
     const counts: Record<string, number> = {}
-    for (const p of matchedByQuery) {
+    for (const p of products) {
       if (p.brand) {
         counts[p.brand] = (counts[p.brand] || 0) + 1
       }
@@ -111,7 +96,7 @@ export function SearchPage() {
     return Object.entries(counts)
       .map(([brand, count]) => ({ brand, count }))
       .sort((a, b) => a.brand.localeCompare(b.brand, 'pt-BR'))
-  }, [matchedByQuery])
+  }, [products])
 
   // Handlers de Filtros
   const handleCategoryToggle = (slug: string) => {
@@ -172,9 +157,9 @@ export function SearchPage() {
     setCurrentPage(1)
   }
 
-  // 6. Filtragem e Ordenação Final
+  // 5. Filtragem e Ordenação Final
   const finalProducts = useMemo(() => {
-    const filtered = matchedByQuery.filter((product: Product) => {
+    const filtered = products.filter((product: Product) => {
       // Filtro por Categoria
       if (
         filters.categories.length > 0 &&
@@ -197,7 +182,7 @@ export function SearchPage() {
     })
 
     return sortProducts(filtered, sortBy)
-  }, [matchedByQuery, filters, sortBy])
+  }, [products, filters, sortBy])
 
   // Paginação dos produtos da busca
   const totalPages = Math.ceil(finalProducts.length / ITEMS_PER_PAGE)
@@ -352,7 +337,7 @@ export function SearchPage() {
               )}
             </h1>
             <Badge variant="secondary" className="text-xs">
-              {finalProducts.length} de {matchedByQuery.length} itens
+              {finalProducts.length} de {products.length} itens
             </Badge>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground mt-1">

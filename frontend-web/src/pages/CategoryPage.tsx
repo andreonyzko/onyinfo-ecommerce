@@ -91,30 +91,30 @@ function CategoryView({ category, products }: CategoryViewProps) {
         return false
       }
 
-      // 3. Filtros de String Specs
-      for (const [specKey, selectedValues] of Object.entries(filters.stringSpecs)) {
+      // 3. Filtro de Especificações do tipo String (Multi-select)
+      for (const [key, selectedValues] of Object.entries(filters.stringSpecs)) {
         if (selectedValues.length > 0) {
-          const productValue = String(product.specs?.[specKey] ?? '')
-          if (!selectedValues.includes(productValue)) {
+          const productValue = product.specs[key]
+          if (!productValue || !selectedValues.includes(String(productValue))) {
             return false
           }
         }
       }
 
-      // 4. Filtros de Boolean Specs
-      for (const [specKey, isRequired] of Object.entries(filters.booleanSpecs)) {
-        if (isRequired) {
-          const productValue = Boolean(product.specs?.[specKey])
-          if (!productValue) {
+      // 4. Filtro de Especificações do tipo Boolean (Toggle)
+      for (const [key, isChecked] of Object.entries(filters.booleanSpecs)) {
+        if (isChecked) {
+          const productValue = product.specs[key]
+          if (productValue !== true) {
             return false
           }
         }
       }
 
-      // 5. Filtros de Number Specs
-      for (const [specKey, maxAllowed] of Object.entries(filters.numberSpecs)) {
-        const productValue = Number(product.specs?.[specKey] ?? 0)
-        if (productValue > maxAllowed) {
+      // 5. Filtro de Especificações do tipo Number (Range Slider)
+      for (const [key, value] of Object.entries(filters.numberSpecs)) {
+        const productValue = Number(product.specs[key])
+        if (isNaN(productValue) || productValue > value) {
           return false
         }
       }
@@ -181,7 +181,10 @@ function CategoryView({ category, products }: CategoryViewProps) {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
         {/* Sidebar Desktop (Colapsável com rolagem interna contida) */}
         {isDesktopFiltersVisible && (
-          <aside className="hidden lg:block p-5 rounded-xl border border-border bg-card shadow-xs sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-none animate-in fade-in-0 duration-200">
+          <aside
+            aria-label="Filtros da categoria"
+            className="hidden lg:block p-5 rounded-xl border border-border bg-card shadow-xs sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-none animate-in fade-in-0 duration-200"
+          >
             <DynamicFilters
               category={category}
               products={products}
@@ -192,12 +195,12 @@ function CategoryView({ category, products }: CategoryViewProps) {
           </aside>
         )}
 
-        {/* Drawer de Filtros Mobile (Sheet) */}
+        {/* Sheet Mobile de Filtros */}
         <Sheet open={isMobileFiltersOpen} onOpenChange={setIsMobileFiltersOpen}>
           <SheetHeader>
-            <SheetTitle>Filtros de {category.name}</SheetTitle>
+            <SheetTitle>Filtrar {category.name}</SheetTitle>
           </SheetHeader>
-          <div className="overflow-y-auto pr-2 flex-1">
+          <div className="overflow-y-auto pr-2 flex-1 scrollbar-none">
             <DynamicFilters
               category={category}
               products={products}
@@ -216,7 +219,7 @@ function CategoryView({ category, products }: CategoryViewProps) {
           </div>
         </Sheet>
 
-        {/* Grid de Produtos + Paginação Inferior */}
+        {/* Grid de Produtos Pagina e Empty State */}
         <div className={cn('space-y-6', isDesktopFiltersVisible ? 'lg:col-span-3' : 'lg:col-span-4')}>
           {paginatedProducts.length > 0 ? (
             <>

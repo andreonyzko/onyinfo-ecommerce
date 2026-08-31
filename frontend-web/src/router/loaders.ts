@@ -109,12 +109,35 @@ export async function productLoader({
 export interface SearchLoaderData {
   products: Product[]
   categories: Category[]
+  query: string
 }
 
-export async function searchLoader(): Promise<SearchLoaderData> {
-  const [products, categories] = await Promise.all([
+export async function searchLoader({
+  request,
+}: LoaderFunctionArgs): Promise<SearchLoaderData> {
+  const url = new URL(request.url)
+  const query = url.searchParams.get('q')?.trim().toLowerCase() || ''
+
+  const [allProducts, categories] = await Promise.all([
     fetchProducts(),
     fetchCategories(),
   ])
-  return { products, categories }
+
+  // Filtragem inicial por termo de busca (?q=...) no loader
+  const products = !query
+    ? allProducts
+    : allProducts.filter((p) => {
+        const nameMatch = p.name.toLowerCase().includes(query)
+        const descMatch = p.description.toLowerCase().includes(query)
+        const brandMatch = p.brand.toLowerCase().includes(query)
+        const categoryObj = categories.find((c) => c.slug === p.categorySlug)
+        const catMatch = categoryObj?.name.toLowerCase().includes(query)
+        return nameMatch || descMatch || brandMatch || catMatch
+      })
+
+  return {
+    products,
+    categories,
+    query,
+  }
 }
