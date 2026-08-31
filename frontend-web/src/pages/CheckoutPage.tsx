@@ -165,7 +165,13 @@ export function CheckoutPage() {
                   <div key={product.id} className="pt-2 first:pt-0 flex items-center justify-between gap-3 text-xs">
                     <div className="flex items-center gap-2.5 min-w-0">
                       <div className="w-9 h-9 rounded-lg bg-card border border-border/70 p-0.5 shrink-0 flex items-center justify-center">
-                        <img src={product.images[0]} alt={product.name} className="w-full h-full object-contain" />
+                        <img
+                          src={product.images[0]}
+                          alt={product.name}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <div className="min-w-0">
                         <div className="font-medium text-foreground truncate">{product.name}</div>

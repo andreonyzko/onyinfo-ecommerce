@@ -77,6 +77,7 @@ export function ProductGallery({ product, category }: ProductGalleryProps) {
           src={activeImage}
           alt={`${product.name} - Imagem ${selectedImageIndex + 1}`}
           loading="eager"
+          decoding="async"
           onClick={() => setIsLightboxOpen(true)}
           className="max-h-72 md:max-h-88 w-auto max-w-full object-contain cursor-zoom-in drop-shadow-lg transition-all duration-300 ease-out hover:scale-105"
         />

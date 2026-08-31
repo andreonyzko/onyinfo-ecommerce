@@ -37,6 +37,7 @@ export function ProductCard({ product }: ProductCardProps) {
           src={product.images[0]}
           alt={product.name}
           loading="lazy"
+          decoding="async"
           className="h-full w-full object-contain object-center transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute top-2.5 left-2.5 flex flex-wrap gap-1">

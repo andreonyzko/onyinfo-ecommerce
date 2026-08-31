@@ -31,6 +31,8 @@ export function CartItemCard({
           <img
             src={product.images[0]}
             alt={product.name}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-105"
           />
         </Link>

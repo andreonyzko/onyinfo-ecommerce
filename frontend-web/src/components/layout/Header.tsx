@@ -52,13 +52,19 @@ export function Header() {
             {/* Logo para Dark Mode */}
             <img
               src={formatAssetUrl('/onyinfo-white.png')}
-              alt="OnyInfo"
+              alt="OnyInfo Hardware"
+              width={130}
+              height={32}
+              decoding="async"
               className="h-8 w-auto hidden dark:block"
             />
             {/* Logo para Light Mode */}
             <img
               src={formatAssetUrl('/onyinfo-black.png')}
-              alt="OnyInfo"
+              alt="OnyInfo Hardware"
+              width={130}
+              height={32}
+              decoding="async"
               className="h-8 w-auto block dark:hidden"
             />
           </Link>
@@ -81,6 +87,7 @@ export function Header() {
                 <button
                   type="button"
                   onClick={handleClearSearch}
+                  aria-label="Limpar busca"
                   className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground cursor-pointer"
                   title="Limpar busca"
                 >
@@ -149,7 +156,9 @@ export function Header() {
               <button
                 type="button"
                 onClick={handleClearSearch}
+                aria-label="Limpar busca"
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground cursor-pointer"
+                title="Limpar busca"
               >
                 <X className="h-3 w-3" />
               </button>

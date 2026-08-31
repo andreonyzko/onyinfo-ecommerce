@@ -19,12 +19,20 @@ export function Footer() {
             <Link to="/" className="inline-block" aria-label="OnyInfo Hardware">
               <img
                 src={formatAssetUrl('/onyinfo-white.png')}
-                alt="OnyInfo"
+                alt="OnyInfo Hardware"
+                width={120}
+                height={28}
+                loading="lazy"
+                decoding="async"
                 className="h-7 w-auto hidden dark:block"
               />
               <img
                 src={formatAssetUrl('/onyinfo-black.png')}
-                alt="OnyInfo"
+                alt="OnyInfo Hardware"
+                width={120}
+                height={28}
+                loading="lazy"
+                decoding="async"
                 className="h-7 w-auto block dark:hidden"
               />
             </Link>
