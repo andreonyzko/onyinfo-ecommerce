@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router'
-import { Search, ShoppingCart, Video, X } from 'lucide-react'
+import { Search, ShoppingCart, Video, Package, X } from 'lucide-react'
 import { useCartStore } from '../../stores'
 import { ThemeToggle } from './ThemeToggle'
 import { buttonVariants } from '../ui/button'
@@ -92,6 +92,16 @@ export function Header() {
 
           {/* Ações do Header */}
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* Botão Meus Pedidos */}
+            <Link
+              to="/meus-pedidos"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full border border-border bg-card/60 hover:bg-accent hover:text-accent-foreground transition-colors shadow-2xs"
+              title="Acompanhar meus pedidos"
+            >
+              <Package className="w-3.5 h-3.5 text-primary" />
+              <span className="hidden sm:inline">Meus Pedidos</span>
+            </Link>
+
             {/* Botão Como Fiz (Defesa Técnica) */}
             <Link
               to="/como-fiz"

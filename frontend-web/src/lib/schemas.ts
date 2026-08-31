@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { cpf } from 'cpf-cnpj-validator'
 import { cleanMask } from './masks'
 
 export const customerSchema = z.object({
@@ -9,7 +10,8 @@ export const customerSchema = z.object({
   email: z.string().email('Informe um endereço de e-mail válido'),
   cpf: z
     .string()
-    .refine((val) => cleanMask(val).length === 11, 'O CPF deve conter 11 dígitos numéricos'),
+    .min(1, 'CPF é obrigatório')
+    .refine((val) => cpf.isValid(val), 'CPF inválido. Verifique os dígitos informados.'),
   phone: z
     .string()
     .refine(

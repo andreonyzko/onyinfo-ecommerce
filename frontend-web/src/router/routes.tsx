@@ -6,6 +6,8 @@ import { ProductPage } from '../pages/ProductPage'
 import { SearchPage } from '../pages/SearchPage'
 import { CartPage } from '../pages/CartPage'
 import { CheckoutPage } from '../pages/CheckoutPage'
+import { OrdersPage } from '../pages/OrdersPage'
+import { OrderDetailPage } from '../pages/OrderDetailPage'
 import { HowIDidPage } from '../pages/HowIDidPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import {
@@ -50,6 +52,14 @@ export const router = createBrowserRouter([
       {
         path: 'checkout',
         element: <CheckoutPage />,
+      },
+      {
+        path: 'meus-pedidos',
+        element: <OrdersPage />,
+      },
+      {
+        path: 'pedido/:id',
+        element: <OrderDetailPage />,
       },
       {
         path: 'como-fiz',

@@ -8,6 +8,7 @@ import {
   Zap,
   Truck,
   ArrowRight,
+  Package,
 } from 'lucide-react'
 import type { OrderSummary } from '../../types'
 import { Button, buttonVariants } from '../ui/button'
@@ -236,17 +237,31 @@ export function OrderConfirmation({ order, onNewOrder }: OrderConfirmationProps)
           <span>Imprimir Comprovante</span>
         </Button>
 
-        <Link
-          to="/"
-          onClick={onNewOrder}
-          className={cn(
-            buttonVariants({ size: 'default' }),
-            'w-full sm:w-auto gap-1.5 font-semibold text-xs shadow-md'
-          )}
-        >
-          <span>Voltar para o Catálogo</span>
-          <ArrowRight className="w-3.5 h-3.5" />
-        </Link>
+        <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
+          <Link
+            to="/meus-pedidos"
+            onClick={onNewOrder}
+            className={cn(
+              buttonVariants({ variant: 'outline', size: 'default' }),
+              'w-full sm:w-auto gap-1.5 font-semibold text-xs'
+            )}
+          >
+            <Package className="w-3.5 h-3.5 text-primary" />
+            <span>Meus Pedidos</span>
+          </Link>
+
+          <Link
+            to="/"
+            onClick={onNewOrder}
+            className={cn(
+              buttonVariants({ size: 'default' }),
+              'w-full sm:w-auto gap-1.5 font-semibold text-xs shadow-md'
+            )}
+          >
+            <span>Voltar para o Catálogo</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
       </div>
     </div>
   )
