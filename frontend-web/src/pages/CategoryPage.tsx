@@ -179,9 +179,9 @@ function CategoryView({ category, products }: CategoryViewProps) {
 
       {/* Layout Principal: Sidebar de Filtros + Grid de Produtos */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-        {/* Sidebar Desktop (Colapsável) */}
+        {/* Sidebar Desktop (Colapsável com rolagem interna contida) */}
         {isDesktopFiltersVisible && (
-          <aside className="hidden lg:block p-5 rounded-xl border border-border bg-card shadow-xs sticky top-28 animate-in fade-in-0 duration-200">
+          <aside className="hidden lg:block p-5 rounded-xl border border-border bg-card shadow-xs sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-none animate-in fade-in-0 duration-200">
             <DynamicFilters
               category={category}
               products={products}

@@ -20,14 +20,34 @@ export async function rootLoader(): Promise<RootLoaderData> {
 export interface HomeLoaderData {
   categories: Category[]
   products: Product[]
+  totalProductsCount: number
 }
 
 export async function homeLoader(): Promise<HomeLoaderData> {
-  const [categories, products] = await Promise.all([
+  const [allCategories, allProducts] = await Promise.all([
     fetchCategories(),
     fetchProducts(),
   ])
-  return { categories, products }
+
+  // Limita para as 3 primeiras categorias que possuem produtos
+  const categories = allCategories
+    .filter((cat) => allProducts.some((p) => p.categorySlug === cat.slug))
+    .slice(0, 3)
+
+  // Limita para no máximo 5 produtos para cada uma das 3 categorias
+  const products: Product[] = []
+  for (const cat of categories) {
+    const categoryProducts = allProducts
+      .filter((p) => p.categorySlug === cat.slug)
+      .slice(0, 5)
+    products.push(...categoryProducts)
+  }
+
+  return {
+    categories,
+    products,
+    totalProductsCount: allProducts.length,
+  }
 }
 
 export interface CategoryLoaderData {

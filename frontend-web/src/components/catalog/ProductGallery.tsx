@@ -72,13 +72,14 @@ export function ProductGallery({ product, category }: ProductGalleryProps) {
       </div>
 
       {/* Container Principal da Imagem */}
-      <div className="relative flex items-center justify-center min-h-[300px] md:min-h-[380px] p-4 select-none group bg-card/40 rounded-2xl border border-border/70">
+      <div className="relative flex items-center justify-center min-h-72 md:min-h-96 p-4 select-none group bg-card/40 rounded-2xl border border-border/70">
         <img
           src={activeImage}
           alt={`${product.name} - Imagem ${selectedImageIndex + 1}`}
           loading="eager"
+          decoding="async"
           onClick={() => setIsLightboxOpen(true)}
-          className="max-h-[280px] md:max-h-[360px] w-auto max-w-full object-contain cursor-zoom-in drop-shadow-lg transition-all duration-300 ease-out hover:scale-105"
+          className="max-h-72 md:max-h-88 w-auto max-w-full object-contain cursor-zoom-in drop-shadow-lg transition-all duration-300 ease-out hover:scale-105"
         />
 
         {/* Setas de Navegação Entre as Imagens */}
@@ -149,7 +150,7 @@ export function ProductGallery({ product, category }: ProductGalleryProps) {
             <img
               src={activeImage}
               alt={product.name}
-              className="max-h-[85vh] max-w-full object-contain drop-shadow-2xl select-none animate-in zoom-in-95 duration-150"
+              className="max-h-5/6 max-w-full object-contain drop-shadow-2xl select-none animate-in zoom-in-95 duration-150"
             />
 
             {/* Setas de Navegação no Lightbox */}

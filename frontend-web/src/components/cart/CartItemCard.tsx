@@ -31,6 +31,8 @@ export function CartItemCard({
           <img
             src={product.images[0]}
             alt={product.name}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-105"
           />
         </Link>
@@ -90,11 +92,11 @@ export function CartItemCard({
         </div>
 
         {/* Subtotal do Item */}
-        <div className="text-right min-w-[80px]">
+        <div className="text-right min-w-20">
           <div className="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400">
             {itemPixTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
           </div>
-          <div className="text-[9px] text-muted-foreground line-through">
+          <div className="text-[10px] text-muted-foreground line-through">
             {itemTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
           </div>
         </div>

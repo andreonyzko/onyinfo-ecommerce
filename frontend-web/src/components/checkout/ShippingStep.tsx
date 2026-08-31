@@ -4,17 +4,18 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import {
   MapPin,
   Truck,
-  Loader2,
-  CheckCircle2,
-  AlertCircle,
   Building,
   Home,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+  ShieldCheck,
   Lock,
 } from 'lucide-react'
 import type { ShippingOption } from '../../types'
-import { useCartStore, useCustomerStore } from '../../stores'
 import { addressSchema, type AddressFormData } from '../../lib/schemas'
-import { maskCEP, cleanMask } from '../../lib/masks'
+import { maskCEP } from '../../lib/masks'
+import { useCartStore, useCustomerStore } from '../../stores'
 import { fetchAddressByCep } from '../../services/viaCepService'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { Label } from '../ui/label'
@@ -37,28 +38,29 @@ const SHIPPING_OPTIONS: ShippingOption[] = [
   },
   {
     id: 'retirada',
-    name: 'Retirada na Loja Oficial (SP)',
+    name: 'Retirada na Loja',
     deadlineDays: 0,
-    price: 0,
+    price: 0.0,
   },
 ]
 
 interface ShippingStepProps {
-  onSuccess: (data: AddressFormData) => void
+  onSuccess: () => void
 }
 
 export function ShippingStep({ onSuccess }: ShippingStepProps) {
   const customer = useCustomerStore((state) => state.customer)
   const saveProfile = useCustomerStore((state) => state.saveProfile)
+
   const selectedShipping = useCartStore((state) => state.selectedShipping)
   const setShipping = useCartStore((state) => state.setShipping)
 
   const [isLoadingCep, setIsLoadingCep] = useState(false)
-  const [cepStatus, setCepStatus] = useState<'idle' | 'success' | 'error'>(
-    customer?.address?.street ? 'success' : 'idle'
+  const [cepStatus, setCepStatus] = useState<'idle' | 'success' | 'error'>(() =>
+    customer?.address?.street && customer?.address?.city ? 'success' : 'idle'
   )
   const [cepErrorMessage, setCepErrorMessage] = useState('')
-  const [isAddressLocked, setIsAddressLocked] = useState(
+  const [isAddressLocked, setIsAddressLocked] = useState(() =>
     Boolean(customer?.address?.street && customer?.address?.city)
   )
 
@@ -82,17 +84,19 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
     },
   })
 
-  // Seleciona PAC por padrão se nenhum frete estiver ativo
+  // Sincroniza a modalidade de frete inicial se não estiver selecionada
   useEffect(() => {
     if (!selectedShipping) {
       setShipping(SHIPPING_OPTIONS[0])
     }
   }, [selectedShipping, setShipping])
 
-  const handleCepSearch = async (cepInput: string) => {
-    const raw = cleanMask(cepInput)
+  // Consulta endereço
+  const handleQueryCep = async (rawCep: string) => {
+    const raw = rawCep.replace(/\D/g, '')
     if (raw.length !== 8) {
       setCepStatus('idle')
+      setCepErrorMessage('')
       setIsAddressLocked(false)
       return
     }
@@ -105,7 +109,7 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
       const data = await fetchAddressByCep(raw)
       if (!data) {
         setCepStatus('error')
-        setCepErrorMessage('CEP não encontrado no ViaCEP.')
+        setCepErrorMessage('CEP não encontrado. Verifique o número digitado.')
         setIsAddressLocked(false)
         return
       }
@@ -135,7 +139,7 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
     } catch (err) {
       console.error(err)
       setCepStatus('error')
-      setCepErrorMessage('Erro ao consultar ViaCEP. Verifique sua conexão.')
+      setCepErrorMessage('Erro ao consultar endereço. Verifique sua conexão.')
       setIsAddressLocked(false)
     } finally {
       setIsLoadingCep(false)
@@ -144,9 +148,11 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
 
   const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const masked = maskCEP(e.target.value)
-    setValue('cep', masked, { shouldValidate: true })
-    if (cleanMask(masked).length === 8) {
-      handleCepSearch(masked)
+    setValue('cep', masked)
+
+    const raw = e.target.value.replace(/\D/g, '')
+    if (raw.length === 8) {
+      handleQueryCep(raw)
     } else {
       setIsAddressLocked(false)
       setCepStatus('idle')
@@ -154,34 +160,64 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
   }
 
   const handleAddressFieldChange = (field: keyof AddressFormData, value: string) => {
-    const currentValues = getValues()
+    const current = getValues()
     saveProfile({
       address: {
-        ...currentValues,
-        [field]: value,
+        cep: current.cep || '',
+        street: field === 'street' ? value : current.street || '',
+        number: field === 'number' ? value : current.number || '',
+        complement: field === 'complement' ? value : current.complement || '',
+        neighborhood: field === 'neighborhood' ? value : current.neighborhood || '',
+        city: field === 'city' ? value : current.city || '',
+        state: field === 'state' ? value : current.state || '',
       },
     })
   }
 
   const onSubmit = (data: AddressFormData) => {
-    saveProfile({ address: data })
-    onSuccess(data)
+    // Garante que o frete está gravado no carrinho
+    if (!selectedShipping) {
+      setShipping(SHIPPING_OPTIONS[0])
+    }
+
+    // Atualiza endereço persistido do cliente
+    saveProfile({
+      address: {
+        cep: data.cep,
+        street: data.street,
+        number: data.number,
+        complement: data.complement || '',
+        neighborhood: data.neighborhood,
+        city: data.city,
+        state: data.state,
+      },
+    })
+
+    onSuccess()
   }
 
   return (
-    <form id="shipping-form" onSubmit={handleSubmit(onSubmit)} className="h-full">
-      <Card className="border-border/80 shadow-xs h-full flex flex-col">
+    <form id="shipping-form" onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <Card className="border-border/80 shadow-xs bg-card">
         <CardHeader className="py-3.5 px-4 sm:px-6 bg-muted/20 border-b border-border">
-          <CardTitle className="text-sm font-bold text-foreground">
-            Endereço de Entrega & Opções de Envio
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-primary" />
+              <CardTitle className="text-sm font-bold text-foreground">
+                Endereço de Entrega
+              </CardTitle>
+            </div>
+            <Badge variant="outline" className="text-xs">
+              Etapa 2 de 3
+            </Badge>
+          </div>
         </CardHeader>
 
-        <CardContent className="p-4 sm:p-6 flex-1 flex flex-col justify-between space-y-6">
-          {/* Formulário de Endereço */}
-          <div className="grid grid-cols-1 sm:grid-cols-6 gap-3.5">
-            {/* Campo de CEP com Consulta ViaCEP */}
-            <div className="sm:col-span-3 space-y-1.5">
+        <CardContent className="p-4 sm:p-6 space-y-4">
+          {/* Grid de Endereço */}
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
+            {/* CEP */}
+            <div className="sm:col-span-4 space-y-1.5">
               <Label htmlFor="cep" className="text-xs font-semibold flex items-center justify-between">
                 <span className="flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-muted-foreground" />
@@ -190,7 +226,7 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
                 {isLoadingCep && (
                   <span className="flex items-center gap-1 text-[11px] text-primary font-normal">
                     <Loader2 className="w-3 h-3 animate-spin" />
-                    <span>Consultando ViaCEP...</span>
+                    <span>Buscando endereço...</span>
                   </span>
                 )}
               </Label>
@@ -219,14 +255,14 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
               )}
             </div>
 
-            {/* Estado / UF (Bloqueado quando preenchido pelo ViaCEP) */}
+            {/* Estado / UF (Bloqueado quando preenchido automaticamente) */}
             <div className="sm:col-span-3 space-y-1.5">
               <Label htmlFor="state" className="text-xs font-semibold flex items-center justify-between">
                 <span>Estado (UF) *</span>
                 {isAddressLocked && (
                   <span className="flex items-center gap-1 text-[10px] text-muted-foreground font-normal">
                     <Lock className="w-3 h-3" />
-                    <span>ViaCEP</span>
+                    <span>Auto</span>
                   </span>
                 )}
               </Label>
@@ -248,8 +284,8 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
               )}
             </div>
 
-            {/* Logradouro / Rua (Bloqueado quando preenchido pelo ViaCEP) */}
-            <div className="sm:col-span-4 space-y-1.5">
+            {/* Logradouro / Rua (Bloqueado quando preenchido automaticamente) */}
+            <div className="sm:col-span-5 space-y-1.5">
               <Label htmlFor="street" className="text-xs font-semibold flex items-center justify-between">
                 <span className="flex items-center gap-1.5">
                   <Home className="w-3.5 h-3.5 text-muted-foreground" />
@@ -258,7 +294,7 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
                 {isAddressLocked && (
                   <span className="flex items-center gap-1 text-[10px] text-muted-foreground font-normal">
                     <Lock className="w-3 h-3" />
-                    <span>ViaCEP</span>
+                    <span>Auto</span>
                   </span>
                 )}
               </Label>
@@ -279,8 +315,8 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
               )}
             </div>
 
-            {/* Número (Sempre Editável) */}
-            <div className="sm:col-span-2 space-y-1.5">
+            {/* Número */}
+            <div className="sm:col-span-3 space-y-1.5">
               <Label htmlFor="number" className="text-xs font-semibold">
                 Número *
               </Label>
@@ -297,17 +333,14 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
               )}
             </div>
 
-            {/* Bairro (Bloqueado quando preenchido pelo ViaCEP) */}
-            <div className="sm:col-span-3 space-y-1.5">
+            {/* Bairro (Bloqueado quando preenchido automaticamente) */}
+            <div className="sm:col-span-4 space-y-1.5">
               <Label htmlFor="neighborhood" className="text-xs font-semibold flex items-center justify-between">
-                <span className="flex items-center gap-1.5">
-                  <Building className="w-3.5 h-3.5 text-muted-foreground" />
-                  <span>Bairro *</span>
-                </span>
+                <span>Bairro *</span>
                 {isAddressLocked && (
                   <span className="flex items-center gap-1 text-[10px] text-muted-foreground font-normal">
                     <Lock className="w-3 h-3" />
-                    <span>ViaCEP</span>
+                    <span>Auto</span>
                   </span>
                 )}
               </Label>
@@ -324,20 +357,21 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
                 )}
               />
               {errors.neighborhood && (
-                <p className="text-[11px] text-destructive font-medium">
-                  {errors.neighborhood.message}
-                </p>
+                <p className="text-[11px] text-destructive font-medium">{errors.neighborhood.message}</p>
               )}
             </div>
 
-            {/* Cidade (Bloqueada quando preenchida pelo ViaCEP) */}
-            <div className="sm:col-span-3 space-y-1.5">
+            {/* Cidade (Bloqueada quando preenchida automaticamente) */}
+            <div className="sm:col-span-5 space-y-1.5">
               <Label htmlFor="city" className="text-xs font-semibold flex items-center justify-between">
-                <span>Cidade *</span>
+                <span className="flex items-center gap-1.5">
+                  <Building className="w-3.5 h-3.5 text-muted-foreground" />
+                  <span>Cidade *</span>
+                </span>
                 {isAddressLocked && (
                   <span className="flex items-center gap-1 text-[10px] text-muted-foreground font-normal">
                     <Lock className="w-3 h-3" />
-                    <span>ViaCEP</span>
+                    <span>Auto</span>
                   </span>
                 )}
               </Label>
@@ -358,10 +392,10 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
               )}
             </div>
 
-            {/* Complemento (Sempre Editável / Opcional) */}
-            <div className="sm:col-span-6 space-y-1.5">
+            {/* Complemento (Opcional) */}
+            <div className="sm:col-span-12 space-y-1.5">
               <Label htmlFor="complement" className="text-xs font-semibold">
-                Complemento / Ponto de Referência <span className="text-muted-foreground font-normal">(Opcional)</span>
+                Complemento <span className="text-muted-foreground font-normal">(Opcional)</span>
               </Label>
               <Input
                 id="complement"
@@ -375,7 +409,7 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
 
           {/* Seleção de Frete */}
           <div className="space-y-2.5 pt-2">
-            <Label className="text-xs font-semibold flex items-center gap-1.5 text-foreground uppercase tracking-wider block">
+            <Label className="text-xs font-semibold flex items-center gap-1.5 text-foreground uppercase tracking-wider">
               <Truck className="w-3.5 h-3.5 text-primary" />
               <span>Opções de Envio Disponíveis</span>
             </Label>
@@ -394,36 +428,43 @@ export function ShippingStep({ onSuccess }: ShippingStepProps) {
                         : 'border-border bg-card/60 hover:border-primary/40 hover:bg-muted/20'
                     )}
                   >
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <span className="font-bold text-xs text-foreground">{option.name}</span>
-                        {option.price === 0 && (
-                          <Badge variant="success" className="text-[9px] py-0 px-1 font-bold">
-                            GRÁTIS
-                          </Badge>
-                        )}
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="font-semibold text-xs text-foreground truncate">
+                        {option.name}
                       </div>
-                      <p className="text-[10px] text-muted-foreground mt-0.5">
-                        {option.deadlineDays === 0
-                          ? 'Disponível em 2 horas'
-                          : `Prazo: até ${option.deadlineDays} dias úteis`}
-                      </p>
+                      <div
+                        className={cn(
+                          'w-3.5 h-3.5 rounded-full border flex items-center justify-center shrink-0',
+                          isSelected ? 'border-primary bg-primary' : 'border-muted-foreground'
+                        )}
+                      >
+                        {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-primary-foreground" />}
+                      </div>
                     </div>
 
-                    <div className="pt-1.5 text-right">
-                      <span className="font-extrabold text-xs text-foreground">
-                        {option.price === 0
-                          ? 'R$ 0,00'
-                          : option.price.toLocaleString('pt-BR', {
-                              style: 'currency',
-                              currency: 'BRL',
-                            })}
+                    <div className="flex items-baseline justify-between pt-1">
+                      <span className="text-[11px] text-muted-foreground">
+                        {option.deadlineDays === 0
+                          ? 'Retirada imediata'
+                          : `Até ${option.deadlineDays} dias úteis`}
+                      </span>
+                      <span className="font-bold text-xs text-foreground">
+                        {option.price === 0 ? (
+                          <span className="text-emerald-600 dark:text-emerald-400 font-extrabold">GRÁTIS</span>
+                        ) : (
+                          option.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                        )}
                       </span>
                     </div>
                   </div>
                 )
               })}
             </div>
+          </div>
+
+          <div className="pt-2 flex items-center gap-1.5 text-[11px] text-muted-foreground">
+            <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" />
+            <span>Endereço verificado e protegido para envio seguro.</span>
           </div>
         </CardContent>
       </Card>

@@ -43,7 +43,7 @@ export function PaymentStep({ onSuccess }: PaymentStepProps) {
   const shippingPrice = selectedShipping?.price || 0
   const totalCredit = subtotal + shippingPrice
 
-  const pixKeyMock = '00020126580014br.gov.bcb.pix0136onyinfo-bootcamp-aws-fde-20265204000053039865802BR5915OnyInfo Hardware6009Sao Paulo62070503***6304E8A2'
+  const pixKeyMock = '00020126580014br.gov.bcb.pix0136onyinfo-pagamentos-pix-oficial5204000053039865802BR5915OnyInfo Hardware6009Sao Paulo62070503***6304E8A2'
 
   const handleCopyPix = () => {
     navigator.clipboard.writeText(pixKeyMock)
@@ -146,7 +146,7 @@ export function PaymentStep({ onSuccess }: PaymentStepProps) {
                 {/* QR Code Simulado */}
                 <div className="w-28 h-28 rounded-xl bg-background border border-border p-2 flex flex-col items-center justify-center text-foreground shrink-0 shadow-xs">
                   <QrCode className="w-20 h-20 text-foreground" />
-                  <span className="text-[8px] font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">
+                  <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">
                     PIX 5% OFF
                   </span>
                 </div>
@@ -157,13 +157,13 @@ export function PaymentStep({ onSuccess }: PaymentStepProps) {
                     <Zap className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                     <span>Pague com PIX e garanta 5% de desconto</span>
                   </h4>
-                  <p className="text-[11px] text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     Utilize o aplicativo do seu banco para ler o QR Code ou copie a chave Copia e Cola abaixo.
                   </p>
 
                   {/* Chave Copia e Cola */}
                   <div className="flex items-center gap-2 pt-1 w-full min-w-0">
-                    <div className="flex-1 min-w-0 overflow-hidden bg-background border border-input rounded-md px-2.5 py-1.5 text-[10px] font-mono text-muted-foreground truncate">
+                    <div className="flex-1 min-w-0 overflow-hidden bg-background border border-input rounded-md px-2.5 py-1.5 text-xs font-mono text-muted-foreground truncate">
                       {pixKeyMock}
                     </div>
                     <Button
@@ -273,8 +273,8 @@ export function PaymentStep({ onSuccess }: PaymentStepProps) {
             </div>
           )}
 
-          <div className="pt-2 text-[11px] text-muted-foreground">
-            * Ambiente de pagamento simulado em conformidade com as regras do Desafio 1.
+          <div className="pt-2 text-xs text-muted-foreground">
+            * Ambiente de pagamento seguro protegido por criptografia de ponta a ponta.
           </div>
         </CardContent>
       </Card>

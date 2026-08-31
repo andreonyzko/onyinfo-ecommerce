@@ -163,6 +163,8 @@ export function OrderDetailPage() {
                     <img
                       src={product.images[0]}
                       alt={product.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain transition-transform group-hover:scale-105"
                     />
                   </Link>

@@ -36,7 +36,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
             {isLast || !item.href ? (
               <span
                 className={cn(
-                  'truncate max-w-[200px] sm:max-w-xs md:max-w-md',
+                  'truncate max-w-48 sm:max-w-xs md:max-w-md',
                   isLast ? 'text-foreground font-semibold' : 'text-muted-foreground'
                 )}
                 title={item.label}
@@ -46,7 +46,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
             ) : (
               <Link
                 to={item.href}
-                className="hover:text-foreground transition-colors truncate max-w-[150px] sm:max-w-xs"
+                className="hover:text-foreground transition-colors truncate max-w-36 sm:max-w-xs"
                 title={item.label}
               >
                 {item.label}

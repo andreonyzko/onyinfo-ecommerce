@@ -5,7 +5,7 @@ import { cn } from '../lib/utils'
 
 export function NotFoundPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center">
+    <div className="flex flex-col items-center justify-center min-h-96 py-12 px-4 text-center">
       <div className="p-4 mb-4 rounded-full bg-destructive/10 text-destructive">
         <AlertCircle className="w-12 h-12" />
       </div>
