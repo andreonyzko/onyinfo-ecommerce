@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { useNavigate } from 'react-router'
 import {
   CheckCircle,
   Printer,
@@ -11,20 +11,28 @@ import {
   Package,
 } from 'lucide-react'
 import type { OrderSummary } from '../../types'
-import { Button, buttonVariants } from '../ui/button'
+import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { Separator } from '../ui/separator'
-import { cn } from '../../lib/utils'
 
 interface OrderConfirmationProps {
   order: OrderSummary
-  onNewOrder?: () => void
 }
 
-export function OrderConfirmation({ order, onNewOrder }: OrderConfirmationProps) {
+export function OrderConfirmation({ order }: OrderConfirmationProps) {
+  const navigate = useNavigate()
+
   const handlePrint = () => {
     window.print()
+  }
+
+  const handleGoToOrders = () => {
+    navigate('/meus-pedidos')
+  }
+
+  const handleGoToCatalog = () => {
+    navigate('/busca')
   }
 
   const formattedDate = new Date(order.createdAt).toLocaleDateString('pt-BR', {
@@ -111,38 +119,35 @@ export function OrderConfirmation({ order, onNewOrder }: OrderConfirmationProps)
             </CardTitle>
           </CardHeader>
           <CardContent className="p-4 text-xs space-y-2 text-muted-foreground">
-            <div className="flex items-center gap-1.5">
-              {order.paymentMethod === 'pix' ? (
-                <>
-                  <Badge variant="success" className="text-[10px] font-bold">
-                    <Zap className="w-2.5 h-2.5 mr-0.5" /> PIX (5% OFF)
-                  </Badge>
-                  <span className="font-semibold text-foreground">Aprovado</span>
-                </>
-              ) : (
-                <>
-                  <Badge variant="secondary" className="text-[10px]">
-                    Cartão de Crédito
-                  </Badge>
-                  <span className="font-semibold text-foreground">Autorizado</span>
-                </>
-              )}
+            <div className="font-semibold text-foreground">
+              {order.paymentMethod === 'pix'
+                ? 'PIX (5% de Desconto)'
+                : order.paymentMethod === 'credit_card'
+                ? 'Cartão de Crédito'
+                : 'Boleto Bancário'}
             </div>
-            <div className="text-[11px]">
-              Total Pago:{' '}
-              <span className="font-bold text-foreground">
-                {order.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+            {order.paymentMethod === 'pix' ? (
+              <div className="text-emerald-600 dark:text-emerald-400 font-medium flex items-center gap-1">
+                <Zap className="w-3 h-3" />
+                <span>Desconto de 5% aplicado</span>
+              </div>
+            ) : (
+              <div>Em até 12x sem juros</div>
+            )}
+            <div className="pt-1">
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                APROVADO
               </span>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Lista de Itens do Pedido */}
-      <Card className="border-border/80 shadow-xs overflow-hidden">
+      {/* Itens Comprados */}
+      <Card className="border-border/80 bg-card overflow-hidden">
         <CardHeader className="py-3 px-4 md:px-6 bg-muted/20 border-b border-border">
-          <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-            Itens Adquiridos ({order.items.reduce((acc, i) => acc + i.quantity, 0)})
+          <CardTitle className="text-xs font-bold text-foreground uppercase tracking-wider">
+            Itens do Pedido ({order.items.reduce((acc, i) => acc + i.quantity, 0)})
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0 divide-y divide-border/60">
@@ -172,13 +177,19 @@ export function OrderConfirmation({ order, onNewOrder }: OrderConfirmationProps)
                       {product.price.toLocaleString('pt-BR', {
                         style: 'currency',
                         currency: 'BRL',
-                      })}
+                      })}{' '}
+                      cada
                     </div>
                   </div>
                 </div>
 
-                <div className="font-bold text-xs text-foreground">
-                  {itemTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                <div className="text-right shrink-0">
+                  <span className="font-bold text-xs sm:text-sm text-foreground">
+                    {itemTotal.toLocaleString('pt-BR', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}
+                  </span>
                 </div>
               </div>
             )
@@ -186,13 +197,16 @@ export function OrderConfirmation({ order, onNewOrder }: OrderConfirmationProps)
         </CardContent>
       </Card>
 
-      {/* Resumo de Valores */}
-      <Card className="border-border/80 bg-card p-5 space-y-3">
-        <div className="space-y-2 text-xs">
+      {/* Resumo Financeiro */}
+      <Card className="border-border/80 bg-card p-4 sm:p-6 space-y-3">
+        <div className="space-y-1.5 text-xs">
           <div className="flex justify-between text-muted-foreground">
-            <span>Subtotal dos Produtos:</span>
-            <span className="font-medium text-foreground">
-              {order.subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+            <span>Subtotal:</span>
+            <span>
+              {order.subtotal.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
             </span>
           </div>
 
@@ -240,29 +254,22 @@ export function OrderConfirmation({ order, onNewOrder }: OrderConfirmationProps)
         </Button>
 
         <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-          <Link
-            to="/meus-pedidos"
-            onClick={onNewOrder}
-            className={cn(
-              buttonVariants({ variant: 'outline', size: 'default' }),
-              'w-full sm:w-auto gap-1.5 font-semibold text-xs'
-            )}
+          <Button
+            variant="outline"
+            onClick={handleGoToOrders}
+            className="w-full sm:w-auto gap-1.5 font-semibold text-xs cursor-pointer"
           >
             <Package className="w-3.5 h-3.5 text-primary" />
             <span>Meus Pedidos</span>
-          </Link>
+          </Button>
 
-          <Link
-            to="/"
-            onClick={onNewOrder}
-            className={cn(
-              buttonVariants({ size: 'default' }),
-              'w-full sm:w-auto gap-1.5 font-semibold text-xs shadow-md'
-            )}
+          <Button
+            onClick={handleGoToCatalog}
+            className="w-full sm:w-auto gap-1.5 font-semibold text-xs shadow-md cursor-pointer"
           >
             <span>Voltar para o Catálogo</span>
             <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          </Button>
         </div>
       </div>
     </div>

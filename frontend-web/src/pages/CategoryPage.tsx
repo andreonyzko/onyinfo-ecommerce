@@ -163,7 +163,10 @@ function CategoryView({ category, products }: CategoryViewProps) {
         </div>
 
         {/* Controles de Ordenação e Botões de Filtro */}
-        <div className="flex flex-wrap items-center gap-2.5 self-start md:self-auto">
+        <div className="flex items-center gap-2.5 shrink-0">
+          {/* Dropdown de Ordenação Customizado */}
+          <SortSelect value={sortBy} onChange={handleSortChange} />
+
           {/* Botões de Toggle de Filtros Desktop e Mobile */}
           <FilterToggle
             isDesktopVisible={isDesktopFiltersVisible}
@@ -171,9 +174,6 @@ function CategoryView({ category, products }: CategoryViewProps) {
             onOpenMobile={() => setIsMobileFiltersOpen(true)}
             activeFilterCount={activeFilterCount}
           />
-
-          {/* Dropdown de Ordenação Customizado */}
-          <SortSelect value={sortBy} onChange={handleSortChange} />
         </div>
       </div>
 

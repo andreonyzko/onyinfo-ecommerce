@@ -36,7 +36,6 @@ export function CheckoutPage() {
 
   const lastOrder = useOrdersStore((state) => state.lastOrder)
   const addOrder = useOrdersStore((state) => state.addOrder)
-  const clearLastOrder = useOrdersStore((state) => state.clearLastOrder)
 
   const [currentStep, setCurrentStep] = useState<CheckoutStep>('identification')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -51,17 +50,12 @@ export function CheckoutPage() {
   if (lastOrder && items.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <OrderConfirmation
-          order={lastOrder}
-          onNewOrder={() => {
-            clearLastOrder()
-          }}
-        />
+        <OrderConfirmation order={lastOrder} />
       </div>
     )
   }
 
-  // Bloqueio de acesso direto: só permite o fluxo se houver itens no carrinho
+  // Bloqueio de acesso direto: redireciona automaticamente para o carrinho se não houver itens
   if (items.length === 0) {
     return <Navigate to="/carrinho" replace />
   }
@@ -99,16 +93,18 @@ export function CheckoutPage() {
       },
       paymentMethod: selectedPaymentMethod,
       subtotal,
-      shippingPrice,
       discount: discountPix,
+      shippingPrice,
       total,
     }
 
-    setTimeout(() => {
-      addOrder(newOrder)
-      clearCart()
-      setIsSubmitting(false)
-    }, 400)
+    // Persiste o novo pedido na store dedicada
+    addOrder(newOrder)
+
+    // Limpa o carrinho de compras após salvar o pedido
+    clearCart()
+
+    setIsSubmitting(false)
   }
 
   return (
@@ -132,10 +128,9 @@ export function CheckoutPage() {
         </div>
       </div>
 
-      {/* Grid Principal: Colunas com Altura Pareada no Desktop (items-stretch) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        {/* Coluna Esquerda: Formulário da Etapa Atual */}
-        <div className="lg:col-span-8 flex flex-col">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Coluna Esquerda: Formulários por Etapa */}
+        <div className="lg:col-span-8">
           {currentStep === 'identification' && (
             <CustomerStep onSuccess={() => setCurrentStep('shipping')} />
           )}
@@ -149,9 +144,9 @@ export function CheckoutPage() {
           )}
         </div>
 
-        {/* Coluna Direita: Resumo do Pedido & Stepper Vertical */}
-        <div className="lg:col-span-4 flex flex-col">
-          <Card className="border-border/80 shadow-md bg-card flex-1 flex flex-col justify-between">
+        {/* Coluna Direita: Resumo do Pedido */}
+        <div className="lg:col-span-4 space-y-4 sticky top-28">
+          <Card className="border-border/80 shadow-xs overflow-hidden bg-card">
             <CardHeader className="py-3 px-4 md:px-6 bg-muted/20 border-b border-border">
               <CardTitle className="text-sm font-bold text-foreground">
                 Resumo da Compra
@@ -179,7 +174,7 @@ export function CheckoutPage() {
                       </div>
                     </div>
                     <span className="font-semibold text-foreground shrink-0">
-                      {formatCurrency(product.price * quantity)}
+                      {(product.price * quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                     </span>
                   </div>
                 ))}
@@ -187,61 +182,78 @@ export function CheckoutPage() {
 
               <Separator />
 
-              {/* Linhas de Valores Financeiros */}
+              {/* Valores Totais */}
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between text-muted-foreground">
-                  <span>Subtotal ({items.reduce((acc, i) => acc + i.quantity, 0)} itens):</span>
-                  <span className="font-semibold text-foreground">{formatCurrency(subtotal)}</span>
+                  <span>Subtotal</span>
+                  <span className="font-semibold text-foreground">
+                    {subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                  </span>
                 </div>
 
                 <div className="flex justify-between text-muted-foreground">
-                  <span className="flex items-center gap-1">
-                    <Truck className="w-3.5 h-3.5 text-muted-foreground" />
-                    <span>Frete:</span>
-                  </span>
+                  <span>Frete</span>
                   <span className="font-semibold text-foreground">
-                    {shippingPrice === 0 ? (
-                      <span className="text-emerald-600 dark:text-emerald-400">GRÁTIS</span>
-                    ) : (
-                      formatCurrency(shippingPrice)
-                    )}
+                    {shippingPrice === 0
+                      ? 'Grátis'
+                      : shippingPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                   </span>
                 </div>
 
-                {selectedPaymentMethod === 'pix' && (
-                  <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-semibold">
+                {selectedPaymentMethod === 'pix' && discountPix > 0 && (
+                  <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-semibold animate-in fade-in-0 duration-200">
                     <span className="flex items-center gap-1">
-                      <Zap className="w-3.5 h-3.5" />
-                      <span>Desconto PIX (5%):</span>
+                      <Zap className="w-3 h-3" /> Desconto PIX (5%)
                     </span>
-                    <span>- {formatCurrency(discountPix)}</span>
+                    <span>
+                      - {discountPix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    </span>
                   </div>
                 )}
+
+                <Separator />
+
+                <div className="pt-1">
+                  <div className="flex justify-between items-baseline">
+                    <span className="font-bold text-sm text-foreground">Total à vista (PIX)</span>
+                    <span className="text-xl font-black text-emerald-600 dark:text-emerald-400">
+                      {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground text-right mt-0.5">
+                    ou em até 12x de{' '}
+                    <span className="font-semibold text-foreground">
+                      {formatCurrency(installmentPrice)}
+                    </span>{' '}
+                    sem juros
+                  </div>
+                </div>
               </div>
 
-              <Separator />
-
-              {/* Total Geral */}
-              <div className="space-y-1">
-                <div className="flex justify-between items-baseline">
-                  <span className="font-bold text-sm text-foreground">Total:</span>
-                  <span className="text-xl font-black text-emerald-600 dark:text-emerald-400">
-                    {formatCurrency(total)}
-                  </span>
+              {/* Benefícios de Segurança */}
+              <div className="pt-2 border-t border-border/60 space-y-1.5 text-[11px] text-muted-foreground">
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                  <span>Ambiente 100% protegido com SSL</span>
                 </div>
-                <div className="text-[11px] text-muted-foreground text-right flex items-center justify-end gap-1">
-                  <CreditCard className="w-3.5 h-3.5" />
-                  <span>ou 12x de {formatCurrency(installmentPrice)} sem juros</span>
+                <div className="flex items-center gap-1.5">
+                  <Truck className="w-3.5 h-3.5 text-primary shrink-0" />
+                  <span>Rastreamento em tempo real do seu pedido</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CreditCard className="w-3.5 h-3.5 text-primary shrink-0" />
+                  <span>Garantia oficial e nota fiscal eletrônica</span>
                 </div>
               </div>
 
-              {/* Botão de Navegação / Submissão Integrado */}
-              <div className="pt-2">
+              {/* Controles de Navegação entre Etapas */}
+              <div className="pt-3 border-t border-border/60 flex flex-col gap-2">
                 {currentStep === 'identification' && (
                   <Button
                     type="submit"
                     form="customer-form"
-                    className="w-full font-bold gap-2 text-sm shadow-md cursor-pointer"
+                    size="lg"
+                    className="w-full font-bold gap-2 text-xs sm:text-sm cursor-pointer shadow-md"
                   >
                     <span>Ir para Entrega</span>
                     <ArrowRight className="w-4 h-4" />
@@ -249,64 +261,60 @@ export function CheckoutPage() {
                 )}
 
                 {currentStep === 'shipping' && (
-                  <div className="flex gap-2">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="default"
-                      onClick={() => setCurrentStep('identification')}
-                      className="gap-1.5 text-xs font-semibold cursor-pointer"
-                    >
-                      <ArrowLeft className="w-3.5 h-3.5" />
-                      <span>Voltar</span>
-                    </Button>
+                  <>
                     <Button
                       type="submit"
                       form="shipping-form"
-                      className="flex-1 font-bold gap-2 text-sm shadow-md cursor-pointer"
+                      size="lg"
+                      className="w-full font-bold gap-2 text-xs sm:text-sm cursor-pointer shadow-md"
                     >
                       <span>Ir para Pagamento</span>
                       <ArrowRight className="w-4 h-4" />
                     </Button>
-                  </div>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setCurrentStep('identification')}
+                      className="w-full gap-1.5 text-xs text-muted-foreground hover:text-foreground cursor-pointer"
+                    >
+                      <ArrowLeft className="w-3.5 h-3.5" />
+                      <span>Voltar para Identificação</span>
+                    </Button>
+                  </>
                 )}
 
                 {currentStep === 'payment' && (
-                  <div className="flex gap-2">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="default"
-                      onClick={() => setCurrentStep('shipping')}
-                      disabled={isSubmitting}
-                      className="gap-1.5 text-xs font-semibold cursor-pointer"
-                    >
-                      <ArrowLeft className="w-3.5 h-3.5" />
-                      <span>Voltar</span>
-                    </Button>
+                  <>
                     <Button
                       type="submit"
                       form="payment-form"
+                      size="lg"
                       disabled={isSubmitting}
-                      className="flex-1 font-bold gap-2 text-sm shadow-md cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white"
+                      className="w-full font-bold gap-2 text-xs sm:text-sm cursor-pointer shadow-md bg-emerald-600 hover:bg-emerald-700 text-white"
                     >
                       {isSubmitting ? (
-                        <span>Processando...</span>
+                        <span>Processando compra...</span>
                       ) : (
                         <>
                           <CheckCircle className="w-4 h-4" />
-                          <span>Finalizar Compra</span>
+                          <span>Finalizar compra</span>
                         </>
                       )}
                     </Button>
-                  </div>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      disabled={isSubmitting}
+                      onClick={() => setCurrentStep('shipping')}
+                      className="w-full gap-1.5 text-xs text-muted-foreground hover:text-foreground cursor-pointer"
+                    >
+                      <ArrowLeft className="w-3.5 h-3.5" />
+                      <span>Voltar para Entrega</span>
+                    </Button>
+                  </>
                 )}
-              </div>
-
-              {/* Selo de Segurança */}
-              <div className="pt-2 flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
-                <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
-                <span>Checkout 100% protegido via SSL &bull; OnyInfo</span>
               </div>
             </CardContent>
           </Card>
