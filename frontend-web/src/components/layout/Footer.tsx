@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { Cpu, ShieldCheck, Zap, Video, Code2 } from 'lucide-react'
+import { Cpu, ShieldCheck, Zap, Truck, CreditCard, Package } from 'lucide-react'
 
 const BASE_URL = import.meta.env.BASE_URL || '/'
 
@@ -16,7 +16,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           {/* Coluna 1: Marca e Conceito */}
           <div className="space-y-4 md:col-span-1">
-            <Link to="/" className="inline-block">
+            <Link to="/" className="inline-block" aria-label="OnyInfo Hardware">
               <img
                 src={formatAssetUrl('/onyinfo-white.png')}
                 alt="OnyInfo"
@@ -29,24 +29,23 @@ export function Footer() {
               />
             </Link>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Plataforma e-commerce estática de alta performance para hardware e
-              periféricos, construída sob o conceito de <em>headless commerce</em> em
-              miniatura e 100% orientada a dados.
+              Sua loja especializada em hardware de alta performance, componentes e
+              periféricos gamer. As melhores marcas com garantia oficial e entrega rápida em todo o Brasil.
             </p>
             <div className="flex items-center gap-3 text-xs font-semibold text-primary">
               <span className="flex items-center gap-1">
-                <Zap className="w-3.5 h-3.5" /> 100% Client-Side
+                <ShieldCheck className="w-3.5 h-3.5" /> Compra Segura
               </span>
               <span className="flex items-center gap-1">
-                <Cpu className="w-3.5 h-3.5" /> Data-Driven
+                <Cpu className="w-3.5 h-3.5" /> 100% Original
               </span>
             </div>
           </div>
 
-          {/* Coluna 2: Navegação Rápida */}
+          {/* Coluna 2: Navegação */}
           <div className="space-y-3">
             <h4 className="text-foreground font-semibold text-xs tracking-wider uppercase">
-              Navegação
+              Departamentos
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
@@ -60,77 +59,64 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/checkout" className="hover:text-foreground transition-colors">
-                  Carrinho de Compras
+                <Link to="/meus-pedidos" className="hover:text-foreground transition-colors flex items-center gap-1">
+                  <Package className="w-3 h-3 text-primary" />
+                  <span>Meus Pedidos</span>
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/como-fiz"
-                  className="inline-flex items-center gap-1 text-primary font-medium hover:underline"
-                >
-                  <Video className="w-3.5 h-3.5" />
-                  Defesa Técnica (/como-fiz)
+                <Link to="/carrinho" className="hover:text-foreground transition-colors">
+                  Meu Carrinho
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Coluna 3: Stack Tecnológica */}
+          {/* Coluna 3: Formas de Pagamento & Benefícios */}
           <div className="space-y-3">
             <h4 className="text-foreground font-semibold text-xs tracking-wider uppercase">
-              Stack Tecnológica
+              Pagamento &amp; Envio
             </h4>
-            <ul className="space-y-1.5 text-xs">
-              <li className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                React 19 & TypeScript
+            <ul className="space-y-2 text-xs">
+              <li className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold">
+                <Zap className="w-3.5 h-3.5 shrink-0" />
+                <span>5% de desconto à vista no PIX</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-violet-500" />
-                Vite 8 & React Router
+                <CreditCard className="w-3.5 h-3.5 shrink-0 text-muted-foreground" />
+                <span>Até 12x sem juros no cartão</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
-                Tailwind CSS v4 & Shadcn/UI
-              </li>
-              <li className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                Zustand (Persist) & Zod
+                <Truck className="w-3.5 h-3.5 shrink-0 text-muted-foreground" />
+                <span>PAC, SEDEX e Retirada Expressa</span>
               </li>
             </ul>
           </div>
 
-          {/* Coluna 4: Desafio & Regras de Negócio */}
+          {/* Coluna 4: Segurança & Atendimento */}
           <div className="space-y-3">
             <h4 className="text-foreground font-semibold text-xs tracking-wider uppercase">
-              Bootcamp AWS AI FDE
+              Segurança &amp; Garantia
             </h4>
             <p className="text-xs leading-relaxed">
-              Entrega do <strong>Desafio 1</strong> com foco em arquitetura
-              desacoplada, performance no Lighthouse e simulação de checkout com 5% de
-              desconto no PIX.
+              Todos os produtos comercializados possuem garantia direta do fabricante e nota fiscal eletrônica.
             </p>
             <div className="pt-1">
               <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-medium">
                 <ShieldCheck className="w-3.5 h-3.5" />
-                Desconto de 5% no PIX ativo
+                Ambiente 100% Protegido via SSL
               </span>
             </div>
           </div>
         </div>
 
-        {/* Linha inferior de copyright e avisos */}
-        <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <p>© {new Date().getFullYear()} OnyInfo Hardware. Projeto Acadêmico sem fins lucrativos.</p>
-          <div className="flex items-center gap-4">
-            <Link
-              to="/como-fiz"
-              className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
-            >
-              <Code2 className="w-3.5 h-3.5" />
-              <span>Documentação do Projeto</span>
-            </Link>
+        {/* Linha inferior de copyright e termos */}
+        <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+          <p>© {new Date().getFullYear()} OnyInfo Hardware. Todos os direitos reservados.</p>
+          <div className="flex items-center gap-3 text-[11px]">
+            <span>Privacidade &amp; Termos</span>
+            <span>&bull;</span>
+            <span>Atendimento ao Cliente</span>
           </div>
         </div>
       </div>

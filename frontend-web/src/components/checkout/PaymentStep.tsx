@@ -43,7 +43,7 @@ export function PaymentStep({ onSuccess }: PaymentStepProps) {
   const shippingPrice = selectedShipping?.price || 0
   const totalCredit = subtotal + shippingPrice
 
-  const pixKeyMock = '00020126580014br.gov.bcb.pix0136onyinfo-bootcamp-aws-fde-20265204000053039865802BR5915OnyInfo Hardware6009Sao Paulo62070503***6304E8A2'
+  const pixKeyMock = '00020126580014br.gov.bcb.pix0136onyinfo-pagamentos-pix-oficial5204000053039865802BR5915OnyInfo Hardware6009Sao Paulo62070503***6304E8A2'
 
   const handleCopyPix = () => {
     navigator.clipboard.writeText(pixKeyMock)
@@ -273,8 +273,8 @@ export function PaymentStep({ onSuccess }: PaymentStepProps) {
             </div>
           )}
 
-          <div className="pt-2 text-[11px] text-muted-foreground">
-            * Ambiente de pagamento simulado em conformidade com as regras do Desafio 1.
+          <div className="pt-2 text-xs text-muted-foreground">
+            * Ambiente de pagamento seguro protegido por criptografia de ponta a ponta.
           </div>
         </CardContent>
       </Card>

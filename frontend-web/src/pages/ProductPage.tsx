@@ -13,7 +13,6 @@ import {
   Cpu,
   PackageCheck,
   CreditCard,
-  Sparkles,
 } from 'lucide-react'
 import type { ProductLoaderData } from '../router/loaders'
 import { useCartStore } from '../stores'
@@ -207,17 +206,17 @@ export function ProductPage() {
             </Button>
           </div>
 
-          {/* Informações Extras de Frete e Checkout */}
+          {/* Informações Extras de Frete e Entrega */}
           <div className="p-3.5 rounded-lg border border-border bg-card/40 flex items-center gap-3 text-xs text-muted-foreground">
-            <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
+            <Truck className="w-4 h-4 text-primary shrink-0" />
             <span>
-              O cálculo de frete oficial com consulta em tempo real (ViaCEP) ocorre na etapa do carrinho de compras.
+              Calcule o frete e visualize as opções de entrega diretamente no checkout.
             </span>
           </div>
         </div>
       </div>
 
-      {/* Tabela Completa de Especificações Técnicas (Data-Driven) */}
+      {/* Tabela Completa de Especificações Técnicas */}
       <section className="space-y-4 pt-6 border-t border-border">
         <div className="flex items-center gap-2">
           <Cpu className="w-5 h-5 text-primary" />

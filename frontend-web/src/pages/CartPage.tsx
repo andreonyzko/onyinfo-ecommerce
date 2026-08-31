@@ -193,7 +193,7 @@ export function CartPage() {
               {/* Selo de Segurança */}
               <div className="pt-2 flex items-center justify-center gap-2 text-[11px] text-muted-foreground">
                 <ShieldCheck className="w-4 h-4 text-primary" />
-                <span>Compra 100% segura &bull; Desafio AWS FDE</span>
+                <span>Compra 100% segura &bull; Garantia Oficial OnyInfo</span>
               </div>
             </CardContent>
           </Card>
