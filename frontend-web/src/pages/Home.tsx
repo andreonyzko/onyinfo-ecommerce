@@ -1,13 +1,14 @@
 import { useLoaderData, Link } from 'react-router'
-import { ArrowRight, Cpu, ShieldCheck, Truck, Zap, Sparkles } from 'lucide-react'
+import { ArrowRight, Cpu, ShieldCheck, Truck, Zap, Sparkles, LayoutGrid } from 'lucide-react'
 import type { HomeLoaderData } from '../router/loaders'
 import { ProductCard } from '../components/catalog/ProductCard'
 import { buttonVariants } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
+import { Card, CardContent } from '../components/ui/card'
 import { cn } from '../lib/utils'
 
 export function HomePage() {
-  const { categories, products } = useLoaderData() as HomeLoaderData
+  const { categories, products, totalProductsCount } = useLoaderData() as HomeLoaderData
 
   return (
     <div className="space-y-12 pb-16">
@@ -72,7 +73,7 @@ export function HomePage() {
 
               <div className="p-4 rounded-xl border border-border bg-card/80 backdrop-blur-xs shadow-xs space-y-1">
                 <Cpu className="w-5 h-5 text-emerald-500 mb-2" />
-                <div className="text-lg font-black text-foreground">{products.length} Peças</div>
+                <div className="text-lg font-black text-foreground">{totalProductsCount} Peças</div>
                 <p className="text-xs text-muted-foreground">Em 16 categorias mapeadas</p>
               </div>
 
@@ -86,7 +87,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Vitrines por Categoria (Até 5 produtos por seção + "Ver mais") */}
+      {/* Vitrines da Home (Categorias e Produtos pré-filtrados e limitados pelo Loader) */}
       <div className="container mx-auto px-4 space-y-14">
         {categories.map((category) => {
           const categoryProducts = products.filter(
@@ -97,13 +98,10 @@ export function HomePage() {
             return null
           }
 
-          // RF05: Limitar a até 5 itens por vitrine na Home
-          const showcaseProducts = categoryProducts.slice(0, 5)
-
           return (
             <section
               key={category.slug}
-              className="space-y-5"
+              className="space-y-4"
               aria-labelledby={`category-heading-${category.slug}`}
             >
               {/* Header da Vitrine */}
@@ -132,15 +130,49 @@ export function HomePage() {
                 </Link>
               </div>
 
-              {/* Grid de Produtos da Vitrine */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                {showcaseProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+              {/* Vitrine: Carrossel Horizontal Nativo com Espaçamento Simétrico no Mobile e Grid no Desktop */}
+              <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 overflow-x-auto sm:overflow-x-visible pb-3 sm:pb-0 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory scroll-smooth scroll-px-4">
+                {categoryProducts.map((product) => (
+                  <div
+                    key={product.id}
+                    className="w-64 sm:w-auto shrink-0 snap-start flex flex-col"
+                  >
+                    <ProductCard product={product} />
+                  </div>
                 ))}
               </div>
             </section>
           )
         })}
+
+        {/* Banner de Acesso aos Demais Departamentos */}
+        <Card className="border-border/80 bg-linear-to-r from-primary/5 via-card to-primary/5 shadow-xs overflow-hidden">
+          <CardContent className="p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-center md:justify-start gap-2 text-primary font-bold text-xs uppercase tracking-wider">
+                <LayoutGrid className="w-4 h-4" />
+                <span>Catálogo Completo</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
+                Explore todos os 16 departamentos de hardware
+              </h3>
+              <p className="text-xs sm:text-sm text-muted-foreground max-w-xl">
+                Procurando outros componentes como fontes, coolers, gabinetes ou periféricos? Acesse nossa busca completa.
+              </p>
+            </div>
+
+            <Link
+              to="/busca"
+              className={cn(
+                buttonVariants({ size: 'lg' }),
+                'rounded-full px-6 font-bold gap-2 shadow-md shrink-0 w-full sm:w-auto justify-center'
+              )}
+            >
+              <span>Ver Todos os Departamentos</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
