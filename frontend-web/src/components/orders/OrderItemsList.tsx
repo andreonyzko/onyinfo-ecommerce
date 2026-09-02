@@ -2,6 +2,7 @@ import { Link } from 'react-router'
 import type { CartItem } from '../../types'
 import { Badge } from '../ui/badge'
 import { formatCurrency } from '../../lib/masks'
+import { formatAssetUrl } from '../../lib/utils'
 
 interface OrderItemsListProps {
   items: CartItem[]
@@ -21,7 +22,7 @@ export function OrderItemsList({ items }: OrderItemsListProps) {
               className="w-14 h-14 rounded-lg bg-card border border-border/70 p-1 shrink-0 flex items-center justify-center group"
             >
               <img
-                src={product.images[0]}
+                src={formatAssetUrl(product.images[0])}
                 alt={product.name}
                 loading="lazy"
                 decoding="async"

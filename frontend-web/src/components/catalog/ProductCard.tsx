@@ -6,7 +6,7 @@ import { useCartStore } from '../../stores'
 import { Card, CardContent, CardFooter } from '../ui/card'
 import { Badge } from '../ui/badge'
 import { Button, buttonVariants } from '../ui/button'
-import { cn } from '../../lib/utils'
+import { cn, formatAssetUrl } from '../../lib/utils'
 
 interface ProductCardProps {
   product: Product
@@ -34,7 +34,7 @@ export function ProductCard({ product }: ProductCardProps) {
         aria-label={`Ver detalhes de ${product.name}`}
       >
         <img
-          src={product.images[0]}
+          src={formatAssetUrl(product.images[0])}
           alt={product.name}
           loading="lazy"
           decoding="async"

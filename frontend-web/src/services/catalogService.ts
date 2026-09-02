@@ -1,15 +1,8 @@
 import type { Category, Product } from '../types'
+import { formatAssetUrl } from '../lib/utils'
 
 let categoriesCache: Category[] | null = null
 let productsCache: Product[] | null = null
-
-const BASE_URL = import.meta.env.BASE_URL || '/'
-
-function formatUrl(path: string): string {
-  const cleanBase = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL
-  const cleanPath = path.startsWith('/') ? path : `/${path}`
-  return `${cleanBase}${cleanPath}`
-}
 
 /**
  * Busca todas as categorias a partir do categories.json com cache em memória.
@@ -20,7 +13,7 @@ export async function fetchCategories(): Promise<Category[]> {
   }
 
   try {
-    const response = await fetch(formatUrl('/categories.json'))
+    const response = await fetch(formatAssetUrl('/datas/categories.json'))
     if (!response.ok) {
       throw new Error(`Falha ao carregar categorias: status ${response.status}`)
     }
@@ -52,7 +45,7 @@ export async function fetchProducts(): Promise<Product[]> {
   }
 
   try {
-    const response = await fetch(formatUrl('/products.json'))
+    const response = await fetch(formatAssetUrl('/datas/products.json'))
     if (!response.ok) {
       throw new Error(`Falha ao carregar produtos: status ${response.status}`)
     }

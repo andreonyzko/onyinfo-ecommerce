@@ -3,6 +3,7 @@ import { Plus, Minus, Trash2 } from 'lucide-react'
 import type { CartItem } from '../../types'
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
+import { formatAssetUrl } from '../../lib/utils'
 
 interface CartItemCardProps {
   item: CartItem
@@ -29,7 +30,7 @@ export function CartItemCard({
           className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 rounded-xl bg-card border border-border/70 p-1 flex items-center justify-center group"
         >
           <img
-            src={product.images[0]}
+            src={formatAssetUrl(product.images[0])}
             alt={product.name}
             loading="lazy"
             decoding="async"

@@ -3,6 +3,7 @@ import { Maximize2, Zap, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Product, Category } from '../../types'
 import { ProductLightbox } from './ProductLightbox'
 import { Badge } from '../ui/badge'
+import { formatAssetUrl } from '../../lib/utils'
 
 interface ProductGalleryProps {
   product: Product
@@ -34,7 +35,7 @@ export function ProductGallery({ product, category }: ProductGalleryProps) {
     setSelectedImageIndex((prev) => (prev + 1) % images.length)
   }
 
-  const activeImage = images[selectedImageIndex] || images[0]
+  const activeImage = formatAssetUrl(images[selectedImageIndex] || images[0])
 
   return (
     <div className="space-y-4">

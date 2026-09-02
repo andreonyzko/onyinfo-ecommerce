@@ -12,6 +12,7 @@ import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { Separator } from '../ui/separator'
 import { formatCurrency } from '../../lib/masks'
+import { formatAssetUrl } from '../../lib/utils'
 
 interface CheckoutOrderSummaryProps {
   items: CartItem[]
@@ -55,7 +56,7 @@ export function CheckoutOrderSummary({
               <div className="flex items-center gap-2.5 min-w-0">
                 <div className="w-9 h-9 rounded-lg bg-card border border-border/70 p-0.5 shrink-0 flex items-center justify-center">
                   <img
-                    src={product.images[0]}
+                    src={formatAssetUrl(product.images[0])}
                     alt={product.name}
                     loading="lazy"
                     decoding="async"

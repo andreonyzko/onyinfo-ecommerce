@@ -15,6 +15,7 @@ import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { Separator } from '../ui/separator'
+import { formatAssetUrl } from '../../lib/utils'
 
 interface OrderConfirmationProps {
   order: OrderSummary
@@ -161,7 +162,7 @@ export function OrderConfirmation({ order }: OrderConfirmationProps) {
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-lg bg-card border border-border/70 p-1 flex items-center justify-center shrink-0">
                     <img
-                      src={product.images[0]}
+                      src={formatAssetUrl(product.images[0])}
                       alt={product.name}
                       loading="lazy"
                       decoding="async"

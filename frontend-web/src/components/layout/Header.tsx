@@ -4,15 +4,7 @@ import { Search, ShoppingCart, Package, X } from 'lucide-react'
 import { useCartStore } from '../../stores'
 import { ThemeToggle } from './ThemeToggle'
 import { buttonVariants } from '../ui/button'
-import { cn } from '../../lib/utils'
-
-const BASE_URL = import.meta.env.BASE_URL || '/'
-
-function formatAssetUrl(path: string): string {
-  const cleanBase = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL
-  const cleanPath = path.startsWith('/') ? path : `/${path}`
-  return `${cleanBase}${cleanPath}`
-}
+import { cn, formatAssetUrl } from '../../lib/utils'
 
 export function Header() {
   const navigate = useNavigate()
@@ -51,7 +43,7 @@ export function Header() {
           >
             {/* Logo para Dark Mode */}
             <img
-              src={formatAssetUrl('/onyinfo-white.png')}
+              src={formatAssetUrl('/images/onyinfo-white.png')}
               alt="OnyInfo Hardware"
               width={130}
               height={32}
@@ -60,7 +52,7 @@ export function Header() {
             />
             {/* Logo para Light Mode */}
             <img
-              src={formatAssetUrl('/onyinfo-black.png')}
+              src={formatAssetUrl('/images/onyinfo-black.png')}
               alt="OnyInfo Hardware"
               width={130}
               height={32}

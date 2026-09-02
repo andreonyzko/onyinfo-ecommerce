@@ -1,13 +1,6 @@
 import { Link } from 'react-router'
 import { Cpu, ShieldCheck, Zap, Truck, CreditCard, Package } from 'lucide-react'
-
-const BASE_URL = import.meta.env.BASE_URL || '/'
-
-function formatAssetUrl(path: string): string {
-  const cleanBase = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL
-  const cleanPath = path.startsWith('/') ? path : `/${path}`
-  return `${cleanBase}${cleanPath}`
-}
+import { formatAssetUrl } from '../../lib/utils'
 
 export function Footer() {
   return (
@@ -18,7 +11,7 @@ export function Footer() {
           <div className="space-y-4 md:col-span-1">
             <Link to="/" className="inline-block" aria-label="OnyInfo Hardware">
               <img
-                src={formatAssetUrl('/onyinfo-white.png')}
+                src={formatAssetUrl('/images/onyinfo-white.png')}
                 alt="OnyInfo Hardware"
                 width={120}
                 height={28}
@@ -27,7 +20,7 @@ export function Footer() {
                 className="h-7 w-auto hidden dark:block"
               />
               <img
-                src={formatAssetUrl('/onyinfo-black.png')}
+                src={formatAssetUrl('/images/onyinfo-black.png')}
                 alt="OnyInfo Hardware"
                 width={120}
                 height={28}

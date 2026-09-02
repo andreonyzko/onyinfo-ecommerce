@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '../ui/button'
+import { formatAssetUrl } from '../../lib/utils'
 
 interface ProductLightboxProps {
   isOpen: boolean
@@ -43,7 +44,7 @@ export function ProductLightbox({
 
   if (!isOpen) return null
 
-  const activeImage = images[currentIndex] || images[0]
+  const activeImage = formatAssetUrl(images[currentIndex] || images[0])
 
   return (
     <div
